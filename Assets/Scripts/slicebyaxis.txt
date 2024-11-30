@@ -1,0 +1,36 @@
+void SliceByAxis(int n,GameObject target){
+            while (GameObject.Find("plane")!=null){
+                GameObject gameObject=GameObject.Find("plane");
+                Destroy(gameObject,0);
+            }
+            GameObject myRootObject = FindInRoot("eggplant_parent");
+            GameObject prefab=myRootObject.transform.Find("eggplant");
+            if (myRootObject != null)
+            {
+            }
+            else
+            {
+                Debug.LogWarning("GameObject not found in the root!");
+            }
+
+            
+            Transform axis = myRootObject.transform.Find("axis");
+            Transform axis_point_start = myRootObject.transform.GetChild(0);
+            Transform axis_point_end = myRootObject.transform.GetChild(1);
+            Vector3 differenceVector = axis_point_end.position - axis_point_start.position;
+
+           
+            //Debug.Log("onCut"+"min:"+minx+"max:"+maxx);
+            Vector3 deltaV3=differenceVector/5;
+            //Plane[] planes=new Plane[n-1];
+            for (int i = 0; i < n-1; i++)
+            {   
+                Vector3 point=axis_point_start.position+deltaV3*(i+1);
+                Vector3 normal=deltaV3;
+                AddCutPlane(point,normal);
+                        //StartCoroutine(WaitOneFrame());
+                //CreatePlane(new Vector3(minx+distance*(i+1),miny,minz),new Vector3(minx+distance*(i+1),miny,maxz),
+                //new Vector3(minx+distance*(i+1),maxy,minz),new Vector3(minx+distance*(i+1),maxy,maxz));
+            }
+            
+        }
