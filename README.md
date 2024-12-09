@@ -19,3 +19,5 @@ the second important object is "Canvas" object, it displays the user interface, 
 the click handler is not placed under each button, instead, all clicks are handled by a UnifiedButtonHandler under the Canvas object
 
 <img width="543" alt="Screenshot 2024-12-08 at 11 36 27 PM" src="https://github.com/user-attachments/assets/a5368e95-99a6-4abc-945b-e6ec9be02f51">
+
+<img width="561" alt="Screenshot 2024-12-08 at 11 47 36 PM" src="https://github.com/user-attachments/assets/874a49b5-24b3-424b-a326-2f96b429e2cc">
