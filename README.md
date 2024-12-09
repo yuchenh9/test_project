@@ -9,3 +9,13 @@ as shown below, a vegetable parent object has "axises" object and "object" objec
 and the axises object stores three pair of spheres, which are used to represent the cutting axises (to cut the vegetable in three directions), as shown below
 
 <img width="669" alt="Screenshot 2024-12-08 at 11 14 06 PM" src="https://github.com/user-attachments/assets/e4c9b93a-5d86-404f-b73d-c761bfec9680">
+
+the second important object is "Canvas" object, it displays the user interface, the minus plus and xyz buttons.
+
+
+<img width="387" alt="Screenshot 2024-12-08 at 11 28 24 PM" src="https://github.com/user-attachments/assets/e74d7556-4990-4c87-ac77-abbbdc4fec3e">
+<img width="409" alt="Screenshot 2024-12-08 at 11 32 55 PM" src="https://github.com/user-attachments/assets/0e1d0d41-5327-456a-8da7-9bc8414ea221">
+
+the click handler is not placed under each button, instead, all clicks are handled by a UnifiedButtonHandler under the Canvas object
+
+<img width="543" alt="Screenshot 2024-12-08 at 11 36 27 PM" src="https://github.com/user-attachments/assets/a5368e95-99a6-4abc-945b-e6ec9be02f51">
