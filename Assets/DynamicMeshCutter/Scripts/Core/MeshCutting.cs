@@ -220,26 +220,26 @@ namespace DynamicMeshCutter
 
                 data.AddedVertices.Add(vertices[2, i]);
             }
+            //the code below adds three triangles formed from the three vertices of the triangle that is being cut
+            //vertices[x,y] the x is the side, y is the first or second vertex of that side,
+            //when x==2, the vertexes are the newy created ones on the cutting plane.
+            //
+            //there are two sides split by the cutting plane, if you look at the diagram, one vertice of the original triangle is on one side, and the other two vertices are on the other side
 
-
-            //create new triangles given the new vertices
-            //there will be exactly three new triangles we need to create. one for the side of the singular vertex, two for the other side//bookmark 2024/8/26
-            int singularSide = 0; //on which side of the plane is the singular vertice? the other side will have two of the three triangle vertices
+             // the sigularSide stores the value of x that is the singular side.
+            int singularSide = 0; 
             if (vertices[1, 0] == vertices[1, 1])
                 singularSide = 1;
 
-            //just for debugging
-            //if (singularSide == 0 && vertices[0, 0] != vertices[0, 1])
-            //{
-            //    Debug.LogError("error in determining singular vertice of cut triangle");
-            //}
+            
             int sign =-1;
             for (int i = 0; i < 2; i++)
             {
                 if(i==1){
                     sign=1;
                 }
-                data.Sides[i].AddTriangle(
+                //triangle 1 and 2
+                data.Sides[i].AddTriangle( 
                         new Vector3[] { vertices[i, 0], vertices[2, 0], vertices[2, 1] },
                         new Vector3[] { normals[i, 0], normals[2, 0], normals[2, 1] },
                         new Vector2[] { uvs[i, 0], uvs[2, 0], uvs[2, 1] },
@@ -249,7 +249,8 @@ namespace DynamicMeshCutter
                         submesh
                         );
 
-                //add the second triangle for the side with two of the original vertices
+                //triangle 3
+
                 if (singularSide != i)
                 {
                     data.Sides[i].AddTriangle(
@@ -263,9 +264,10 @@ namespace DynamicMeshCutter
                       );
                 }
                 Vector3 crossProduct = CalculateTriangleCrossProduct(vertices[i, 0], vertices[i, 1], vertices[2, 1]);
+                //below is the bug
                 //below is my code to add the round edge triangles
-                
-                int stepNumber=0;
+                int stepNumber =2;
+                int z=0;
                 Vector3 NormalDifferenceA= (sign * data.Plane.LocalNormal-normals[2, 1])/stepNumber;
                 Vector3 NormalDifferenceB= (sign * data.Plane.LocalNormal-normals[2, 0])/stepNumber;
                 Vector3 originalNormalA=normals[2, 1];
@@ -338,6 +340,7 @@ namespace DynamicMeshCutter
             }
             }
         }
+        //above is the bug
         private Vector3 CalculateTriangleCrossProduct(Vector3 v0, Vector3 v1, Vector3 v2)
         {
             Vector3 edge1 = v1 - v0;
