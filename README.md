@@ -21,3 +21,7 @@ the click handler is not placed under each button, instead, all clicks are handl
 <img width="543" alt="Screenshot 2024-12-08 at 11 36 27 PM" src="https://github.com/user-attachments/assets/a5368e95-99a6-4abc-945b-e6ec9be02f51">
 
 <img width="561" alt="Screenshot 2024-12-08 at 11 47 36 PM" src="https://github.com/user-attachments/assets/874a49b5-24b3-424b-a326-2f96b429e2cc">
+the "tomato" object in tomato_parent/object has important sctipts attached to it.
+1. the Layer is set outline 
+<img width="191" alt="Screenshot 2024-12-08 at 11 51 13 PM" src="https://github.com/user-attachments/assets/dbc7058f-c474-48df-baeb-206f8c073c0c">
+it is a custome layer that was added, it the object is set to default, the outline will not render. 
