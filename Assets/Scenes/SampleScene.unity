@@ -468,7 +468,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &85038020
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4666,7 +4666,7 @@ GameObject:
   m_Component:
   - component: {fileID: 568715417}
   m_Layer: 0
-  m_Name: frying_pan
+  m_Name: fryingPan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9918,7 +9918,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1399450346}
   m_Layer: 5
-  m_Name: stripBar
+  m_Name: slice options buttons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12330,7 +12330,7 @@ GameObject:
   - component: {fileID: 1657205220}
   - component: {fileID: 1657205224}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
