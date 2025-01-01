@@ -2,4 +2,5 @@
 /Logs/
 /build*/
 /Temp/
-/.plastic/
+.plastic/
+.DS_Store/
