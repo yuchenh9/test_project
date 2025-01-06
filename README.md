@@ -3,7 +3,7 @@
 
 Here you should see plants,controller, canvas, fryingPan and others.
 
-###**Plants**
+### **Plants**
 
 
 "plants" object is a list of the vegetables that can be displayed in the game, 
