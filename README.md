@@ -1,6 +1,7 @@
-<img width="497" alt="Screenshot 2024-12-08 at 11 09 10 PM" src="https://github.com/user-attachments/assets/6f640243-b5be-437d-9f4d-be557a36f77f">
 
-Here you should see plants,controller, Canvas, frying_pan_group and others.
+![Image 2025-01-06 at 2 38 PM](https://github.com/user-attachments/assets/9d7d9d13-ebdd-4eaf-8f56-fc217334d5ec)
+
+Here you should see plants,controller, canvas, fryingPan and others.
 "plants" object is a list of the vegetables that can be displayed in the game, 
 as shown below, a vegetable parent object has "axises" object and "object" object.
 
