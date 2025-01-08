@@ -62,6 +62,7 @@ namespace DynamicMeshCutter
         }
         public void MinusButtonClick()
         {   gamecontroller.Instance.clearCurrentList();
+        // this deletes all the objects from CurrentList, which stores the objects we want to cut
 
             gamecontroller.Instance.SliceNumber-=1;
             string textString = String.Format("{0}", gamecontroller.Instance.SliceNumber);
