@@ -33,23 +33,23 @@ the simple_outline_body_shader looks like below
 
 ### **1.2 canvas**
 
-the second important object is "canvas" object, it displays the user interface, the minus plus and xyz buttons.
+The second important object is "canvas" object, it displays the user interface, the minus plus and xyz buttons.
 
 
 <img width="387" alt="Screenshot 2024-12-08 at 11 28 24 PM" src="https://github.com/user-attachments/assets/e74d7556-4990-4c87-ac77-abbbdc4fec3e">
 <img width="409" alt="Screenshot 2024-12-08 at 11 32 55 PM" src="https://github.com/user-attachments/assets/0e1d0d41-5327-456a-8da7-9bc8414ea221">
 
-the click handler script is not attached to each button, instead, all clicks are handled by a UnifiedButtonHandler under the Canvas object
+The click handler script is not attached to each button, instead, all clicks are handled by a UnifiedButtonHandler under the Canvas object
 
-each time the number is changed as you click on the minus or plus button, it makes a new cut.
+Each time the number is changed as you click on the minus or plus button, it makes a new cut.
 
-there are "x" "y" "z" buttons, when they are clicked, the game sets the cutting axis to x or y or z, 
+when "x" "y" "z" are clicked, the game sets the cutting axis to x or y or z, 
 
 when "xy" is clicked, it sets two cutting axises, x and y
 
 when "cir" is clicked, it sets circular cutting axises like cuting a pizze.
 
-all those buttons are controlled by onclick functions in the UnifiedButtonController script in the Assets/Scripts folder
+all those buttons are controlled by onclick functions in the UnifiedButtonHandler script in the Assets/Scripts folder
 
 <img width="543" alt="Screenshot 2024-12-08 at 11 36 27 PM" src="https://github.com/user-attachments/assets/a5368e95-99a6-4abc-945b-e6ec9be02f51">
 
