@@ -1,9 +1,9 @@
-
+### **1. Main Scene Hierarchy**
 ![Image 2025-01-06 at 2 38 PM](https://github.com/user-attachments/assets/9d7d9d13-ebdd-4eaf-8f56-fc217334d5ec)
 
 Here you should see plants,controller, canvas, fryingPan and others.
 
-### **Plants**
+### **1.1 Plants**
 
 
 "plants" object is a list of the vegetables that can be displayed in the game, 
@@ -15,7 +15,23 @@ and the axises object stores three pair of spheres, which are used to represent 
 
 <img width="669" alt="Screenshot 2024-12-08 at 11 14 06 PM" src="https://github.com/user-attachments/assets/e4c9b93a-5d86-404f-b73d-c761bfec9680">
 
-### **canvas**
+the "tomato" object in tomato_parent/object has important sctipts attached to it.
+1. the Layer is set as "outline"
+   
+ <img width="561" alt="Screenshot 2024-12-08 at 11 47 36 PM" src="https://github.com/user-attachments/assets/874a49b5-24b3-424b-a326-2f96b429e2cc">
+
+<img width="191" alt="Screenshot 2024-12-08 at 11 51 13 PM" src="https://github.com/user-attachments/assets/dbc7058f-c474-48df-baeb-206f8c073c0c">
+
+it is a custome layer that was added, if the layer of the object is set to default, the outline shader will not render. 
+
+2. the material of the tomato is tomato_material, which is using a simple_outline_body_shader shader graph.
+   
+The shaders in this project are located in Assets/Resources2/shadersFolder
+
+the simple_outline_body_shader looks like below
+<img width="705" alt="Screenshot 2025-01-08 at 9 27 15 AM" src="https://github.com/user-attachments/assets/4043d6c6-c73c-4555-8f82-53a76ed96dc8" />
+
+### **1.2 canvas**
 
 the second important object is "canvas" object, it displays the user interface, the minus plus and xyz buttons.
 
@@ -25,11 +41,15 @@ the second important object is "canvas" object, it displays the user interface, 
 
 the click handler script is not attached to each button, instead, all clicks are handled by a UnifiedButtonHandler under the Canvas object
 
+each time the number is changed as you click on the minus or plus button, it makes a new cut.
+
+there are "x" "y" "z" buttons, when they are clicked, the game sets the cutting axis to x or y or z, 
+
+when "xy" is clicked, it sets two cutting axises, x and y
+
+when "circle" is clicked, it sets circular cutting axises like cuting a pizze.
+
 <img width="543" alt="Screenshot 2024-12-08 at 11 36 27 PM" src="https://github.com/user-attachments/assets/a5368e95-99a6-4abc-945b-e6ec9be02f51">
 
-the "tomato" object in tomato_parent/object has important sctipts attached to it.
-1. the Layer is set as "outline"
- <img width="561" alt="Screenshot 2024-12-08 at 11 47 36 PM" src="https://github.com/user-attachments/assets/874a49b5-24b3-424b-a326-2f96b429e2cc">
 
-<img width="191" alt="Screenshot 2024-12-08 at 11 51 13 PM" src="https://github.com/user-attachments/assets/dbc7058f-c474-48df-baeb-206f8c073c0c">
-it is a custome layer that was added, if the object is set to default, the outline shader will not render. 
+
