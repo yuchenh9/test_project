@@ -17,7 +17,7 @@ and the axises object stores three pair of spheres, which are used to represent 
 
 There are some important things about the tomato object to be noticed.
 
-### **1.1.1. **
+### **1.1.1.**
 
 the Layer is set as "outline"
    
