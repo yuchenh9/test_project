@@ -15,7 +15,8 @@ and the axises object stores three pair of spheres, which are used to represent 
 
 <img width="669" alt="Screenshot 2024-12-08 at 11 14 06 PM" src="https://github.com/user-attachments/assets/e4c9b93a-5d86-404f-b73d-c761bfec9680">
 
-the "tomato" object in tomato_parent/object has important sctipts attached to it.
+There are some important things about the tomato object to be noticed.
+
 1. the Layer is set as "outline"
    
  <img width="561" alt="Screenshot 2024-12-08 at 11 47 36 PM" src="https://github.com/user-attachments/assets/874a49b5-24b3-424b-a326-2f96b429e2cc">
