@@ -33,6 +33,7 @@ the simple_outline_body_shader looks like below
 <img width="705" alt="Screenshot 2025-01-08 at 9 27 15 AM" src="https://github.com/user-attachments/assets/4043d6c6-c73c-4555-8f82-53a76ed96dc8" />
 
 1.1.3. A MeshTarget script is attached to it. This is the script that enables an object to be cut. The script is located in Assets/DynamicMeshCutter/Scripts/Utility.
+The face material is selected in this script, and it is the material used for the cut surface that is newly created. The face material needs the same shader as the object material, otherwise it looks very weird.
 
 ### **1.2 canvas**
 
