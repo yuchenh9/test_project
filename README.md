@@ -17,7 +17,7 @@ and the axises object stores three pair of spheres, which are used to represent 
 
 There are some important things about the tomato object to be noticed.
 
-1. the Layer is set as "outline"
+1.1.1. the Layer is set as "outline"
    
  <img width="561" alt="Screenshot 2024-12-08 at 11 47 36 PM" src="https://github.com/user-attachments/assets/874a49b5-24b3-424b-a326-2f96b429e2cc">
 
@@ -25,12 +25,14 @@ There are some important things about the tomato object to be noticed.
 
 it is a custome layer that was added, if the layer of the object is set to default, the outline shader will not render. 
 
-2. the material of the tomato is tomato_material, which is using a simple_outline_body_shader shader graph.
+1.1.2. the material of the tomato is tomato_material, which is using a simple_outline_body_shader shader graph.
    
 The shaders in this project are located in Assets/Resources2/shadersFolder
 
 the simple_outline_body_shader looks like below
 <img width="705" alt="Screenshot 2025-01-08 at 9 27 15 AM" src="https://github.com/user-attachments/assets/4043d6c6-c73c-4555-8f82-53a76ed96dc8" />
+
+1.1.3. A MeshTarget script is attached to it. This is the script that enables an object to be cut. The script is located in Assets/DynamicMeshCutter/Scripts/Utility.
 
 ### **1.2 canvas**
 
