@@ -47,7 +47,9 @@ there are "x" "y" "z" buttons, when they are clicked, the game sets the cutting 
 
 when "xy" is clicked, it sets two cutting axises, x and y
 
-when "circle" is clicked, it sets circular cutting axises like cuting a pizze.
+when "cir" is clicked, it sets circular cutting axises like cuting a pizze.
+
+all those buttons are controlled by onclick functions in the UnifiedButtonController script in the Assets/Scripts folder
 
 <img width="543" alt="Screenshot 2024-12-08 at 11 36 27 PM" src="https://github.com/user-attachments/assets/a5368e95-99a6-4abc-945b-e6ec9be02f51">
 
