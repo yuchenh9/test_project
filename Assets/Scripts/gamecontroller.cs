@@ -7,8 +7,10 @@ namespace DynamicMeshCutter
 
     public class gamecontroller : MonoBehaviour
     {
-        // Singleton instance
+        // This is a controller Singleton instance that stores many important variables.
+
         public  static gamecontroller Instance { get; private set; }
+        
         public GameObject selectedObject;
         public bool addPlane=false;
         public bool cutCompleteFlag=false;
