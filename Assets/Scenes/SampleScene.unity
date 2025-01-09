@@ -775,7 +775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  buttonText: {fileID: 0}
+  cutNumber: {fileID: 0}
 --- !u!4 &112649551
 Transform:
   m_ObjectHideFlags: 0
@@ -10888,7 +10888,7 @@ GameObject:
   - component: {fileID: 1481336001}
   - component: {fileID: 1481336000}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: cutNumber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12705,7 +12705,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  buttonText: {fileID: 0}
+  cutNumber: {fileID: 1481336000}
 --- !u!1 &1659490647
 GameObject:
   m_ObjectHideFlags: 0

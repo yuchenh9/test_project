@@ -266,7 +266,7 @@ namespace DynamicMeshCutter
                 Vector3 crossProduct = CalculateTriangleCrossProduct(vertices[i, 0], vertices[i, 1], vertices[2, 1]);
                 //below is the bug
                 //below is my code to add the round edge triangles
-                int stepNumber =2;
+                int stepNumber =5;
                 int z=0;
                 Vector3 NormalDifferenceA= (sign * data.Plane.LocalNormal-normals[2, 1])/stepNumber;
                 Vector3 NormalDifferenceB= (sign * data.Plane.LocalNormal-normals[2, 0])/stepNumber;

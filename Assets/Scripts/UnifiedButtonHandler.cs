@@ -12,10 +12,10 @@ namespace DynamicMeshCutter
         private int sliceNumber;
         private List<GameObject> currentlist;
         public GameObject target;
-        public Text buttonText;  // Assign this from the inspector
+        public Text cutNumber;  // Assign this from the inspector
         
         private bool Rigidbodies_are_kinematic=false;
-        // Start is called before the first frame update
+
         void Start()
         {
             selectedObject=gamecontroller.Instance.selectedObject;
@@ -36,10 +36,10 @@ namespace DynamicMeshCutter
 
 
         // Method to update the button text
-        public void SetButtonText(string text)
+        public void SetCutNumber(string text)
         {
-            if (buttonText != null)
-                buttonText.text = text;
+            if (cutNumber != null)
+                cutNumber.text = text;
             else
                 Debug.LogError("No Text component found on the button.");
         }
@@ -54,7 +54,7 @@ namespace DynamicMeshCutter
 
             //this updates the displayed slice number
             string textString = String.Format("{0}", gamecontroller.Instance.SliceNumber);
-            SetButtonText(textString);
+            SetCutNumber(textString);
     
 
             //this calls the cutting function 
@@ -76,7 +76,7 @@ namespace DynamicMeshCutter
 
             //this updates the displayed slice number
             string textString = String.Format("{0}", gamecontroller.Instance.SliceNumber);
-            SetButtonText(textString);
+            SetCutNumber(textString);
             
             //this calls the cutting function 
             SliceButtonClick();
