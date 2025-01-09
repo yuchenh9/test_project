@@ -3,6 +3,7 @@ set an axis (x,y,xyz...) and click the plus(+) or minus(-) button to cut the tom
 
 <img width="567" alt="Screenshot 2025-01-09 at 8 43 10 AM" src="https://github.com/user-attachments/assets/5ce2b251-72fc-4f9c-9e7f-bb94abb82de9" />
 ### **1. Main Scene Hierarchy**
+
 ![Image 2025-01-06 at 2 38 PM](https://github.com/user-attachments/assets/9d7d9d13-ebdd-4eaf-8f56-fc217334d5ec)
 
 Here you should see plants,controller, canvas, fryingPan and others.
