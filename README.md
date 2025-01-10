@@ -54,7 +54,7 @@ this is the Simple_outline_shader_urp_asset, it is located in Assets/urp_assets
 
 This is the shader that draws the black outline, it extrude the vertex positions by a certain distance (outline_thickness) along the normal vector, and add it to a shrinked vertex positions (mutiply by a number smaller than 1).
 This is designed to try to make the outline mesh within the boundary of the rigidbody, so that the outlines of different meshes do not go through each other.
-
+(however in this case the outline_thickness and other variables are not connected to the shader graph, instead a constant is used)
 
 <img width="759" alt="Screenshot 2025-01-09 at 4 12 00 PM" src="https://github.com/user-attachments/assets/4f5013cc-7bf4-40e6-a87b-d8b692ca36bd" />
 As you can see, the outline is extruded from the original mesh that shrinked a little.
