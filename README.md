@@ -37,10 +37,21 @@ it is a custome layer that was added, if the layer of the object is set to defau
 
 the material of the tomato is tomato_material, which is using a simple_outline_body_shader shader graph.
    
-The shaders in this project are located in Assets/Resources2/shadersFolder
+The shaders in this project are located in Assets/3DAssets/shadersFolder
 
-the simple_outline_body_shader looks like below
+
+the simple_outline_body_shader looks like below, it just renders the red part of the tomato, and it is not responsible for rendering the black outline, which is rendered by the "outline_shader" in the first pass of Simple_outline_shader_urp_asset, used by the camera.
+
+
 <img width="705" alt="Screenshot 2025-01-08 at 9 27 15 AM" src="https://github.com/user-attachments/assets/4043d6c6-c73c-4555-8f82-53a76ed96dc8" />
+
+
+<img width="554" alt="Screenshot 2025-01-09 at 4 12 42 PM" src="https://github.com/user-attachments/assets/bccb3f28-ff72-43ee-aff6-f2c7b79eb1ae" />
+
+this is the Simple_outline_shader_urp_asset, it is located in Assets/urp_assets
+<img width="1151" alt="Screenshot 2025-01-09 at 4 16 17 PM" src="https://github.com/user-attachments/assets/d56358e4-aaeb-4c42-9631-d812c5e63b6d" />
+
+<img width="759" alt="Screenshot 2025-01-09 at 4 12 00 PM" src="https://github.com/user-attachments/assets/4f5013cc-7bf4-40e6-a87b-d8b692ca36bd" />
 
 ### **1.1.3.**
 
