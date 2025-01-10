@@ -49,10 +49,15 @@ the simple_outline_body_shader looks like below, it just renders the red part of
 <img width="554" alt="Screenshot 2025-01-09 at 4 12 42 PM" src="https://github.com/user-attachments/assets/bccb3f28-ff72-43ee-aff6-f2c7b79eb1ae" />
 
 this is the Simple_outline_shader_urp_asset, it is located in Assets/urp_assets
+
 <img width="1151" alt="Screenshot 2025-01-09 at 4 16 17 PM" src="https://github.com/user-attachments/assets/d56358e4-aaeb-4c42-9631-d812c5e63b6d" />
 
-<img width="759" alt="Screenshot 2025-01-09 at 4 12 00 PM" src="https://github.com/user-attachments/assets/4f5013cc-7bf4-40e6-a87b-d8b692ca36bd" />
+This is the shader that draws the black outline, it extrude the vertex positions by a certain distance (outline_thickness) along the normal vector, and add it to a shrinked vertex positions (mutiply by a number smaller than 1).
+This is designed to try to make the outline mesh within the boundary of the rigidbody, so that the outlines of different meshes do not go through each other.
 
+
+<img width="759" alt="Screenshot 2025-01-09 at 4 12 00 PM" src="https://github.com/user-attachments/assets/4f5013cc-7bf4-40e6-a87b-d8b692ca36bd" />
+As you can see, the outline is extruded from the original mesh that shrinked a little.
 ### **1.1.3.**
 
 A MeshTarget script is attached to it. This is the script that enables an object to be cut. The script is located in Assets/DynamicMeshCutter/Scripts/Utility.
