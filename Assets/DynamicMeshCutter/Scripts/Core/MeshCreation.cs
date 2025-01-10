@@ -237,7 +237,7 @@ namespace DynamicMeshCutter
             }
             filter.mesh.vertices = vertices; 
             Debug.Log(position);
-            Vector3 vertexWorldPosition = root.transform.TransformPoint(position*100f);
+            Vector3 vertexWorldPosition = root.transform.TransformPoint(position);
 
             root.transform.position=vertexWorldPosition;
             if (target.CreateRigidbody[bt])
