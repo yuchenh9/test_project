@@ -200,7 +200,33 @@ namespace DynamicMeshCutter
             root.transform.rotation = target.transform.rotation;
             root.gameObject.tag = target.transform.tag;
             root.gameObject.layer = LayerMask.NameToLayer("outline");
-        
+            // code below adds the decal
+            
+            if (target.transform.childCount > 0)
+            {
+                // Get the first child
+                Transform decal = target.transform.GetChild(0);
+                
+                // Create a copy of the child
+                
+    GameObject newDecal = GameObject.Instantiate(decal.gameObject);
+
+    // Set the parent of the copied child to the root object
+    newDecal.transform.SetParent(root.transform);
+
+    // Compute the new local position of the decal relative to the new parent
+    newDecal.transform.localPosition = root.transform.InverseTransformPoint(decal.position);
+
+    // Optionally, match the rotation and scale
+    newDecal.transform.localRotation = decal.localRotation;
+    newDecal.transform.localScale = decal.localScale;
+
+                Debug.Log("First child found: " + decal.name);
+            }
+            else
+            {
+                Debug.Log("The parent object has no children.");
+            }
             List<GameObject> currentlist = gamecontroller.Instance.currentlist;
             currentlist.Add(root.gameObject);
  

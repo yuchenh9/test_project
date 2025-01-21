@@ -69,11 +69,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _baseMap:
-        m_Texture: {fileID: 2800000, guid: 1bb9bff7efcb04362b7637836f3c1198, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1c33ae330cb2a408e81148867bdb85da, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _secondMap:
-        m_Texture: {fileID: 2800000, guid: c6830f634279a4f33ad4b6a2643c44fb, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1bb9bff7efcb04362b7637836f3c1198, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
