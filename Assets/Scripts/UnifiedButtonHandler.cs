@@ -12,73 +12,86 @@ namespace DynamicMeshCutter
         private int sliceNumber;
         private List<GameObject> currentlist;
         public GameObject target;
-        public Text buttonText;  // Assign this from the inspector
+        public Text cutNumber;  // Assign this from the inspector
         
-        private bool iNeedClickDoneButtonClick=false;
-        // Start is called before the first frame update
+        private bool Rigidbodies_are_kinematic=false;
+
         void Start()
         {
             selectedObject=gamecontroller.Instance.selectedObject;
         
-            //Debug.Log("start");
-            //Debug.Log(gamecontroller.Instance.SliceNumber);
         }
 
-        // Update is called once per frame
         void Update()
         {
-            //Debug.Log("updates");
-            //Debug.Log(gamecontroller.Instance.SliceNumber);
-            //ßscoreText.text = sliceNumber.ToString();
+
             GameObject controller=GameObject.Find("controller");
-            if(iNeedClickDoneButtonClick&&gamecontroller.Instance.cutCompleteFlag){
-                DoneButtonClick();
-                iNeedClickDoneButtonClick=false;
+
+            //Enable physics if the cut tast is complete and the rigidbodies are kinematic
+            if(Rigidbodies_are_kinematic&&gamecontroller.Instance.cutCompleteFlag){
+                Set_the_rigidbodies_in_the_currentlist_nonkinematic();
+                Rigidbodies_are_kinematic=false;
             }
         }
 
 
         // Method to update the button text
-        public void SetButtonText(string text)
+        public void SetCutNumber(string text)
         {
-            if (buttonText != null)
-                buttonText.text = text;
+            if (cutNumber != null)
+                cutNumber.text = text;
             else
                 Debug.LogError("No Text component found on the button.");
         }
 
         public void PlusButtonClick()
         {
+            // this deletes all the objects from CurrentList, which stores the objects we want to cut
             gamecontroller.Instance.clearCurrentList();
 
+            //this decrements the slice number by one
             gamecontroller.Instance.SliceNumber+=1;
-            
+
+            //this updates the displayed slice number
             string textString = String.Format("{0}", gamecontroller.Instance.SliceNumber);
-            SetButtonText(textString);
-            Debug.Log("MinusButton was clicked!");
+            SetCutNumber(textString);
+    
+
+            //this calls the cutting function 
             SliceButtonClick();
-            iNeedClickDoneButtonClick=true;
-            Debug.Log("PlusButton was clicked!");
+
+            //this set the flag that physics is disabled
+            Rigidbodies_are_kinematic=true;
+
+
         }
         public void MinusButtonClick()
-        {   gamecontroller.Instance.clearCurrentList();
-
-            gamecontroller.Instance.SliceNumber-=1;
-            string textString = String.Format("{0}", gamecontroller.Instance.SliceNumber);
-            SetButtonText(textString);
-            Debug.Log("MinusButton was clicked!");
-            SliceButtonClick();
-            iNeedClickDoneButtonClick=true;
-            Debug.Log("Minus Button was clicked!");
-        }
-        public void DoneButtonClick()
+        
         {
-            Debug.Log("DoneButton was clicked!");
-            //currentlist = gamecontroller.Instance.currentlist;
+            //this deletes all the objects from CurrentList, which stores the objects we want to cut
+            gamecontroller.Instance.clearCurrentList();
+
+            //this decrements the slice number by one
+            gamecontroller.Instance.SliceNumber-=1;
+
+            //this updates the displayed slice number
+            string textString = String.Format("{0}", gamecontroller.Instance.SliceNumber);
+            SetCutNumber(textString);
+            
+            //this calls the cutting function 
+            SliceButtonClick();
+
+            //this set the flag that physics is disabled
+            Rigidbodies_are_kinematic=true;
+
+
+        }
+        public void Set_the_rigidbodies_in_the_currentlist_nonkinematic()
+        {
             currentlist= gamecontroller.Instance.currentlist;
+
             foreach (GameObject go in currentlist)
             {
-                // Do something with 'go'
                 if (go==null){
                     continue;
                 } else {
@@ -87,6 +100,7 @@ namespace DynamicMeshCutter
                 }
                 
                 var objectCollider = go.GetComponent<MeshCollider>();
+                
                 if (objectCollider != null)
                 {
                     Debug.Log("collider set active");
@@ -94,14 +108,12 @@ namespace DynamicMeshCutter
                 } else {
                     Debug.Log("collider is null");
                 }
-                Debug.Log("go.transform is "+go.transform);
-                Debug.Log("go.transform.parent is "+go.transform.parent);
                 var rb = go.transform.parent.GetComponent<Rigidbody>();
                 
                 // Check if the Rigidbody component exists
                 if (rb != null)
                 {
-                    rb.isKinematic = false; // Makes the Rigidbody non kinematic, which enbles physics interactions
+                    rb.isKinematic = false; // Makes the Rigidbody non kinematic, which enables physics interactions
                 }
                 else
                 {
@@ -117,7 +129,6 @@ namespace DynamicMeshCutter
             {
                 // Continue the loop until the object is very close to the target
                 while (Vector3.Distance(go.transform.position, target.transform.position) > 2.01f)
-                //while(true)
                 {
                     // Move our position a step closer to the target.
                     Vector3 newPosition = Vector3.MoveTowards(go.transform.position, target.transform.position, speed * Time.deltaTime);
@@ -156,13 +167,24 @@ namespace DynamicMeshCutter
         public void SliceButtonClick()
             {
                 currentlist= gamecontroller.Instance.currentlist;
+
                 Transform selected=selectedObject.transform.Find("object");
+
+                //this hides the object that is being cut and instantiates a new object to be displays, 
+                //so that when the object is being cut, the user only sees a intact object instead of an object getting 
+                //sliced piece by piece, which is ugly
                 int childCount = selected.transform.childCount;
                 selected.transform.GetChild(childCount-1).gameObject.GetComponent<Renderer>().enabled=false;
                 GameObject instantiated = Instantiate(selected.transform.GetChild(childCount-1).gameObject);
-                currentlist.Add(instantiated);//
-                if(gamecontroller.Instance.axises[0]=="cy"){MouseBehaviour.Instance.circularSlice(gamecontroller.Instance.SliceNumber);                }else{
-                    MouseBehaviour.Instance.SliceByAllAxis(gamecontroller.Instance.SliceNumber,gamecontroller.Instance.axises);}
+
+                //
+                currentlist.Add(instantiated);
+                if(gamecontroller.Instance.axises[0]=="cy")
+                {
+                    MouseBehaviour.Instance.circularSlice(gamecontroller.Instance.SliceNumber);
+                }else{
+                    MouseBehaviour.Instance.SliceByAllAxis(gamecontroller.Instance.SliceNumber,gamecontroller.Instance.axises);
+                }
 
                 Debug.Log("2Button was clicked!");
             }
@@ -174,56 +196,46 @@ namespace DynamicMeshCutter
                 case "plusButton":
                     PlusButtonClick();
                     Debug.Log("plusButton was clicked!");
-                    // Add functionality for Button 1
                     break;
                 case "minusButton":
                     MinusButtonClick();
                     Debug.Log("minusButton was clicked!");
-                    // Add functionality for Button 2
                     break;
                 case "xButton":
                     Debug.Log("xButton was clicked!");
                     setAxis(new string[]{"x"});
-                    // Add functionality for Button 3
                     break;
                 case "yButton":
                     Debug.Log("yButton was clicked!");
                     setAxis(new string[]{"y"});
-                    // Add functionality for Button 3
                     break;
                     
                 case "zButton":
                     Debug.Log("zButton was clicked!");
                     setAxis(new string[]{"z"});
-                    // Add functionality for Button 3
                     break;
                     
                 case "xyButton":
                     Debug.Log("xButton was clicked!");
                     setAxis(new string[]{"x","y"});
-                    // Add functionality for Button 3
                     break;
                 case "yzButton":
                     Debug.Log("yButton was clicked!");
                     setAxis(new string[]{"y","z"});
-                    // Add functionality for Button 3
                     break;
                     
                 case "zxButton":
                     Debug.Log("zButton was clicked!");
                     setAxis(new string[]{"z","x"});
-                    // Add functionality for Button 3
                     break;
                     
                 case "xyzButton":
                     Debug.Log("xyzButton was clicked!");
                     setAxis(new string[]{"z","x","y"});
-                    // Add functionality for Button 3
                     break;
                 case "circularYButton":
                     Debug.Log("circularYButton was clicked!");
                     setAxis(new string[]{"cy"});
-                    // Add functionality for Button 3
                     break;
                 default:
                     Debug.LogError("Unknown button");

@@ -262,11 +262,11 @@ namespace DynamicMeshCutter
                       normals[2, 1],
                       submesh
                       );
-                }
+                }/*
                 Vector3 crossProduct = CalculateTriangleCrossProduct(vertices[i, 0], vertices[i, 1], vertices[2, 1]);
                 //below is the bug
                 //below is my code to add the round edge triangles
-                int stepNumber =2;
+                int stepNumber =5;
                 int z=0;
                 Vector3 NormalDifferenceA= (sign * data.Plane.LocalNormal-normals[2, 1])/stepNumber;
                 Vector3 NormalDifferenceB= (sign * data.Plane.LocalNormal-normals[2, 0])/stepNumber;
@@ -336,8 +336,8 @@ namespace DynamicMeshCutter
                             new int[] {rd[2, 1],rd[2,0],rd[2, 0]},
                             normals[2, 0],
                             submesh
-                            );*/
-            }
+                            );
+            }*/
             }
         }
         //above is the bug
@@ -347,6 +347,7 @@ namespace DynamicMeshCutter
             Vector3 edge2 = v2 - v0;
             return Vector3.Cross(edge1, edge2);
         }
+        
         private void CreateFaces(InternalData data, ref Info info)
         {
             bool hasBoneWeights = data.MeshTarget.HasBoneWeight;
@@ -446,6 +447,7 @@ namespace DynamicMeshCutter
             for (int n = 0; n < fVertices.Count; n++)
             {
                 delta = fVertices[n] - center;
+                delta=delta*1f;
                 int o = (n + 1) % fVertices.Count;
 
                 for (int j = 0; j < 2; j++)
@@ -454,7 +456,7 @@ namespace DynamicMeshCutter
                     uv[j].x = 0.5f + Vector3.Dot(delta, left);
                     uv[j].y = 0.5f + Vector3.Dot(delta, upward);
                     uv[j].z = 0.5f + Vector3.Dot(delta, data.Plane.LocalNormal);
-
+                    Debug.Log(delta);
                     //do modulo to account for looping of last vertex
                     delta = fVertices[o] - center;
                 }
