@@ -262,7 +262,7 @@ namespace DynamicMeshCutter
                       normals[2, 1],
                       submesh
                       );
-                }/*
+                }
                 Vector3 crossProduct = CalculateTriangleCrossProduct(vertices[i, 0], vertices[i, 1], vertices[2, 1]);
                 //below is the bug
                 //below is my code to add the round edge triangles
@@ -336,8 +336,8 @@ namespace DynamicMeshCutter
                             new int[] {rd[2, 1],rd[2,0],rd[2, 0]},
                             normals[2, 0],
                             submesh
-                            );
-            }*/
+                            );*/
+            }
             }
         }
         //above is the bug
