@@ -6,7 +6,7 @@ namespace Obi
 {
     public class ComputeClothRenderSystem : ObiClothRenderSystem, RenderSystem<ObiClothRenderer>
     {
-        public Oni.RenderingSystemType typeEnum { get => Oni.RenderingSystemType.Cloth; }
+        public Oni. RenderingSystemType typeEnum { get => Oni.RenderingSystemType.Cloth; }
 
         public RendererSet<ObiClothRenderer> renderers { get; } = new RendererSet<ObiClothRenderer>();
 

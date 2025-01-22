@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2367c7fda2ffe4e84a808aa9e3662723, type: 3}
-  m_Name: ClothBlueprint
+  m_Name: Cloth_Leaf
   m_EditorClassIdentifier: 
   m_Checksum: 2073401013
   m_Empty: 0
