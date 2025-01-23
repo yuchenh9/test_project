@@ -108,17 +108,6 @@ namespace DynamicMeshCutter
                 } else {
                     Debug.Log("collider is null");
                 }
-                var rb = go.transform.parent.GetComponent<Rigidbody>();
-                
-                // Check if the Rigidbody component exists
-                if (rb != null)
-                {
-                    rb.isKinematic = false; // Makes the Rigidbody non kinematic, which enables physics interactions
-                }
-                else
-                {
-                    Debug.LogError("Rigidbody component not found on this GameObject.");
-                }
             }   
         }
         public void flyButtonClick()

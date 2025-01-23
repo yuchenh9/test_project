@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using Obi;
 using UnityEngine;
 
 namespace DynamicMeshCutter
@@ -127,9 +128,17 @@ namespace DynamicMeshCutter
                 nTarget.SeparateMeshes = target.SeparateMeshes;
                 nTarget.ApplyTranslation = target.ApplyTranslation;
                 nTarget.GroupBehaviours = target.GroupBehaviours;
-
+                
                 //target scale
                 nTarget.transform.localScale = target.transform.localScale;
+
+                if (target.TryGetComponent<SoftbodyGenerator>(out _))
+                {
+                    var softbody = nTarget.gameObject.AddComponent<ObiSoftbody>();
+                    softbody.enabled = false;
+                    var softbodyGenerator = nTarget.gameObject.AddComponent<SoftbodyGenerator>();
+                    softbodyGenerator.CopySoftbodyProperties(target.gameObject);
+                }
 
                 //if inherting, both upper and lower side behaviour will remain the same. otherwise, both sides will have the same effect
                 if (target.Inherit[bt])

@@ -54,6 +54,7 @@ namespace DynamicMeshCutter
 
     public abstract class CutterBehaviour : MonoBehaviour
     {
+        [SerializeField] private Transform container;
         public float Separation = 0.02f;
         [Tooltip("Automatically destroy the original object that is cut, when cut")]
         public bool DestroyTargets = true;
@@ -131,6 +132,11 @@ namespace DynamicMeshCutter
         protected void onCreated(Info info, MeshCreationData cData)
         {
            MeshCreation.TranslateCreatedObjects(info, cData.CreatedObjects, cData.CreatedTargets, 0.002f);
+           
+           foreach (var item in cData.CreatedObjects)
+           {
+               item.transform.parent = container;
+           }
         }
         protected virtual void Update()
         {
@@ -160,18 +166,6 @@ namespace DynamicMeshCutter
                 if (renderer != null)
                 {
                     renderer.enabled = true;
-                }
-                var rb = go.transform.parent.GetComponent<Rigidbody>();
-
-                // Check if the Rigidbody component exists
-                if (rb != null)
-                {
-                    // Example of disabling the Rigidbody (if needed)
-                    rb.isKinematic = true; // Makes the Rigidbody kinematic, which effectively disables physics interactions
-                }
-                else
-                {
-                    Debug.LogError("Rigidbody component not found on this GameObject.");
                 }
             }
             }

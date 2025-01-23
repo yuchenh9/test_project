@@ -5,496 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cd25b408-b69e-4070-98a7-e18d614b0449" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/CHANGELOG_softbody.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/CHANGELOG_softbody.txt.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Blueprints/BlueprintEditorTools/ObiPaintBrushEditorTool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Blueprints/BlueprintEditorTools/ObiPaintBrushEditorTool.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Blueprints/BlueprintEditorTools/ObiParticleSelectionEditorTool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Blueprints/BlueprintEditorTools/ObiParticleSelectionEditorTool.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Blueprints/BlueprintEditorTools/ObiPropertyTextureEditorTool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Blueprints/BlueprintEditorTools/ObiPropertyTextureEditorTool.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Blueprints/BlueprintEditorTools/ObiTethersTool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Blueprints/BlueprintEditorTools/ObiTethersTool.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Blueprints/Brushes/ObiScreenSpaceBrush.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Blueprints/Brushes/ObiScreenSpaceBrush.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Blueprints/ObiActorBlueprintEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Blueprints/ObiActorBlueprintEditor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Blueprints/ObiMeshBasedActorBlueprintEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Blueprints/ObiMeshBasedActorBlueprintEditor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Blueprints/ObiParticleEditorDrawing.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Blueprints/ObiParticleEditorDrawing.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Blueprints/Properties/ObiBlueprintColor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Blueprints/Properties/ObiBlueprintColor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Blueprints/Properties/ObiBlueprintFilterCategory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Blueprints/Properties/ObiBlueprintFilterCategory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Blueprints/Properties/ObiBlueprintFilterMask.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Blueprints/Properties/ObiBlueprintFilterMask.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Blueprints/Properties/ObiBlueprintMass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Blueprints/Properties/ObiBlueprintMass.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Blueprints/Properties/ObiBlueprintRadius.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Blueprints/Properties/ObiBlueprintRadius.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Blueprints/RenderModes/ObiBlueprintRenderModeMesh.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Blueprints/RenderModes/ObiBlueprintRenderModeMesh.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Blueprints/RenderModes/ObiBlueprintRenderModeParticles.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Blueprints/RenderModes/ObiBlueprintRenderModeParticles.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Collisions/ObiColliderEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Collisions/ObiColliderEditor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Collisions/ObiDistanceFieldEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Collisions/ObiDistanceFieldEditor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Constraints/ObiConstraintParametersDrawer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Constraints/ObiConstraintParametersDrawer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Common/ObiOniInitialize.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Common/ObiOniInitialize.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Common/ObiSettingsProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Common/ObiSettingsProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Solver/ObiSolverEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Solver/ObiSolverEditor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Utils/ObiEditorUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Utils/ObiEditorUtils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Utils/ObiParticleAttachmentEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Common/Utils/ObiParticleAttachmentEditor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/ObiStitcherEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/ObiStitcherEditor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/DistanceFieldPreview.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/DistanceFieldPreview.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/EditorLines.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/EditorLines.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/EditorParticle.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/EditorParticle.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/EditorParticleShader.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/EditorParticleShader.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/Icons/ObiAmbientForceZone Icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/Icons/ObiAmbientForceZone Icon.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/Icons/ObiClothProxy Icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/Icons/ObiClothProxy Icon.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/Icons/ObiRod Icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/Icons/ObiRod Icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/Icons/ObiSphericalForceZone Icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/Icons/ObiSphericalForceZone Icon.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/Icons/ObiUpdater Icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/Icons/ObiUpdater Icon.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/PaddingMaterial.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/PaddingMaterial.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/PropertyGradientMaterial.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/PropertyGradientMaterial.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/PropertyGradientMaterial.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/PropertyGradientMaterial.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/TextureIcon.psd.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/TextureIcon.psd.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/TopologyPreview.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/TopologyPreview.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/TopologyPreviewBorder.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/TopologyPreviewBorder.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/UVSpaceColorMaterial.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/UVSpaceColorMaterial.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/VoxelMaterial.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Editor/Resources/VoxelMaterial.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Softbody.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Softbody/Blueprints.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Softbody/Blueprints/ObiSoftbodySurfaceBlueprintEditor.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Softbody/Blueprints/ObiSoftbodySurfaceBlueprintEditor.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Softbody/Blueprints/Properties.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Softbody/Blueprints/Properties/ObiBlueprintDeformationResistance.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Softbody/Blueprints/Properties/ObiBlueprintDeformationResistance.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Softbody/Blueprints/Properties/ObiBlueprintMaxDeformation.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Softbody/Blueprints/Properties/ObiBlueprintMaxDeformation.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Softbody/Blueprints/Properties/ObiBlueprintPlasticCreep.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Softbody/Blueprints/Properties/ObiBlueprintPlasticCreep.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Softbody/Blueprints/Properties/ObiBlueprintPlasticRecovery.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Softbody/Blueprints/Properties/ObiBlueprintPlasticRecovery.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Softbody/Blueprints/Properties/ObiBlueprintPlasticYield.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Softbody/Blueprints/Properties/ObiBlueprintPlasticYield.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Softbody/Blueprints/Properties/ObiSoftbodyInfluenceChannel.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Softbody/Blueprints/Properties/ObiSoftbodyInfluenceChannel.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Softbody/Blueprints/RenderModes.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Softbody/Blueprints/RenderModes/ObiBlueprintRenderModeNormals.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Softbody/Blueprints/RenderModes/ObiBlueprintRenderModeNormals.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Softbody/Blueprints/RenderModes/ObiBlueprintRenderModeSkeleton.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Softbody/Blueprints/RenderModes/ObiBlueprintRenderModeSkeleton.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Softbody/Blueprints/RenderModes/ObiBlueprintRenderModeVoxels.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Softbody/Blueprints/RenderModes/ObiBlueprintRenderModeVoxels.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Softbody/ObiSoftbodyEditor.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Softbody/ObiSoftbodyEditor.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Softbody/ObiSoftbodySkinnerEditor.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Editor/Softbody/ObiSoftbodySkinnerEditor.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/Android.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/Android/arm64-v8a.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/Android/arm64-v8a/libOni.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/Android/arm64-v8a/libOni.so.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/Android/arm64-v8a/libc++_shared.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/Android/arm64-v8a/libc++_shared.so.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/Android/armeabi-v7a.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/Android/armeabi-v7a/libOni.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/Android/armeabi-v7a/libOni.so.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/Android/armeabi-v7a/libc++_shared.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/Android/armeabi-v7a/libc++_shared.so.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/Android/x86.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/Android/x86/libOni.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/Android/x86/libOni.so.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/Android/x86/libc++_shared.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/Android/x86/libc++_shared.so.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/iOS.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/iOS/Oni.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/iOS/Oni.h.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/iOS/OniHelpers.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/iOS/OniHelpers.h.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/iOS/libOni.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/iOS/libOni.a.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Info.plist.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/MacOS.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/MacOS/Oni" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/MacOS/Oni.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/CMakeLists.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/CMakeLists.txt.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/Cholesky" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/Cholesky.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/CholmodSupport" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/CholmodSupport.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/Core" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/Core.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/Dense" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/Dense.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/Eigen" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/Eigen.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/Eigenvalues" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/Eigenvalues.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/Geometry" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/Geometry.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/Householder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/Householder.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/IterativeLinearSolvers" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/IterativeLinearSolvers.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/Jacobi" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/Jacobi.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/LU" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/LU.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/MetisSupport" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/MetisSupport.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/OrderingMethods" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/OrderingMethods.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/PaStiXSupport" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/PaStiXSupport.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/PardisoSupport" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/PardisoSupport.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/QR" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/QR.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/QtAlignedMalloc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/QtAlignedMalloc.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/SPQRSupport" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/SPQRSupport.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/SVD" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/SVD.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/Sparse" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/Sparse.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/SparseCholesky" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/SparseCholesky.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/SparseCore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/SparseCore.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/SparseLU" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/SparseLU.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/SparseQR" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/SparseQR.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/StdDeque" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/StdDeque.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/StdList" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/StdList.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/StdVector" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/StdVector.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/SuperLUSupport" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/SuperLUSupport.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/UmfPackSupport" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/Resources/UmfPackSupport.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/_CodeSignature.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/_CodeSignature/CodeResources" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/libOni.bundle/Contents/_CodeSignature/CodeResources.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/x86.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/x86/libOni.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/x86/libOni.dll.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/x86/libOni.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/x86/libOni.so.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/x86_64.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/x86_64/libOni.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/x86_64/libOni.dll.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/x86_64/libOni.so" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Plugins/x86_64/libOni.so.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/QuickstartGuide_softbody.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/QuickstartGuide_softbody.pdf.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/README.rtf" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/README.rtf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Resources/ObiMaterials/Common/ObiEllipsoids.cginc" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Resources/ObiMaterials/Common/ObiEllipsoids.cginc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Resources/ObiMaterials/DistanceFields/DistanceFieldRendering.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Resources/ObiMaterials/DistanceFields/DistanceFieldRendering.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Resources/ObiMaterials/InstancedStandard.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Resources/ObiMaterials/InstancedStandard.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Resources/ObiMaterials/ObiLightingBuiltIn.cginc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Resources/ObiMaterials/ObiLightingBuiltIn.cginc.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Resources/ObiMaterials/ObiParticles.cginc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Resources/ObiMaterials/ObiParticles.cginc.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Resources/ObiMaterials/Particle.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Resources/ObiMaterials/Particle.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Resources/ObiMaterials/ParticleShader.shader" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Resources/ObiMaterials/ParticleShader.shader.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Resources/ObiMaterials/SimpleParticleShader.shader" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Resources/ObiMaterials/SimpleParticleShader.shader.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Resources/ObiMaterials/URP.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Resources/ObiMaterials/URP/ObiLightingURP.cginc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Resources/ObiMaterials/URP/ObiLightingURP.cginc.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Resources/ObiMaterials/URP/ParticleShaderURP.shader" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Resources/ObiMaterials/URP/ParticleShaderURP.shader.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Resources/ObiMaterials/URP/SimpleParticleShaderURP.shader" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Resources/ObiMaterials/URP/SimpleParticleShaderURP.shader.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Common/HeavyProjectile.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Samples/Common/HeavyProjectile.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Common/Projectile.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Samples/Common/Projectile.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/CollisionMaterials/HighFriction.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/CollisionMaterials/HighFriction.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/CollisionMaterials/MediumFriction.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/CollisionMaterials/MediumFriction.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/CollisionMaterials/VerySticky.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/CollisionMaterials/VerySticky.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Materials/Checker.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Materials/Checker.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Materials/CoarseChecker.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Materials/CoarseChecker.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Materials/FinishLine.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Materials/FinishLine.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Materials/Flesh.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Materials/Flesh.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Materials/Metal.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Materials/Metal.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Materials/ObiBlue.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Materials/ObiBlue.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Materials/ObiRed.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Materials/ObiRed.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Materials/TestEnvironment.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Materials/TestEnvironment.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Materials/VertexColors.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Materials/VertexColors.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Materials/Walls.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Materials/Walls.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Models/TestEnvironment.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Models/TestEnvironment.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Models/big_guy.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Models/big_guy.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Scripts/ActorSpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Scripts/ActorSpawner.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Scripts/AddRandomVelocity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Scripts/AddRandomVelocity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Scripts/CharacterController/SampleCharacterController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Scripts/CharacterController/SampleCharacterController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Scripts/ColliderHighlighter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Scripts/ColliderHighlighter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Scripts/CollisionEventHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Scripts/CollisionEventHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Scripts/ColorFromPhase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Scripts/ColorFromPhase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Scripts/ColorFromVelocity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Scripts/ColorFromVelocity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Scripts/ColorRandomizer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Scripts/ColorRandomizer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Scripts/LookAroundCamera.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Scripts/LookAroundCamera.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Scripts/ObiParticleCounter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Samples/Common/SampleResources/Scripts/ObiParticleCounter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/BallPool.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/BallPool.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/BallPoolSettings.lighting" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/BallPoolSettings.lighting.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/DeformableBarrels.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/DeformableBarrels.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/DeformableBarrelsSettings.lighting" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/DeformableBarrelsSettings.lighting.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/DeformationGradient.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/DeformationGradient.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/DeformationGradientSettings.lighting" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/DeformationGradientSettings.lighting.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/ElasticCharacter.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/ElasticCharacter.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/ElasticCharacterSettings.lighting" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/ElasticCharacterSettings.lighting.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/FullBodyVolumetricSoftbody.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/FullBodyVolumetricSoftbody.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/FullBodyVolumetricSoftbodySettings.lighting" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/FullBodyVolumetricSoftbodySettings.lighting.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/ObstacleCourse.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/ObstacleCourse.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/ObstacleCourseSettings.lighting" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/ObstacleCourseSettings.lighting.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/PlasticSheet.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/PlasticSheet.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/PlasticSheetSettings.lighting" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/PlasticSheetSettings.lighting.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/RubberDragon.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/RubberDragon.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/RubberDragonSettings.lighting" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/RubberDragonSettings.lighting.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Blueprints.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Blueprints/Barrel.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Blueprints/Barrel.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Blueprints/CharacterArms.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Blueprints/CharacterArms.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Blueprints/CharacterFBVS.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Blueprints/CharacterFBVS.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Blueprints/Dragon.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Blueprints/Dragon.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Blueprints/PlasticSheet.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Blueprints/PlasticSheet.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Blueprints/Prism.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Blueprints/Prism.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Blueprints/RubberBall.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Blueprints/RubberBall.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Materials.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Materials/Barrel.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Materials/Barrel.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Materials/ObstacleCourseBall.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Materials/ObstacleCourseBall.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Models.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Models/Barrel.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Models/Barrel.obj.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Models/Prism.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Models/Prism.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Models/dragon.fbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Models/dragon.fbx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Prefabs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Prefabs/HingePlatform.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Prefabs/HingePlatform.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Prefabs/MovingPost.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Prefabs/MovingPost.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Scripts.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Scripts/DeformationToColors.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Scripts/DeformationToColors.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Scripts/ObstacleCourseController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Scripts/ObstacleCourseController.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Scripts/PlatformBalancer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Scripts/PlatformBalancer.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Scripts/PostOnRail.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Scripts/PostOnRail.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Scripts/SoftbodyController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Scripts/SoftbodyController.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Scripts/SoftbodyRaycasts.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Scripts/SoftbodyRaycasts.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Textures.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Textures/Barrel_01_Color.tga" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Textures/Barrel_01_Color.tga.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Textures/Barrel_01_Normal.tga" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Textures/Barrel_01_Normal.tga.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Textures/Barrel_01_SM.tga" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Textures/Barrel_01_SM.tga.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Textures/ObstaclesBall_Color.psd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Textures/ObstaclesBall_Color.psd.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Textures/ObstaclesBall_SM.psd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SampleResources/Textures/ObstaclesBall_SM.psd.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SoftbodyRaycast.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SoftbodyRaycast.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SoftbodyRaycastSettings.lighting" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Samples/Softbody/SoftbodyRaycastSettings.lighting.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Actors/IObiParticleCollection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Actors/IObiParticleCollection.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Actors/ObiActor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Actors/ObiActor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/BurstBackend.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/BurstBackend.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/BurstIntegration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/BurstIntegration.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/BurstJobHandle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/BurstJobHandle.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/BurstMath.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/BurstMath.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Collisions/BurstBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Collisions/BurstBox.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Collisions/BurstCapsule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Collisions/BurstCapsule.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Collisions/BurstColliderShape.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Collisions/BurstColliderShape.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Collisions/BurstColliderWorld.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Collisions/BurstColliderWorld.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Collisions/BurstDistanceField.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Collisions/BurstDistanceField.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Collisions/BurstEdgeMesh.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Collisions/BurstEdgeMesh.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Collisions/BurstHeightField.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Collisions/BurstHeightField.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Collisions/BurstLocalOptimization.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Collisions/BurstLocalOptimization.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Collisions/BurstSimplex.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Collisions/BurstSimplex.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Collisions/BurstSphere.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Collisions/BurstSphere.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Collisions/BurstTriangleMesh.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Collisions/BurstTriangleMesh.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Collisions/IBurstCollider.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Collisions/IBurstCollider.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/Aerodynamics/BurstAerodynamicConstraintsBatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/Aerodynamics/BurstAerodynamicConstraintsBatch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/Bend/BurstBendConstraintsBatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/Bend/BurstBendConstraintsBatch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/BendTwist/BurstBendTwistConstraintsBatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/BendTwist/BurstBendTwistConstraintsBatch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/BurstConstraintsBatchImpl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/BurstConstraintsBatchImpl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/BurstConstraintsImpl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/BurstConstraintsImpl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/Chain/BurstChainConstraintsBatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/Chain/BurstChainConstraintsBatch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/ColliderCollision/ApplyCollisionConstraintsJob.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/ColliderCollision/ApplyCollisionConstraintsJob.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/ColliderCollision/BurstColliderCollisionConstraints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/ColliderCollision/BurstColliderCollisionConstraints.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/ColliderCollision/BurstColliderCollisionConstraintsBatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/ColliderCollision/BurstColliderCollisionConstraintsBatch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/ColliderCollision/BurstColliderFrictionConstraints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/ColliderCollision/BurstColliderFrictionConstraints.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/ColliderCollision/BurstColliderFrictionConstraintsBatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/ColliderCollision/BurstColliderFrictionConstraintsBatch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/Density/BurstDensityConstraints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/Density/BurstDensityConstraints.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/Density/BurstDensityConstraintsBatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/Density/BurstDensityConstraintsBatch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/Distance/BurstDistanceConstraintsBatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/Distance/BurstDistanceConstraintsBatch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/ParticleCollision/ApplyBatchedCollisionConstraintsBatchJob.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/ParticleCollision/ApplyBatchedCollisionConstraintsBatchJob.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/ParticleCollision/BurstParticleCollisionConstraints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/ParticleCollision/BurstParticleCollisionConstraints.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/ParticleCollision/BurstParticleCollisionConstraintsBatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/ParticleCollision/BurstParticleCollisionConstraintsBatch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/ParticleCollision/BurstParticleFrictionConstraints.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/ParticleCollision/BurstParticleFrictionConstraints.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/ParticleCollision/BurstParticleFrictionConstraintsBatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/ParticleCollision/BurstParticleFrictionConstraintsBatch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/Pin/BurstPinConstraintsBatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/Pin/BurstPinConstraintsBatch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/ShapeMatching/BurstShapeMatchingConstraintsBatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/ShapeMatching/BurstShapeMatchingConstraintsBatch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/Skin/BurstSkinConstraintsBatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/Skin/BurstSkinConstraintsBatch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/Stitch/BurstStitchConstraintsBatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/Stitch/BurstStitchConstraintsBatch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/StretchShear/BurstStretchShearConstraintsBatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/StretchShear/BurstStretchShearConstraintsBatch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/Tether/BurstTetherConstraintsBatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/Tether/BurstTetherConstraintsBatch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/Volume/BurstVolumeConstraintsBatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Constraints/Volume/BurstVolumeConstraintsBatch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/DataStructures/BurstAabb.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/DataStructures/BurstAabb.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Solver/BuildSimplexAabbs.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Solver/BuildSimplexAabbs.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Solver/UpdateInertiaTensorsJob.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Solver/UpdateInertiaTensorsJob.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Solver/UpdatePrincipalAxisJob.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Burst/Solver/UpdatePrincipalAxisJob.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Aerodynamics.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Aerodynamics/OniAerodynamicConstraintsBatchImpl.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Aerodynamics/OniAerodynamicConstraintsBatchImpl.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Aerodynamics/OniAerodynamicConstraintsImpl.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Aerodynamics/OniAerodynamicConstraintsImpl.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Bend.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Bend/OniBendConstraintsBatchImpl.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Bend/OniBendConstraintsBatchImpl.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Bend/OniBendConstraintsImpl.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Bend/OniBendConstraintsImpl.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/BendTwist.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/BendTwist/OniBendTwistConstraintsBatchImpl.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/BendTwist/OniBendTwistConstraintsBatchImpl.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/BendTwist/OniBendTwistConstraintsImpl.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/BendTwist/OniBendTwistConstraintsImpl.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Chain.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Chain/OniChainConstraintsBatchImpl.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Chain/OniChainConstraintsBatchImpl.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Chain/OniChainConstraintsImpl.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Chain/OniChainConstraintsImpl.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Distance.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Distance/OniDistanceConstraintsBatchImpl.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Distance/OniDistanceConstraintsBatchImpl.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Distance/OniDistanceConstraintsImpl.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Distance/OniDistanceConstraintsImpl.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/OniConstraintsBatchImpl.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/OniConstraintsBatchImpl.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/OniConstraintsImpl.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/OniConstraintsImpl.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Pin.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Pin/OniPinConstraintsBatchImpl.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Pin/OniPinConstraintsBatchImpl.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Pin/OniPinConstraintsImpl.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Pin/OniPinConstraintsImpl.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/ShapeMatching.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/ShapeMatching/OniShapeMatchingConstraintsBatchImpl.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/ShapeMatching/OniShapeMatchingConstraintsBatchImpl.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/ShapeMatching/OniShapeMatchingConstraintsImpl.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/ShapeMatching/OniShapeMatchingConstraintsImpl.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Skin.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Skin/OniSkinConstraintsBatchImpl.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Skin/OniSkinConstraintsBatchImpl.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Skin/OniSkinConstraintsImpl.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Skin/OniSkinConstraintsImpl.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Stitch.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Stitch/OniStitchConstraintsBatchImpl.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Stitch/OniStitchConstraintsBatchImpl.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Stitch/OniStitchConstraintsImpl.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Stitch/OniStitchConstraintsImpl.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/StretchShear.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/StretchShear/OniStretchShearConstraintsBatchImpl.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/StretchShear/OniStretchShearConstraintsBatchImpl.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/StretchShear/OniStretchShearConstraintsImpl.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/StretchShear/OniStretchShearConstraintsImpl.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Tether.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Tether/OniTetherConstraintsBatchImpl.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Tether/OniTetherConstraintsBatchImpl.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Tether/OniTetherConstraintsImpl.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Tether/OniTetherConstraintsImpl.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Volume.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Volume/OniVolumeConstraintsBatchImpl.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Volume/OniVolumeConstraintsBatchImpl.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Volume/OniVolumeConstraintsImpl.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Constraints/Volume/OniVolumeConstraintsImpl.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/OniBackend.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/OniBackend.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/OniColliderWorld.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/OniColliderWorld.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/OniJobHandle.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/OniJobHandle.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Solver.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Solver/OniSolverImpl.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Oni/Solver/OniSolverImpl.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/DataStructures/NativeList/ObiNativeContactShapeList.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/DataStructures/NativeList/ObiNativeContactShapeList.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Rendering/ShadowmapExposer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Rendering/ShadowmapExposer.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Updaters.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Updaters/ObiFixedUpdater.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Updaters/ObiFixedUpdater.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Updaters/ObiLateFixedUpdater.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Updaters/ObiLateFixedUpdater.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Updaters/ObiLateUpdater.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Updaters/ObiLateUpdater.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Updaters/ObiUpdater.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Updaters/ObiUpdater.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Utils/Forces/ObiAmbientForceZone.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Utils/Forces/ObiAmbientForceZone.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Utils/Forces/ObiExternalForce.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Utils/Forces/ObiExternalForce.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Utils/Forces/ObiSphericalForceZone.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Utils/Forces/ObiSphericalForceZone.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Utils/ObiParticleGridDebugger.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Utils/ObiParticleGridDebugger.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Utils/ObiProfiler.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Common/Utils/ObiProfiler.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Softbody.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Softbody/Actors.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Softbody/Actors/ObiSoftbody.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Softbody/Actors/ObiSoftbody.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Softbody/Blueprints.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Softbody/Blueprints/ObiSoftbodyBlueprintBase.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Softbody/Blueprints/ObiSoftbodyBlueprintBase.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Softbody/Blueprints/ObiSoftbodySurfaceBlueprint.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Softbody/Blueprints/ObiSoftbodySurfaceBlueprint.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Softbody/Rendering.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Softbody/Rendering/ObiSoftbodySkinner.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Obi/Scripts/Softbody/Rendering/ObiSoftbodySkinner.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.test_project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.test_project/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Core/MeshCreation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Core/MeshCreation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Utility/CutterBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DynamicMeshCutter/Scripts/Utility/CutterBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Obi_Test.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Obi_Test.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UnifiedButtonHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UnifiedButtonHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -505,12 +25,58 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/30adf90198bc4c4b83910c6fb1877998174000/73/a29f00c8/SetupCoroutine.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/834b2ded5dad441e8c7a4287897d63c746ac00/91/ff4cad5d/List`1.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/834b2ded5dad441e8c7a4287897d63c746ac00/a8/f3f41508/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Obi/Scripts/Common/Backends/Compute/Rendering/Cloth/ComputeClothRenderSystem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Obi/Scripts/Common/Rendering/ObiInstancedParticleRenderSystem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_DefaultControls.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Editor/CanvasRenderer/ChangingHierarchyOfCanvasRenderer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Editor/EventSystem/EventTriggerRemoveDuringExecution.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Editor/RectMask2D/RectMask2DCulling.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Editor/TestBehaviourBase.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Runtime/Canvas/CanvasGroupInheritedAlpha.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Runtime/Canvas/CanvasSizeCorrectInAwakeAndStart.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Runtime/Canvas/RectMask2DReparentedToDifferentCanvas.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2rxtbKZjbyVB1h7Crw1mKbSzpA0" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -518,8 +84,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Attach to Unity Editor.Attach to Unity Editor.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Artur/Softbody",
+    "Standalone Player.Start Unity.executor": "Debug",
+    "git-widget-placeholder": "Artur/Cloth",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -528,7 +96,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.12f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath C:\Work\Repo\Cook_R\test_project -debugCodeOptimization" />
@@ -545,6 +113,26 @@
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <method v="2" />
     </configuration>
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="31352">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" value="31352" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -555,6 +143,11 @@
       <option name="presentableId" value="Default" />
       <updated>1737512624622</updated>
       <workItem from="1737512626499" duration="2041000" />
+      <workItem from="1737586306135" duration="1198000" />
+      <workItem from="1737587562640" duration="63000" />
+      <workItem from="1737589144411" duration="72000" />
+      <workItem from="1737589265659" duration="11000" />
+      <workItem from="1737589308243" duration="14922000" />
     </task>
     <servers />
   </component>
