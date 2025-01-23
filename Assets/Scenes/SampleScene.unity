@@ -9346,7 +9346,7 @@ Transform:
   m_GameObject: {fileID: 1198820660}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -2.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15208,6 +15208,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1680365084}
     m_Modifications:
+    - target: {fileID: 4941077343480483256, guid: 651478be28b3d354eb55731a86e793eb,
+        type: 3}
+      propertyPath: OverrideFaceMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: b9d7bce09bed02f489189c77967bb2f2, type: 2}
+    - target: {fileID: 7033974305817346778, guid: 651478be28b3d354eb55731a86e793eb,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b9d7bce09bed02f489189c77967bb2f2, type: 2}
     - target: {fileID: 7292800881159337554, guid: 651478be28b3d354eb55731a86e793eb,
         type: 3}
       propertyPath: m_Name
