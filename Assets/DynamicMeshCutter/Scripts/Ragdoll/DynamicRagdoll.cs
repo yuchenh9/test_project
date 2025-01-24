@@ -7,9 +7,8 @@ using UnityEditor;
 namespace DynamicMeshCutter
 {
     //}
-    public class DynamicRagdoll : MonoBehaviour , ISerializationCallbackReceiver
+    public class DynamicRagdoll : MonoBehaviour, ISerializationCallbackReceiver
     {
-
         public int[] Assignments; //the array thats actually being read by dynamic mesh cutter. what part does each vertex belong to?
         public Dictionary<int, DynamicRagdollPart> Parts = new Dictionary<int, DynamicRagdollPart>();
 
@@ -20,8 +19,8 @@ namespace DynamicMeshCutter
         public bool IsRagdollKinematic;
 
         public void SetRagdollKinematic(bool value)
-        {   
-            foreach(var part in Parts)
+        {
+            foreach (var part in Parts)
             {
                 if (part.Value.Rigidbody != null)
                 {
@@ -30,7 +29,7 @@ namespace DynamicMeshCutter
                         part.Value.Rigidbody.collisionDetectionMode = CollisionDetectionMode.Discrete;
                     }
                     part.Value.Rigidbody.isKinematic = value;
-                    if(!value)
+                    if (!value)
                         part.Value.Rigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
                 }
             }
@@ -39,7 +38,7 @@ namespace DynamicMeshCutter
 
 #if UNITY_EDITOR
         public bool Debug;
-        [Range(0.5f,2f)]
+        [Range(0.5f, 2f)]
         public float Scale = 1;
         void OnDrawGizmosSelected()
         {
@@ -52,12 +51,12 @@ namespace DynamicMeshCutter
 
         void DebugNames()
         {
-            foreach(var entry in Parts)
+            foreach (var entry in Parts)
             {
                 DynamicRagdollPart part = entry.Value;
                 if (!string.IsNullOrEmpty(part.Name) && part.Colliders != null)
                 {
-                    if(part.Colliders != null && part.Colliders.Length > 0 && part.Colliders[0] != null)
+                    if (part.Colliders != null && part.Colliders.Length > 0 && part.Colliders[0] != null)
                     {
                         Transform t = part.Colliders[0].transform;
                         Vector3 pos = t.position;
@@ -66,23 +65,23 @@ namespace DynamicMeshCutter
                         BoxCollider box = part.Colliders[0] as BoxCollider;
                         SphereCollider sphere = part.Colliders[0] as SphereCollider;
 
-                        if(capsule != null)
+                        if (capsule != null)
                         {
                             pos = t.TransformPoint(capsule.center);
                         }
-                        else if( box != null)
+                        else if (box != null)
                         {
                             pos = t.TransformPoint(box.center);
                         }
-                        else if( sphere != null)
+                        else if (sphere != null)
                         {
                             pos = t.TransformPoint(sphere.center);
                         }
                         GUIStyle style = new GUIStyle(EditorStyles.label);
                         style.normal.textColor = part.Color;
-                        Handles.Label(pos, $"{entry.Key}: {part.Name}",style);
+                        Handles.Label(pos, $"{entry.Key}: {part.Name}", style);
                     }
-                    
+
                 }
             }
         }
@@ -104,7 +103,7 @@ namespace DynamicMeshCutter
                     int index = Assignments[i];
                     if (index > -1)
                     {
-                        if(Parts.ContainsKey(index))
+                        if (Parts.ContainsKey(index))
                             color = Parts[index].Color;
                     }
                     Handles.color = color;

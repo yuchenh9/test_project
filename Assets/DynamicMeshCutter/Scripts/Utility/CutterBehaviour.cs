@@ -3,15 +3,32 @@ using UnityEngine;
 
 namespace DynamicMeshCutter
 {
+    /* 
+        Use the following to delegates to create callback functions that can be passed into the 
+        public void Cut(MeshTarget target, Vector3 worldPosition, Vector3 worldNormal, OnCut onCut = null, OnCreated onCreated = null, object boxedUserData = null)
+        function of this script.
 
-    public delegate void OnCut(bool success, Info info); //after cut, before mesh creation
-    public delegate void OnCreated(Info info, MeshCreationData creationData); //after original mesh target has been destroyed. after new meshes have been created and instantiate
+        "OnCut" will be invoked immediately before the cutting algorithm has finished, but before any new meshes have been created. You can inspect the details of the cut inside the
+        Info class.
+
+        "OnCreated" is invoked in the virtual function "CreateGameObjects" found below. Since it is invoked after the mesh creation, it carries the data of the newle created
+        GameObjects inside "MeshCreationData" as well as the "Info" that the "OnCut" callback has access to.
+
+        For most cases you likely want to add your callbacks to the latter, for example if you want to add sound effects or particle effects to the cut.
+    */
+    public delegate void OnCut(bool success, Info info);
+    public delegate void OnCreated(Info info, MeshCreationData creationData);
+
+    /*
+        Class that gets populated during the cut and returned in the "OnCut" and "OnCreated" callbacks after the cut has finished.
+    */
     public class Info
     {
         //basic info
         public MeshTarget MeshTarget;
         public VirtualPlane Plane;
-        ////advanced info
+
+        //advanced info
         public Mesh TargetOriginalMesh;
         public VirtualMesh TargetVirtualMesh;
         public Matrix4x4[] Bindposes;
@@ -31,7 +48,7 @@ namespace DynamicMeshCutter
                 TargetVirtualMesh.AssignRagdoll(target.DynamicRagdoll);
             }
         }
-     
+
         //info created during cutting tasks
         public VirtualMesh[] CreatedMeshes;
         public int[] Sides;
@@ -52,14 +69,17 @@ namespace DynamicMeshCutter
         }
     }
 
+    /*
+        This is the entry class to the algorithm. You need one CutterBehaviour in your scene and invoke its "Cut" function to start the algorithm.
+    */
+
     public abstract class CutterBehaviour : MonoBehaviour
     {
-        [SerializeField] private Transform container;
         public float Separation = 0.02f;
         [Tooltip("Automatically destroy the original object that is cut, when cut")]
         public bool DestroyTargets = true;
         [Tooltip("Use multiple threads to cut. Drastically reduces lag. Recommend ON")]
-        public bool UseAsync = false;
+        public bool UseAsync = true;
         [Tooltip("Cut objects whose vertices are LESS than this will NOT be created")]
         public int VertexCreationThreshold = 0;
         public Material DefaultMaterial;
@@ -79,17 +99,10 @@ namespace DynamicMeshCutter
                 return _asyncWorker;
             }
         }
-        private Queue<Vector3> points= new Queue<Vector3>();
-        private Queue<Vector3> normals= new Queue<Vector3>();
         private List<Info> _successes = new List<Info>();
         private List<Info> _fails = new List<Info>();
         private Queue<Info> _qSuccesses = new Queue<Info>();
         private Queue<Info> _qFails = new Queue<Info>();
-        private bool hadDoneEnableRendererAndIsKinematic=false;
-        public void AddCutPlane(Vector3 point, Vector3 normal){
-                    points.Enqueue(point);
-                    normals.Enqueue(normal);
-                }
 
         private bool _isInitialized = false;
 
@@ -127,20 +140,10 @@ namespace DynamicMeshCutter
         private void OnDisable()
         {
             _cutterIsEnabled = false;
-            Terminate();    
-        } 
-        protected void onCreated(Info info, MeshCreationData cData)
-        {
-           MeshCreation.TranslateCreatedObjects(info, cData.CreatedObjects, cData.CreatedTargets, 0.002f);
-           
-           foreach (var item in cData.CreatedObjects)
-           {
-               item.transform.parent = container;
-           }
+            Terminate();
         }
         protected virtual void Update()
         {
-            gamecontroller.Instance.cutCompleteFlag=true;
             if (_successes.Count != 0)
             {
                 lock (_successes)
@@ -152,36 +155,16 @@ namespace DynamicMeshCutter
                     _successes.Clear();
                 }
             }
-            if(_qSuccesses.Count==0&&!hadDoneEnableRendererAndIsKinematic){
-            //important
-            hadDoneEnableRendererAndIsKinematic = true;
-            List<GameObject> currentlist = gamecontroller.Instance.currentlist;
-            foreach (GameObject go in currentlist)
-            {
-                // Do something with 'go'
-                if (go==null){
-                    continue;
-                }
-                var renderer = go.GetComponent<MeshRenderer>();
-                if (renderer != null)
-                {
-                    renderer.enabled = true;
-                }
-            }
-            }
+
             while (_qSuccesses.Count != 0)
             {
                 Info info = _qSuccesses.Dequeue();
                 info.OnCutCallback?.Invoke(true, info);
                 CreateGameObjects(info);
-
-                hadDoneEnableRendererAndIsKinematic = false;
-                gamecontroller.Instance.cutCompleteFlag=false;
             }
 
             if (_fails.Count != 0)
             {
-                gamecontroller.Instance.cutCompleteFlag=false;
                 lock (_fails)
                 {
                     for (int i = 0; i < _fails.Count; i++)
@@ -194,32 +177,8 @@ namespace DynamicMeshCutter
 
             while (_qFails.Count != 0)
             {
-                gamecontroller.Instance.cutCompleteFlag=false;
                 Info info = _qFails.Dequeue();
                 info.OnCutCallback?.Invoke(false, info);
-            }
-            if(points.Count != 0)
-            {
-                Vector3 point = points.Dequeue();
-                Vector3 normal = normals.Dequeue();
-                //GameObject[] roots = GameObject.FindGameObjectsWithTag("0");
-                List<GameObject> currentlist = gamecontroller.Instance.currentlist;
-
-                foreach (GameObject root in currentlist)
-                {
-                     //Debug.Log("tag:"+root.tag+root);
-                    if(root==null)
-                        continue;
-                    if (!root.activeInHierarchy)
-                        continue;
-                    var targets = root.GetComponentsInChildren<MeshTarget>();
-                    foreach (var target in targets)
-                    { 
-                        Debug.Log("abbbbb");
-                        Cut(target, point, normal, null,onCreated);
-                    }
-                
-                }
             }
         }
 
@@ -258,9 +217,10 @@ namespace DynamicMeshCutter
             VirtualPlane plane = new VirtualPlane(localP, localN, worldPosition, worldNormal);
             Info info = new Info(target, plane, onCut, onCreated, boxedUserData);
 
-        
 
-            
+
+            if (!UseAsync)
+            {
                 var watch = new System.Diagnostics.Stopwatch();
                 watch.Start();
                 int amount = 0;
@@ -279,7 +239,11 @@ namespace DynamicMeshCutter
                 watch.Stop();
                 Debug.Log($"Synchronus cut creating {amount} meshes took {watch.ElapsedMilliseconds} ms. Success ? {virtualMeshes != null}");
 
-            
+            }
+            else
+            {
+                AsyncWorker.Enqeue(info);
+            }
         }
 
         protected virtual void CreateGameObjects(Info info)
@@ -298,9 +262,9 @@ namespace DynamicMeshCutter
                 }
             }
 
-            for(int i =0;i< creationInfo.CreatedObjects.Length; i++)
+            for (int i = 0; i < creationInfo.CreatedObjects.Length; i++)
             {
-                if(creationInfo.CreatedObjects[i] == null)
+                if (creationInfo.CreatedObjects[i] == null)
                 {
                     Debug.Log("Dynamic Mesh Cutter: Cut supressed creation of object due to VertexCreationThreshold. Make sure you handle NullReferenceExceptions!");
                 }

@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
-using Obi;
 using UnityEngine;
 
 namespace DynamicMeshCutter
@@ -128,17 +127,9 @@ namespace DynamicMeshCutter
                 nTarget.SeparateMeshes = target.SeparateMeshes;
                 nTarget.ApplyTranslation = target.ApplyTranslation;
                 nTarget.GroupBehaviours = target.GroupBehaviours;
-                
+
                 //target scale
                 nTarget.transform.localScale = target.transform.localScale;
-
-                if (target.TryGetComponent<SoftbodyGenerator>(out _))
-                {
-                    var softbody = nTarget.gameObject.AddComponent<ObiSoftbody>();
-                    softbody.enabled = false;
-                    var softbodyGenerator = nTarget.gameObject.AddComponent<SoftbodyGenerator>();
-                    softbodyGenerator.CopySoftbodyProperties(target.gameObject);
-                }
 
                 //if inherting, both upper and lower side behaviour will remain the same. otherwise, both sides will have the same effect
                 if (target.Inherit[bt])
@@ -167,35 +158,9 @@ namespace DynamicMeshCutter
                 cData.CreatedObjects[i] = parent.gameObject;
                 cData.CreatedTargets[i] = nTarget;
             }
-            //here
 
-            
             return cData;
         }
-        static Vector3 CalculateMeshCentroidInWorldSpace(Mesh mesh)
-        {
-            Vector3 sum = Vector3.zero;
-            foreach (Vector3 vertex in mesh.vertices)
-            {
-                sum += vertex;
-            }
-            Debug.Log(sum);
-            return sum / mesh.vertexCount;
-        }
-
-        static void AddChildTransformAsCopyOfOriginalTransform(GameObject thegameobject){
-            GameObject emptyChild = new GameObject("originaltransform");
-
-            // Set this new GameObject as a child of the GameObject this script is attached to
-            emptyChild.transform.SetParent(thegameobject.transform);
-
-            // Optionally set the local position to zero if you want the child to be exactly at the parent's position
-            emptyChild.transform.localPosition = thegameobject.transform.localPosition;
-            // Reset local rotation and local scale if needed
-            emptyChild.transform.localRotation = thegameobject.transform.localRotation;
-            emptyChild.transform.localScale = thegameobject.transform.localScale;
-        }
-
 
         static void CreateMesh(ref GameObject root, ref Transform parent, MeshTarget target, Mesh mesh, VirtualMesh vMesh, Material[] materials, int bt, bool forcePhysics = false)
         {
@@ -208,73 +173,19 @@ namespace DynamicMeshCutter
             root.transform.position = target.transform.position;
             root.transform.rotation = target.transform.rotation;
             root.gameObject.tag = target.transform.tag;
-            root.gameObject.layer = LayerMask.NameToLayer("outline");
-            // code below adds the decal
-            
-            if (target.transform.childCount > 0)
-            {
-                // Get the first child
-                Transform decal = target.transform.GetChild(0);
-                
-                // Create a copy of the child
-                
-    GameObject newDecal = GameObject.Instantiate(decal.gameObject);
 
-    // Set the parent of the copied child to the root object
-    newDecal.transform.SetParent(root.transform);
-
-    // Compute the new local position of the decal relative to the new parent
-    newDecal.transform.localPosition = root.transform.InverseTransformPoint(decal.position);
-
-    // Optionally, match the rotation and scale
-    newDecal.transform.localRotation = decal.localRotation;
-    newDecal.transform.localScale = decal.localScale;
-
-                Debug.Log("First child found: " + decal.name);
-            }
-            else
-            {
-                Debug.Log("The parent object has no children.");
-            }
-            List<GameObject> currentlist = gamecontroller.Instance.currentlist;
-            currentlist.Add(root.gameObject);
- 
-            GameObject emptyChild = new GameObject("originaltransform");
-
-            // Set this new GameObject as a child of the GameObject this script is attached to
-            emptyChild.transform.SetParent(root.gameObject.transform);
-
-            emptyChild.transform.localPosition = root.gameObject.transform.position;
-            // Reset local rotation and local scale if needed
-            emptyChild.transform.localRotation = root.gameObject.transform.localRotation;
-            emptyChild.transform.localScale = new Vector3(1f,1f,1f);
-
-            //AddChildTransformAsCopyOfOriginalTransform(root.gameObject);//add a copy of original transform under the gameobject
-            //important
             var filter = root.AddComponent<MeshFilter>();
             var renderer = root.AddComponent<MeshRenderer>();
-            
+
             filter.mesh = mesh;
             renderer.materials = materials;
-    
-            Vector3 worldCenter = renderer.bounds.center;// i guess this is useless
-            parent.transform.position = new Vector3(0f,0f,0f);// i guess this is useless
+
+            Vector3 worldCenter = renderer.bounds.center;
+            parent.transform.position = worldCenter;
 
             root.transform.SetParent(parent, true);
             //root.transform.localScale = target.transform.localScale; //test this
-            
-            
-            Vector3 position=CalculateMeshCentroidInWorldSpace(filter.mesh);
-            Vector3[] vertices = filter.mesh.vertices; // Get a copy of the vertices array
-            for (int i = 0; i < vertices.Length; i++)
-            {
-                vertices[i] -= position; // Modify the vertex positions
-            }
-            filter.mesh.vertices = vertices; 
-            Debug.Log(position);
-            Vector3 vertexWorldPosition = root.transform.TransformPoint(position);
 
-            root.transform.position=vertexWorldPosition;
             if (target.CreateRigidbody[bt])
             {
                 var rb = parent.gameObject.AddComponent<Rigidbody>();
@@ -289,20 +200,7 @@ namespace DynamicMeshCutter
                     MeshCollider collider = root.AddComponent<MeshCollider>();
                     //remark: BE CAREFUL ABOUT CONVEX MESH COLLIDER CREATION. THIS WILL THROW PHYSICS.PHYSX ERRORS IF MESH IS TOO SMALL.
                     collider.convex = true;
-                    
                 }
-            }
-
-            renderer = root.GetComponent<MeshRenderer>();
-            if (renderer != null)
-            {
-                renderer.enabled = false;
-            }
-            
-            var objectCollider = root.GetComponent<MeshCollider>();
-            if (objectCollider != null)
-            {
-                objectCollider.enabled = false;
             }
         }
 

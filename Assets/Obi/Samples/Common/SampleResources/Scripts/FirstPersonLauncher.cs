@@ -21,7 +21,7 @@ public class FirstPersonLauncher : MonoBehaviour {
 			Rigidbody rb = projectile.GetComponent<Rigidbody>();
 
 			if (rb != null){
-				rb.velocity = ray.direction * power;
+				rb.linearVelocity = ray.direction * power;
 			}
 
 		}

@@ -14,7 +14,7 @@ namespace DynamicMeshCutter
         public Material OverrideFaceMaterial;
         public bool SeparateMeshes;
         public bool ApplyTranslation = true;
-        
+
         //basic single
         public Behaviour[] DefaultBehaviour = new Behaviour[2] { Behaviour.Stone, Behaviour.Stone };
 
@@ -28,8 +28,7 @@ namespace DynamicMeshCutter
         public bool[] CreateMeshCollider = new bool[2] { true, true };
 
         //ragdoll
-        public RagdollPhysics[] Physics = new RagdollPhysics[2] { RagdollPhysics.NonKinematic, RagdollPhysics.NonKinematic};
-        
+        public RagdollPhysics[] Physics = new RagdollPhysics[2] { RagdollPhysics.NonKinematic, RagdollPhysics.NonKinematic };
 
         //inheritance
         public bool[] Inherit = new bool[2] { false, false };
@@ -67,7 +66,7 @@ namespace DynamicMeshCutter
             }
         }
         public bool IsSkinned => SkinnedMeshRenderer != null ? true : false;
-        public Renderer Renderer => IsSkinned ? (Renderer) SkinnedMeshRenderer: (Renderer)MeshRenderer;
+        public Renderer Renderer => IsSkinned ? (Renderer)SkinnedMeshRenderer : (Renderer)MeshRenderer;
         public Material FaceMaterial
         {
             get

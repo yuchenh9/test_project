@@ -23,6 +23,5 @@ namespace DynamicMeshCutter
         {
             MeshCreation.TranslateCreatedObjects(info, cData.CreatedObjects, cData.CreatedTargets, Separation);
         }
-
     }
 }

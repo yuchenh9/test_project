@@ -30,7 +30,7 @@ public class PostOnRail : MonoBehaviour
             direction < 0 && mu <= 0)
             direction *= -1;
 
-        GetComponent<Rigidbody>().velocity = ((endPoint - startPoint).normalized * direction * speed + (projection - transform.position) * stabilization) * Time.fixedDeltaTime;
+        GetComponent<Rigidbody>().linearVelocity = ((endPoint - startPoint).normalized * direction * speed + (projection - transform.position) * stabilization) * Time.fixedDeltaTime;
     }
 
     private void OnDrawGizmosSelected()
