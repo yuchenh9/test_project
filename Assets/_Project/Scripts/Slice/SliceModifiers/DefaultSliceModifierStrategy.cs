@@ -8,10 +8,11 @@ using UnityEngine;
 
 public class DefaultSliceModifierStrategy : ISliceModifierStrategy
 {
-    public IEnumerator Modify(MonoBehaviour coroutineHost, List<MeshTarget> objects)
+    public IEnumerator Modify(MonoBehaviour coroutineHost, List<MeshTarget> objects, GameObject target)
     {
         foreach (var item in objects)
         {
+            item.transform.rotation = target.transform.rotation;
             var meshCollider = item.AddComponent<MeshCollider>();
             var rigidbody = item.AddComponent<Rigidbody>();
             

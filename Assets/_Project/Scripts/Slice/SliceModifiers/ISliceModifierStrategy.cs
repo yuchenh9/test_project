@@ -7,6 +7,6 @@ namespace _Project
 {
     public interface ISliceModifierStrategy
     {
-        IEnumerator Modify(MonoBehaviour coroutineHost, List<MeshTarget> objects);
+        IEnumerator Modify(MonoBehaviour coroutineHost, List<MeshTarget> objects, GameObject target);
     }
 }

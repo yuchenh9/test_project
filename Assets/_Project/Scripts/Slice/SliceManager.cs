@@ -24,7 +24,7 @@ public class SliceManager : MonoBehaviour
     private IEnumerator SlicedObjectsModify(GameObject target)
     {
         var cutStrategy = GetStrategy(target.gameObject);
-        yield return cutStrategy.Modify(this, defaultSlicer.SlicedObjects);
+        yield return cutStrategy.Modify(this, defaultSlicer.SlicedObjects, target);
         Debug.Log("Sliced objects modified");
     }
 
@@ -34,10 +34,10 @@ public class SliceManager : MonoBehaviour
         {
             return new ObiSoftbodySliceModifierStrategy();
         }
-        //if (target.TryGetComponent<ObiCloth>(out _))
-        //{
-        //    return new ObiClothCutterStrategy();
-        //}
+        if (target.TryGetComponent<ObiCloth>(out _))
+        {
+            return new ObiClothSliceModifierStrategy();
+        }
         else
         {
             return new DefaultSliceModifierStrategy();

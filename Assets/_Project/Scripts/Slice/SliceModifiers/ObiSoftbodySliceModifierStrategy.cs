@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class ObiSoftbodySliceModifierStrategy : ISliceModifierStrategy
 {
-    public IEnumerator Modify(MonoBehaviour coroutineHost, List<MeshTarget> objects)
+    public IEnumerator Modify(MonoBehaviour coroutineHost, List<MeshTarget> objects, GameObject target)
     {
         var coroutines = new List<IEnumerator>();
         var blueprints = new Dictionary<ObiSoftbody, ObiSoftbodySurfaceBlueprint>();

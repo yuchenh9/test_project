@@ -17,16 +17,9 @@ public class CustomSlicerBehaviour : CutterBehaviour
     
     public IEnumerator Cut(MeshTarget targetObject, int sliceCount, Vector3 slicingAxis, ISliceTypeCalculatorStrategy planeCalculator)
     {
-        if (sliceCount < 2)
-        {
-            Debug.LogWarning("SliceCount is less than 2");
-            _isFinished = true;
-            yield break;
-        }
-        
         _isFinished = false;
         _planeCalculator = planeCalculator;
-        
+
         var target = Instantiate(targetObject, container);
         SliceInfo = new SliceInfo
         {
@@ -35,8 +28,17 @@ public class CustomSlicerBehaviour : CutterBehaviour
             Separation = Separation,
             StartBounds = UtilityHelper.GetObjectBounds(target.gameObject)
         };
-
+        
         Refresh();
+        
+        SlicedObjects.Add(target.GetComponent<MeshTarget>());
+        if (sliceCount < 2)
+        {
+            Debug.LogWarning("SliceCount is less than 2");
+            _isFinished = true;
+            yield break;
+        }
+        
         CalculatedCut(target);
         
         while (!_isFinished)
