@@ -1,0 +1,46 @@
+using System.Collections;
+using _Project;
+using DynamicMeshCutter;
+using Obi;
+using UnityEngine;
+
+public class SliceManager : MonoBehaviour
+{
+    [SerializeField] private CustomSlicerBehaviour defaultSlicer;
+
+    public IEnumerator Slice(MeshTarget target, int sliceCount, Vector3 axis, ISliceTypeCalculatorStrategy planeCalculator)
+    {
+        yield return StartCoroutine(defaultSlicer.Cut(target, sliceCount, axis, planeCalculator));
+        Debug.Log("Objects are sliced");
+
+        yield return StartCoroutine(SlicedObjectsModify(target.gameObject));
+    }
+    
+    public IEnumerator RoundSlice(MeshTarget target, int sliceCount)
+    {
+        //TODO: Realize Method
+        yield return null;
+    }
+    private IEnumerator SlicedObjectsModify(GameObject target)
+    {
+        var cutStrategy = GetStrategy(target.gameObject);
+        yield return cutStrategy.Modify(this, defaultSlicer.SlicedObjects);
+        Debug.Log("Sliced objects modified");
+    }
+
+    private ISliceModifierStrategy GetStrategy(GameObject target)
+    {
+        if (target.TryGetComponent<ObiSoftbody>(out _))
+        {
+            return new ObiSoftbodySliceModifierStrategy();
+        }
+        //if (target.TryGetComponent<ObiCloth>(out _))
+        //{
+        //    return new ObiClothCutterStrategy();
+        //}
+        else
+        {
+            return new DefaultSliceModifierStrategy();
+        }
+    }
+}
