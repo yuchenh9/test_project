@@ -5,14 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d97466a4-7123-47f4-8de1-262b527360a1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/_Project/UtilityHelper.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_Project/UtilityHelper.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.test_project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.test_project/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CutUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/MainMenuUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/CutUI.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/MainMenuUI.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/SoftbodyEqualCutterBehaviour.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/SoftbodyEqualCutterBehaviour.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/CustomSlicerBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/CustomSlicerBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceTypeCalculators/ISliceTypeCalculatorStrategy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceTypeCalculators/ISliceTypeCalculatorStrategy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceTypeCalculators/LinearSliceTypeCalculatorStrategy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceTypeCalculators/LinearSliceTypeCalculatorStrategy.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +23,10 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/84f0d810adef4e6c8deab33e4ae93f7c1dec00/42/d9a31419/Object.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/91062591f4db4bdb9210604cc73c48381f9200/b4/65cb2f24/LayoutDataStore.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceTypeCalculators/RoundSliceTypeCalculatorStrategy.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Project/SliderWithTextElementUI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core/Runtime/Debugging/DebugUpdater.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.visualscripting/Runtime/VisualScripting.Core/Unity/Singleton.cs" root0="SKIP_HIGHLIGHTING" />
@@ -99,7 +99,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1737758677869</updated>
-      <workItem from="1737758680005" duration="19286000" />
+      <workItem from="1737758680005" duration="24174000" />
     </task>
     <servers />
   </component>

@@ -10,8 +10,8 @@ public class CustomSlicerBehaviour : CutterBehaviour
     [SerializeField] private Transform container;
 
     public SliceInfo SliceInfo { private set; get; }
-    public readonly List<MeshTarget> SlicedObjects = new();
-    
+    public List<MeshTarget> SlicedObjects { get; } = new();
+
     private ISliceTypeCalculatorStrategy _planeCalculator;
     private bool _isFinished;
     
@@ -30,7 +30,7 @@ public class CustomSlicerBehaviour : CutterBehaviour
         };
 
         Refresh();
-        SliceIntoEqualParts(target);
+        CalculatedCut(target);
         
         while (!_isFinished)
         {
@@ -50,7 +50,7 @@ public class CustomSlicerBehaviour : CutterBehaviour
         SliceInfo.SliceIndex = 0;
     }
 
-    private void SliceIntoEqualParts(MeshTarget nextObject)
+    private void CalculatedCut(MeshTarget nextObject)
     {
         var plane = _planeCalculator.Calculate(SliceInfo);
         Cut(nextObject, plane.Position, plane.Normal, OnCut, OnCreated);
@@ -60,7 +60,10 @@ public class CustomSlicerBehaviour : CutterBehaviour
     {
         if (!success)
         {
-            MakeNextCut(info.MeshTarget);
+            if (SliceInfo.SliceIndex + 1 >= SliceInfo.SliceCount - 1)
+                SlicedObjects.Add(info.MeshTarget);
+
+            MakeNextCut(new[] { info.MeshTarget });
         }
     }
     
@@ -71,23 +74,27 @@ public class CustomSlicerBehaviour : CutterBehaviour
         foreach (var t in cData.CreatedObjects) 
             t.transform.SetParent(container);
 
-        foreach (var item in cData.CreatedTargets.Skip(1)) 
+        foreach (var item in cData.CreatedTargets) 
             SlicedObjects.Add(item);
 
-        MakeNextCut(cData.CreatedTargets[0]);
+        MakeNextCut(_planeCalculator.GetNextObjectsForCut(cData.CreatedTargets));
     }
 
 
-    private void MakeNextCut(MeshTarget obj)
+    private void MakeNextCut(IEnumerable<MeshTarget> objects)
     {
         SliceInfo.SliceIndex++;
+
         if (SliceInfo.SliceIndex < SliceInfo.SliceCount - 1)
         {
-            SliceIntoEqualParts(obj);
+            foreach (var item in objects)
+            {
+                CalculatedCut(item);
+                SlicedObjects.Remove(item);
+            }
         }
         else
         {
-            SlicedObjects.Add(obj);
             _isFinished = true;
         }
     }

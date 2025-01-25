@@ -11,7 +11,7 @@ public class SliceManager : MonoBehaviour
     public IEnumerator Slice(MeshTarget target, int sliceCount, Vector3 axis, ISliceTypeCalculatorStrategy planeCalculator)
     {
         yield return StartCoroutine(defaultSlicer.Cut(target, sliceCount, axis, planeCalculator));
-        Debug.Log("Objects are sliced");
+        Debug.Log("Objects have been sliced");
 
         yield return StartCoroutine(SlicedObjectsModify(target.gameObject));
     }

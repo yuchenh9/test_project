@@ -1,11 +1,10 @@
 using System.Collections.Generic;
-using System.Linq;
 using DynamicMeshCutter;
 using UnityEngine;
 
 namespace _Project
 {
-    public class LinearSliceTypeCalculatorStrategy : ISliceTypeCalculatorStrategy
+    public class RoundSliceTypeCalculatorStrategy : ISliceTypeCalculatorStrategy
     {
         public PlaneData Calculate(SliceInfo sliceInfo)
         {
@@ -25,10 +24,9 @@ namespace _Project
 
             return new PlaneData(slicePosition, sliceInfo.SlicingAxis);
         }
-
         public IEnumerable<MeshTarget> GetNextObjectsForCut(IEnumerable<MeshTarget> slicedObjects)
         {
-            return slicedObjects.Take(1);
+            return slicedObjects;
         }
     }
 }
