@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DynamicMeshCutter;
+using UnityEngine;
 
 namespace _Project
 {
@@ -7,5 +8,6 @@ namespace _Project
     {
         PlaneData Calculate(SliceInfo sliceInfo);
         IEnumerable<MeshTarget> GetNextObjectsForCut(IEnumerable<MeshTarget> slicedObjects);
+        bool ValidateInputValues(MeshTarget targetObject, int sliceCount, Vector3 slicingAxis);
     }
 }

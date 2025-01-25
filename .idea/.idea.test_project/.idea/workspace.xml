@@ -5,27 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d97466a4-7123-47f4-8de1-262b527360a1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceModifiers/ObiClothSliceModifierStrategy.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceModifiers/ObiClothSliceModifierStrategy.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/UI/SelectedPrefabToggleInfoElementUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.test_project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.test_project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Materials/Cloth.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Materials/Cloth.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Materials/Default.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Materials/Default.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Models/steak.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Models/steak.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Meat Default.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Meat Default.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Meat Softbody.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Meat Softbody.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/CustomSlicerBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/CustomSlicerBehaviour.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceModifiers/DefaultSliceModifierStrategy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceModifiers/DefaultSliceModifierStrategy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceModifiers/ISliceModifierStrategy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceModifiers/ISliceModifierStrategy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceModifiers/ObiSoftbodySliceModifierStrategy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceModifiers/ObiSoftbodySliceModifierStrategy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/UI/MainMenuUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/UI/MainMenuUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/UI/ModifierToggleInfoElementUI.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/UI/ModifierToggleInfoElementUI.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/UI/SelectedPrefabToggleInfoElementUI.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceTypeCalculators/ISliceTypeCalculatorStrategy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceTypeCalculators/ISliceTypeCalculatorStrategy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceTypeCalculators/LinearSliceTypeCalculatorStrategy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceTypeCalculators/LinearSliceTypeCalculatorStrategy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceTypeCalculators/RoundSliceTypeCalculatorStrategy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceTypeCalculators/RoundSliceTypeCalculatorStrategy.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +98,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1737758677869</updated>
-      <workItem from="1737758680005" duration="35917000" />
+      <workItem from="1737758680005" duration="36825000" />
     </task>
     <servers />
   </component>

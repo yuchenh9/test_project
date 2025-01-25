@@ -50,5 +50,10 @@ namespace _Project
             
             return null;
         }
+
+        public bool ValidateInputValues(MeshTarget targetObject, int sliceCount, Vector3 slicingAxis)
+        {
+            return sliceCount == 1 || sliceCount % 2 == 0;
+        }
     }
 }

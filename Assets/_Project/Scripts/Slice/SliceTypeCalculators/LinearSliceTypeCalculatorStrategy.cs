@@ -30,5 +30,10 @@ namespace _Project
         {
             return slicedObjects.Take(1);
         }
+
+        public bool ValidateInputValues(MeshTarget targetObject, int sliceCount, Vector3 slicingAxis)
+        {
+            return true;
+        }
     }
 }
