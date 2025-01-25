@@ -17,6 +17,13 @@ public class CustomSlicerBehaviour : CutterBehaviour
     
     public IEnumerator Cut(MeshTarget targetObject, int sliceCount, Vector3 slicingAxis, ISliceTypeCalculatorStrategy planeCalculator)
     {
+        if (sliceCount < 2)
+        {
+            Debug.LogWarning("SliceCount is less than 2");
+            _isFinished = true;
+            yield break;
+        }
+        
         _isFinished = false;
         _planeCalculator = planeCalculator;
         
@@ -59,12 +66,9 @@ public class CustomSlicerBehaviour : CutterBehaviour
     private void OnCut(bool success, Info info)
     {
         if (!success)
-        {
-            if (SliceInfo.SliceIndex + 1 >= SliceInfo.SliceCount - 1)
-                SlicedObjects.Add(info.MeshTarget);
-
             MakeNextCut(new[] { info.MeshTarget });
-        }
+        else      
+            SlicedObjects.Remove(info.MeshTarget);
     }
     
     private void OnCreated(Info info, MeshCreationData cData)
@@ -90,7 +94,6 @@ public class CustomSlicerBehaviour : CutterBehaviour
             foreach (var item in objects)
             {
                 CalculatedCut(item);
-                SlicedObjects.Remove(item);
             }
         }
         else

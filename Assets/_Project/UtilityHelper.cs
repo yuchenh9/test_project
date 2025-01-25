@@ -42,9 +42,19 @@ namespace _Project
             return calculator switch
             {
                 SliceType.Linear=> new LinearSliceTypeCalculatorStrategy(),
-                SliceType.Radial => null,
+                SliceType.Radial => new RoundSliceTypeCalculatorStrategy(),
                 _ => throw new ArgumentOutOfRangeException()
             };
+        }
+        
+        public static Vector3 AngleToAxis(float cutAngle)
+        {
+            var radians = cutAngle * Mathf.Deg2Rad;
+
+            var x = Mathf.Cos(radians);
+            var y = Mathf.Sin(radians);
+
+            return new Vector3(x, y, 0).normalized;
         }
     }
 }

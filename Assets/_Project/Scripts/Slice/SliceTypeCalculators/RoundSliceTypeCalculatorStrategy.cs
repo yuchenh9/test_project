@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using DynamicMeshCutter;
 using UnityEngine;
 
@@ -6,27 +7,48 @@ namespace _Project
 {
     public class RoundSliceTypeCalculatorStrategy : ISliceTypeCalculatorStrategy
     {
+        private MeshTarget _right;
+        private MeshTarget _left;
+        private bool _isFirst = true;
+        private SliceInfo _lastSliceInfo;
+        private int _lastIndex;
+        private bool _sameIndex;
+        
         public PlaneData Calculate(SliceInfo sliceInfo)
         {
+            _lastSliceInfo = sliceInfo;
             var step = sliceInfo.SliceIndex + 1;
-            var axisNormalized = sliceInfo.SlicingAxis.normalized;
-            var absAxis = new Vector3(Mathf.Abs(axisNormalized.x), Mathf.Abs(axisNormalized.y),
-                Mathf.Abs(axisNormalized.z));
-
-            var totalLength = Vector3.Dot(sliceInfo.StartBounds.size, absAxis);
-            var stepSize = totalLength / sliceInfo.SliceCount;
-            var begin = sliceInfo.StartBounds.center - Vector3.Scale(sliceInfo.StartBounds.size / 2, axisNormalized);
-
-            var slicePosition = begin + axisNormalized * (stepSize * step);
-
-            var separationDistance = sliceInfo.Separation * (step - 1);
-            slicePosition += axisNormalized * separationDistance;
-
-            return new PlaneData(slicePosition, sliceInfo.SlicingAxis);
+            var angle = (step - 1) * (360f / sliceInfo.SliceCount);
+            if (angle >= 180)
+                angle += 360f / sliceInfo.SliceCount;
+            
+            return new PlaneData(sliceInfo.StartBounds.center, UtilityHelper.AngleToAxis(angle));
         }
+
         public IEnumerable<MeshTarget> GetNextObjectsForCut(IEnumerable<MeshTarget> slicedObjects)
         {
-            return slicedObjects;
+            var meshTargets = slicedObjects as MeshTarget[] ?? slicedObjects.ToArray();
+            if (_isFirst)
+            {
+                _right = meshTargets[0];
+                _isFirst = false;
+            }
+
+
+            if (_lastSliceInfo.SliceIndex + 1 < _lastSliceInfo.SliceCount / 2)
+            {
+                return new[] { meshTargets[1] };
+            }
+            else if (_lastSliceInfo.SliceIndex + 1 == _lastSliceInfo.SliceCount / 2)
+            {
+                return new[] { _right };
+            }
+            else if (_lastSliceInfo.SliceIndex + 1 > _lastSliceInfo.SliceCount / 2)
+            {
+                return new[] { meshTargets[1] };
+            }
+            
+            return null;
         }
     }
 }
