@@ -2037,7 +2037,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &676677889
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3377,7 +3377,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1309568257}
   - component: {fileID: 1309568259}
-  - component: {fileID: 1309568258}
+  - component: {fileID: 1309568260}
   m_Layer: 5
   m_Name: Cloth Toggle
   m_TagString: Untagged
@@ -3401,24 +3401,11 @@ RectTransform:
   - {fileID: 930307436}
   m_Father: {fileID: 676677889}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 825, y: -75}
+  m_SizeDelta: {x: 310, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1309568258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1309568256}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 015417d7ea4c2ab4ebdbe016020c6e78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sliceType: 1
 --- !u!114 &1309568259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3467,6 +3454,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
+--- !u!114 &1309568260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309568256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8b60e907c0b9574699bec3f925f9845, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modifier: 2
 --- !u!1 &1324204915
 GameObject:
   m_ObjectHideFlags: 0
@@ -3477,7 +3477,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1324204916}
   - component: {fileID: 1324204918}
-  - component: {fileID: 1324204917}
+  - component: {fileID: 1324204919}
   m_Layer: 5
   m_Name: Default Toggle
   m_TagString: Untagged
@@ -3501,24 +3501,11 @@ RectTransform:
   - {fileID: 1282753908}
   m_Father: {fileID: 676677889}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 155, y: -75}
+  m_SizeDelta: {x: 310, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1324204917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1324204915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 015417d7ea4c2ab4ebdbe016020c6e78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sliceType: 0
 --- !u!114 &1324204918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3567,6 +3554,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
+--- !u!114 &1324204919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324204915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8b60e907c0b9574699bec3f925f9845, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modifier: 0
 --- !u!1 &1349312399
 GameObject:
   m_ObjectHideFlags: 0
@@ -4636,7 +4636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sliceManager: {fileID: 2092767461}
-  targetObject: {fileID: 7003393076719665567, guid: ee00087ccf5c1ee4abfb8160f8d6b92a, type: 3}
+  selectedPrefab: {fileID: 7003393076719665567, guid: a8a0ef54f435d904f9b047de30729707, type: 3}
   sliceTypeToggleGroup: {fileID: 571293289}
   sliceCountField: {fileID: 269627460}
   slider: {fileID: 2106518315}
@@ -4650,7 +4650,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1891613787}
   - component: {fileID: 1891613789}
-  - component: {fileID: 1891613788}
+  - component: {fileID: 1891613790}
   m_Layer: 5
   m_Name: Softbody Toggle
   m_TagString: Untagged
@@ -4674,24 +4674,11 @@ RectTransform:
   - {fileID: 1664870832}
   m_Father: {fileID: 676677889}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 490, y: -75}
+  m_SizeDelta: {x: 310, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1891613788
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1891613786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 015417d7ea4c2ab4ebdbe016020c6e78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sliceType: 1
 --- !u!114 &1891613789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4740,6 +4727,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
+--- !u!114 &1891613790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891613786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8b60e907c0b9574699bec3f925f9845, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modifier: 1
 --- !u!1 &1959593732
 GameObject:
   m_ObjectHideFlags: 0

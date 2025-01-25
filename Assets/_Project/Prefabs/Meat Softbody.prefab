@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3223392923191813240}
   - component: {fileID: 5318819031836349912}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Meat Softbody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,7 +1,7 @@
 using _Project;
 using UnityEngine;
 
-public class ToggleInfoElementUI : MonoBehaviour
+public class SliceTypeToggleInfoElementUI : MonoBehaviour
 {
     [SerializeField] private SliceType sliceType;
     

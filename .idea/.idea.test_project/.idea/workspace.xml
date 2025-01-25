@@ -5,15 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d97466a4-7123-47f4-8de1-262b527360a1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/Structs/Modifier.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/Structs/Modifier.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.test_project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.test_project/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/MainMenuUI.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/MainMenuUI.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/CustomSlicerBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/CustomSlicerBehaviour.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceTypeCalculators/RoundSliceTypeCalculatorStrategy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceTypeCalculators/RoundSliceTypeCalculatorStrategy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/SliderWithTextElementUI.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/SliderWithTextElementUI.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/UtilityHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/UtilityHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Cube.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Cube.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceModifiers/DefaultSliceModifierStrategy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceModifiers/DefaultSliceModifierStrategy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/Structs/PlaneCalculator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/Structs/SliceType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/Structs/PlaneCalculator.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/Structs/SliceType.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/UI/MainMenuUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/UI/MainMenuUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/UI/ToggleInfoElementUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/UI/SliceTypeToggleInfoElementUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/UI/ToggleInfoElementUI.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/UI/SliceTypeToggleInfoElementUI.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/mat_meat.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/mat_meat.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/steak.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/steak.fbx.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,10 +34,11 @@
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/84f0d810adef4e6c8deab33e4ae93f7c1dec00/42/d9a31419/Object.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/91062591f4db4bdb9210604cc73c48381f9200/b4/65cb2f24/LayoutDataStore.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceTypeCalculators/RoundSliceTypeCalculatorStrategy.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/_Project/Scripts/UI/ToggleInfoElementUI.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/_Project/Scripts/UI/SliceTypeToggleInfoElementUI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core/Runtime/Debugging/DebugUpdater.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.visualscripting/Runtime/VisualScripting.Core/Unity/Singleton.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -102,7 +110,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1737758677869</updated>
-      <workItem from="1737758680005" duration="31375000" />
+      <workItem from="1737758680005" duration="32940000" />
     </task>
     <servers />
   </component>
@@ -116,24 +124,5 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/_Project/Scripts/UI/MainMenuUI.cs</url>
-          <line>20</line>
-          <properties documentPath="C:\Work\Repo\Cook_R\test_project\Assets\_Project\Scripts\UI\MainMenuUI.cs" containingFunctionPresentation="Method 'ButtonCutClicked'">
-            <startOffsets>
-              <option value="621" />
-            </startOffsets>
-            <endOffsets>
-              <option value="727" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="54" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
