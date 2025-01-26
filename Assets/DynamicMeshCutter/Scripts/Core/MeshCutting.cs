@@ -21,7 +21,7 @@ namespace DynamicMeshCutter
                     if (MeshTarget.DynamicRagdoll != null)
                     {
                         Sides[i].DynamicRagdoll = MeshTarget.DynamicRagdoll;
-                    }
+                        }
                 }
             }
 
@@ -48,7 +48,7 @@ namespace DynamicMeshCutter
             InternalData data = new InternalData(targetVirtualMesh, plane);
 
             int subMeshCount = info.TargetVirtualMesh.SubMeshCount;
-            int[] sides = new int[3]; //left == 0, right == 1
+            int[] sides = new int[3]; //left == 0, right == 1 //probably clipping happens here
             int[] indicesOfSubmesh;
             int[] triangle = new int[3];
 
@@ -59,9 +59,10 @@ namespace DynamicMeshCutter
 
                 for (int i = 0; i < 2; i++)
                 {
-                    data.Sides[i].SubIndices.Add(new List<int>());
+                    data.Sides[i].SubIndices.Add(new List<int>());//create new submesh 
                 }
 
+                int aaaaaaaaaaaa=1;
                 //determine side of vertices of triangle.
                 for (int i = 0; i < indicesOfSubmesh.Length; i += 3)
                 {
@@ -79,7 +80,8 @@ namespace DynamicMeshCutter
                     }
                     else
                     {
-                        CutTriangle(sub, sides, triangle, data);
+                        CutTriangle(sub, sides, triangle, data,aaaaaaaaaaaa);
+                        aaaaaaaaaaaa=aaaaaaaaaaaa*-1;
                     }
                 }
             }
@@ -122,7 +124,7 @@ namespace DynamicMeshCutter
             return meshes;
         }
 
-        private void CutTriangle(int submesh, int[] sides, int[] triangle, InternalData data)
+        private void CutTriangle(int submesh, int[] sides, int[] triangle, InternalData data,int aaaaaaaaaaaa)
         {
             // first index is side, second index is first or second vertex of that side. one vertex of one side will be empty, sine the split of the triangle is 2-1 or 1-2
             Vector3[,] vertices = new Vector3[3, 2]; //left, right, new created
@@ -218,28 +220,29 @@ namespace DynamicMeshCutter
                     rd[2, i] = part;
                 }
 
-                data.AddedVertices.Add(vertices[2, i]);
+                data.AddedVertices.Add(vertices[2, i]);//add new vertices
             }
-            //the code below adds three triangles formed from the three vertices of the triangle that is being cut
-            //vertices[x,y] the x is the side, y is the first or second vertex of that side,
-            //when x==2, the vertexes are the newy created ones on the cutting plane.
-            //
-            //there are two sides split by the cutting plane, if you look at the diagram, one vertice of the original triangle is on one side, and the other two vertices are on the other side
 
-             // the sigularSide stores the value of x that is the singular side.
-            int singularSide = 0; 
+
+            //create new triangles given the new vertices
+            //there will be exactly three new triangles we need to create. one for the side of the singular vertex, two for the other side
+            int singularSide = 0; //on which side of the plane is the singular vertice? the other side will have two of the three triangle vertices
             if (vertices[1, 0] == vertices[1, 1])
                 singularSide = 1;
 
-            
-            int sign =-1;
+            //just for debugging
+            //if (singularSide == 0 && vertices[0, 0] != vertices[0, 1])
+            //{
+            //    Debug.LogError("error in determining singular vertice of cut triangle");
+            //}
+            int sign=-1;
             for (int i = 0; i < 2; i++)
             {
                 if(i==1){
                     sign=1;
                 }
-                //triangle 1 and 2
-                data.Sides[i].AddTriangle( 
+                
+                data.Sides[i].AddTriangle(
                         new Vector3[] { vertices[i, 0], vertices[2, 0], vertices[2, 1] },
                         new Vector3[] { normals[i, 0], normals[2, 0], normals[2, 1] },
                         new Vector2[] { uvs[i, 0], uvs[2, 0], uvs[2, 1] },
@@ -248,11 +251,13 @@ namespace DynamicMeshCutter
                         normals[2, 0],
                         submesh
                         );
+                
+                
+                        
 
-                //triangle 3
-
+                //add the second triangle for the side with two of the original vertices
                 if (singularSide != i)
-                {
+                {   
                     data.Sides[i].AddTriangle(
                       new Vector3[] { vertices[i, 0], vertices[i, 1], vertices[2, 1] },
                       new Vector3[] { normals[i, 0], normals[i, 1], normals[2, 1] },
@@ -262,92 +267,55 @@ namespace DynamicMeshCutter
                       normals[2, 1],
                       submesh
                       );
-                }/*
-                Vector3 crossProduct = CalculateTriangleCrossProduct(vertices[i, 0], vertices[i, 1], vertices[2, 1]);
-                //below is the bug
-                //below is my code to add the round edge triangles
-                int stepNumber =5;
-                int z=0;
-                Vector3 NormalDifferenceA= (sign * data.Plane.LocalNormal-normals[2, 1])/stepNumber;
-                Vector3 NormalDifferenceB= (sign * data.Plane.LocalNormal-normals[2, 0])/stepNumber;
-                Vector3 originalNormalA=normals[2, 1];
-                Vector3 originalNormalB=normals[2, 0];
-                Vector3 crossProduct2 = CalculateTriangleCrossProduct(vertices[2,1]+NormalDifferenceA, vertices[2, 1], vertices[2, 0]);
-                
-                for(int step=0;step<stepNumber;step++){
-                    Vector3 newNormalA=originalNormalA+NormalDifferenceA;
-                    Vector3 newNormalANormalized=newNormalA.normalized;
-                    Vector3 newNormalB=originalNormalB+NormalDifferenceB;
-                    Vector3 newNormalBNormalized=newNormalB.normalized;
-                    if(Vector3.Dot(crossProduct,crossProduct2)<0){
-                    data.Sides[i].AddTriangle(
-                                new Vector3[] { vertices[2,1], vertices[2, 1] , vertices[2, 0]},
-                                new Vector3[] {newNormalANormalized, originalNormalA , originalNormalB},
-                                new Vector2[] { uvs[2, 1], uvs[2, 0], uvs[2, 1] },
-                                new BoneWeight[] { boneweights[2, 1], boneweights[2, 0], boneweights[2, 1] },
-                                new int[] {rd[2,1],rd[2,0],rd[2,1]},
-                                normals[2, 0],
-                                submesh
-                                );
-
-                    data.Sides[i].AddTriangle(
-                                new Vector3[] { vertices[2,1], vertices[2, 0], vertices[2, 0] },
-                                new Vector3[] { newNormalANormalized, originalNormalB, newNormalBNormalized },
-                                new Vector2[] { uvs[2, 1], uvs[2, 0], uvs[2, 1] },
-                                new BoneWeight[] { boneweights[2, 1], boneweights[2, 0], boneweights[2, 1] },
-                                new int[] {rd[2,1],rd[2,0],rd[2,1]},
-                                normals[2, 0],
-                                submesh
-                                );
-                    
-
-                    }else {
-
-                    data.Sides[i].AddTriangle(
-                                new Vector3[] { vertices[2,1], vertices[2, 0], vertices[2, 1] },
-                                new Vector3[] { newNormalANormalized, originalNormalB, originalNormalA },
-                                new Vector2[] { uvs[2, 1], uvs[2, 0], uvs[2, 1] },
-                                new BoneWeight[] { boneweights[2, 1], boneweights[2, 0], boneweights[2, 1] },
-                                new int[] {rd[2,1],rd[2,0],rd[2,1]},
-                                normals[2, 0],
-                                submesh
-                                );
-
-                    data.Sides[i].AddTriangle(
-                                new Vector3[] { vertices[2,1], vertices[2, 0], vertices[2, 0] },
-                                new Vector3[] { newNormalANormalized,  newNormalBNormalized, originalNormalB },
-                                new Vector2[] { uvs[2, 1], uvs[2, 0], uvs[2, 1] },
-                                new BoneWeight[] { boneweights[2, 1], boneweights[2, 0], boneweights[2, 1] },
-                                new int[] {rd[2,1],rd[2,0],rd[2,1]},
-                                normals[2, 0],
-                                submesh
-                                );
-
-                    
-                    originalNormalA=newNormalA;
-                    originalNormalB=newNormalB;
                 }
+                Vector3 cross_product=Vector3.Cross((vertices[2, 1]+sign*data.Plane.LocalNormal)-(vertices[2, 0]+sign*data.Plane.LocalNormal), (vertices[2, 1]+normals[2, 1])-(vertices[2, 0]+sign*data.Plane.LocalNormal));
+                int signb=1;
+                Debug.Log($"({(vertices[2, 1])}-{(vertices[2, 0])},{(vertices[2, 1]+normals[2, 1])}-{(vertices[2, 0]+sign*data.Plane.LocalNormal)}");
+                Debug.Log(cross_product);
+                if(Vector3.Dot(cross_product,sign*data.Plane.LocalNormal)<0){
+                    
+                    data.Sides[i].AddTriangle(
+                    new Vector3[] {  vertices[2, 1],vertices[2, 0],vertices[2, 1] },
+                    new Vector3[] {  sign*data.Plane.LocalNormal,sign*data.Plane.LocalNormal,normals[2, 1] },
+                    new Vector2[] {   uvs[2, 1], uvs[2, 0],uvs[2, 1] },
+                    new BoneWeight[] {   boneweights[2, 1], boneweights[2, 0],boneweights[2, 1] },
+                    new int[] {rd[2,1],rd[2,0],rd[2,1]},
+                    sign*data.Plane.LocalNormal,//sign * data.Plane.LocalNormal,
+                    submesh
+                    );
+                data.Sides[i].AddTriangle(
+                    new Vector3[] {   vertices[2, 0],vertices[2, 0],vertices[2, 1] },
+                    new Vector3[] {   sign*data.Plane.LocalNormal ,normals[2, 0],normals[2, 1]},
+                    new Vector2[] {   uvs[2, 1],uvs[2, 1],uvs[2, 1] },
+                    new BoneWeight[] {   boneweights[2, 1],boneweights[2, 1],boneweights[2, 1] },
+                    new int[] {rd[2,1],rd[2,1],rd[2,1]},
+                    sign*data.Plane.LocalNormal,//sign * data.Plane.LocalNormal,
+                    submesh
+                    );
+                } else {
+                data.Sides[i].AddTriangle(
+                    new Vector3[] {  vertices[2, 0],vertices[2, 1],vertices[2, 1] },
+                    new Vector3[] {  sign*data.Plane.LocalNormal,sign*data.Plane.LocalNormal,normals[2, 1] },
+                    new Vector2[] {   uvs[2, 0],uvs[2, 1], uvs[2, 1] },
+                    new BoneWeight[] {  boneweights[2, 0], boneweights[2, 1], boneweights[2, 1] },
+                    new int[] {rd[2,0],rd[2,1],rd[2,1]},
+                    sign*data.Plane.LocalNormal,//sign * data.Plane.LocalNormal,
+                    submesh
+                    );
+                data.Sides[i].AddTriangle(
+                    new Vector3[] {  vertices[2, 0], vertices[2, 0],vertices[2, 1] },
+                    new Vector3[] {  normals[2, 0], sign*data.Plane.LocalNormal ,normals[2, 1]},
+                    new Vector2[] {  uvs[2, 1], uvs[2, 1],uvs[2, 1] },
+                    new BoneWeight[] {   boneweights[2, 1],boneweights[2, 1],boneweights[2, 1] },
+                    new int[] {rd[2,1],rd[2,1],rd[2,1]},
+                    sign*data.Plane.LocalNormal,//sign * data.Plane.LocalNormal,
+                    submesh
+                    );
                 
-                /*data.Sides[i].AddTriangle(
-                            new Vector3[] { vertices[2, 1], vertices[2, 0], vertices[2, 0] },
-                            new Vector3[] { normals[2, 1], normals[2, 0], sign * data.Plane.LocalNormal },
-                            new Vector2[] { uvs[2, 1], uvs[2, 0], uvs[2, 0] },
-                            new BoneWeight[] { boneweights[2, 1], boneweights[2, 0], boneweights[2, 0] },
-                            new int[] {rd[2, 1],rd[2,0],rd[2, 0]},
-                            normals[2, 0],
-                            submesh
-                            );
-            }*/
+                }
             }
         }
-        //above is the bug
-        private Vector3 CalculateTriangleCrossProduct(Vector3 v0, Vector3 v1, Vector3 v2)
-        {
-            Vector3 edge1 = v1 - v0;
-            Vector3 edge2 = v2 - v0;
-            return Vector3.Cross(edge1, edge2);
-        }
-        
+
         private void CreateFaces(InternalData data, ref Info info)
         {
             bool hasBoneWeights = data.MeshTarget.HasBoneWeight;
@@ -447,7 +415,6 @@ namespace DynamicMeshCutter
             for (int n = 0; n < fVertices.Count; n++)
             {
                 delta = fVertices[n] - center;
-                delta=delta*1f;
                 int o = (n + 1) % fVertices.Count;
 
                 for (int j = 0; j < 2; j++)
@@ -456,7 +423,7 @@ namespace DynamicMeshCutter
                     uv[j].x = 0.5f + Vector3.Dot(delta, left);
                     uv[j].y = 0.5f + Vector3.Dot(delta, upward);
                     uv[j].z = 0.5f + Vector3.Dot(delta, data.Plane.LocalNormal);
-                    Debug.Log(delta);
+
                     //do modulo to account for looping of last vertex
                     delta = fVertices[o] - center;
                 }
@@ -480,14 +447,14 @@ namespace DynamicMeshCutter
                         boneweights[2] = centerWeight;
                     }
 
-                    data.Sides[j].AddTriangle(
+                    data.Sides[j].AddTriangle(//cut face
                             new Vector3[] { fVertices[n], fVertices[o], center },
                             new Vector3[] { sign * data.Plane.LocalNormal, sign * data.Plane.LocalNormal, sign * data.Plane.LocalNormal },
                             new Vector2[] { uv[0], uv[1], new Vector2(0.5f, 0.5f) },
                             boneweights,
                             new int[] {-1,-1,-1}, //for now we ignore collider part of the newly added face vertices
                             sign * data.Plane.LocalNormal,
-                            data.Sides[j].SubIndices.Count - 1);
+                            data.Sides[j].SubIndices.Count - 1);//add to submesh
                 }
             }
         }
