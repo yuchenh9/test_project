@@ -24,6 +24,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: bd48cb68d2d1026448dd45550f7956a2, type: 2}
+    - target: {fileID: 3652063456619966632, guid: 93f00a9250c6de549a4fa2e08227d436, type: 3}
+      propertyPath: m_CollisionMaterial
+      value: 
+      objectReference: {fileID: 11400000, guid: 56297c6e785b44eb28e469b62cedc016, type: 2}
     - target: {fileID: 5555473742176458707, guid: 93f00a9250c6de549a4fa2e08227d436, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

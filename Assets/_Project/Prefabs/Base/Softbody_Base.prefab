@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5555473742176458707}
   - component: {fileID: 1886750609795874791}
   - component: {fileID: 7003393076719665567}
+  - component: {fileID: -1911099514396017447}
   - component: {fileID: 3652063456619966632}
   - component: {fileID: 3223392923191813240}
   - component: {fileID: 5318819031836349912}
@@ -68,6 +69,19 @@ MonoBehaviour:
   CreateMeshCollider: 0000
   Physics: 0200000002000000
   Inherit: 0000
+--- !u!114 &-1911099514396017447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15032677109574166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e44b79db4cd279f4db47cbc682a48371, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionMaterial: {fileID: 11400000, guid: 56297c6e785b44eb28e469b62cedc016, type: 2}
 --- !u!114 &3652063456619966632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,7 +98,7 @@ MonoBehaviour:
     serializedContents: 
     m_AlignBytes: 16
   groupID: 0
-  m_CollisionMaterial: {fileID: 0}
+  m_CollisionMaterial: {fileID: 11400000, guid: 56297c6e785b44eb28e469b62cedc016, type: 2}
   m_SurfaceCollisions: 0
   m_SoftbodyBlueprint: {fileID: 0}
   m_SelfCollisions: 0

@@ -5,28 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d97466a4-7123-47f4-8de1-262b527360a1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/ComponentCopier.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/ComponentCopier.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.test_project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.test_project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Materials/Cloth.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Materials/Cloth.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Materials/Default.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Materials/Default.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Materials/Softbody.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Materials/Softbody.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Carrot Default.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Carrot Default.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Leaf Cloth.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Leaf Cloth.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Steak Softbody.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Steak Softbody.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Scenes/Main.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceModifiers/DefaultSliceModifierStrategy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceModifiers/DefaultSliceModifierStrategy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceModifiers/ObiClothSliceModifierStrategy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceModifiers/ObiClothSliceModifierStrategy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceModifiers/ObiSoftbodySliceModifierStrategy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceModifiers/ObiSoftbodySliceModifierStrategy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/UtilityHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/UtilityHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/UtilityHelper.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/UtilityHelper.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Base/Cloth_Base.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Prefabs/Base/Cloth_Base.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Base/Softbody_Base.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Prefabs/Base/Softbody_Base.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Cloth_Leaf.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Prefabs/Cloth_Leaf.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/Softbody_Meat.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Prefabs/Softbody_Meat.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +27,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/84f0d810adef4e6c8deab33e4ae93f7c1dec00/42/d9a31419/Object.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/84f0d810adef4e6c8deab33e4ae93f7c1dec00/de/d4347602/GameObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/91062591f4db4bdb9210604cc73c48381f9200/b4/65cb2f24/LayoutDataStore.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a91c06e683e34bc9beda6e2852c047839b8e00/a3/8755603c/Editor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Project/Scripts/Slice/SliceTypeCalculators/RoundSliceTypeCalculatorStrategy.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/_Project/Scripts/UI/SliceTypeToggleInfoElementUI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core/Runtime/Debugging/DebugUpdater.cs" root0="SKIP_HIGHLIGHTING" />
@@ -117,7 +102,7 @@
       <option name="presentableId" value="Default" />
       <updated>1737758677869</updated>
       <workItem from="1737758680005" duration="36825000" />
-      <workItem from="1737868529594" duration="8843000" />
+      <workItem from="1737868529594" duration="11174000" />
     </task>
     <servers />
   </component>

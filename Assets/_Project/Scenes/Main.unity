@@ -3313,12 +3313,12 @@ MonoBehaviour:
     evaluationOrder: 0
     iterations: 1
     SORFactor: 1
-    enabled: 1
+    enabled: 0
   particleFrictionConstraintParameters:
     evaluationOrder: 1
-    iterations: 1
+    iterations: 100
     SORFactor: 1
-    enabled: 1
+    enabled: 0
   collisionConstraintParameters:
     evaluationOrder: 0
     iterations: 1
@@ -3333,47 +3333,47 @@ MonoBehaviour:
     evaluationOrder: 0
     iterations: 1
     SORFactor: 1
-    enabled: 1
+    enabled: 0
   volumeConstraintParameters:
     evaluationOrder: 1
     iterations: 1
     SORFactor: 1
-    enabled: 1
+    enabled: 0
   shapeMatchingConstraintParameters:
     evaluationOrder: 1
     iterations: 1
-    SORFactor: 1
+    SORFactor: 1.317
     enabled: 1
   tetherConstraintParameters:
     evaluationOrder: 1
     iterations: 1
     SORFactor: 1
-    enabled: 1
+    enabled: 0
   pinConstraintParameters:
     evaluationOrder: 1
     iterations: 1
     SORFactor: 1
-    enabled: 1
+    enabled: 0
   stitchConstraintParameters:
     evaluationOrder: 1
     iterations: 1
     SORFactor: 1
-    enabled: 1
+    enabled: 0
   densityConstraintParameters:
     evaluationOrder: 1
     iterations: 1
     SORFactor: 1
-    enabled: 1
+    enabled: 0
   stretchShearConstraintParameters:
     evaluationOrder: 0
     iterations: 1
     SORFactor: 1
-    enabled: 1
+    enabled: 0
   bendTwistConstraintParameters:
     evaluationOrder: 0
     iterations: 1
     SORFactor: 1
-    enabled: 1
+    enabled: 0
   chainConstraintParameters:
     evaluationOrder: 0
     iterations: 1
