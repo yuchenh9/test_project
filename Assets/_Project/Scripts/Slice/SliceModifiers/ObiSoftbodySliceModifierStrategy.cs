@@ -15,9 +15,10 @@ public class ObiSoftbodySliceModifierStrategy : ISliceModifierStrategy
 
         foreach (var obj in objects.Select(x=>x.gameObject))
         {
+            var allComponents = obj.AddAllComponentCopy(target, new []{"softbodyBlueprint", "softbody", "GameobjectRoot"});
+
             var meshFilter = obj.GetComponent<MeshFilter>();
-            var softbody = obj.AddComponent<ObiSoftbody>();
-            var skinner = obj.AddComponent<ObiSoftbodySkinner>();
+            var softbody = obj.GetComponent<ObiSoftbody>();
 
             var blueprint = ScriptableObject.CreateInstance<ObiSoftbodySurfaceBlueprint>();
             blueprint.inputMesh = meshFilter.mesh;

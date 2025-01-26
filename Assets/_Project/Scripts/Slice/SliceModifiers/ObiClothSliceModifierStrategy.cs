@@ -15,9 +15,9 @@ public class ObiClothSliceModifierStrategy : ISliceModifierStrategy
 
         foreach (var obj in objects.Select(x=>x.gameObject))
         {
+            var allComponents = obj.AddAllComponentCopy(target, new []{"clothBlueprint", "cloth", "GameobjectRoot"});
             var meshFilter = obj.GetComponent<MeshFilter>();
-            var cloth = obj.AddComponent<ObiCloth>();
-            var clothRenderer = obj.AddComponent<ObiClothRenderer>();
+            var cloth = obj.GetComponent<ObiCloth>();
 
             var blueprint = ScriptableObject.CreateInstance<ObiClothBlueprint>();
             blueprint.inputMesh = meshFilter.mesh;

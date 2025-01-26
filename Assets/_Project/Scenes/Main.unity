@@ -2861,7 +2861,7 @@ MonoBehaviour:
         m_MethodName: SetSelectedPrefab
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 7003393076719665567, guid: 977445888a427c6448345c28f219b53a, type: 3}
+          m_ObjectArgument: {fileID: 6479833478124850084, guid: c082a871fdbeccb4490c153f2545e45a, type: 3}
           m_ObjectArgumentAssemblyTypeName: DynamicMeshCutter.MeshTarget, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -2979,7 +2979,7 @@ MonoBehaviour:
         m_MethodName: SetSelectedPrefab
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 7003393076719665567, guid: a8a0ef54f435d904f9b047de30729707, type: 3}
+          m_ObjectArgument: {fileID: 168606947957208454, guid: 16f1b9d3aabec8d48ba78e153cd82068, type: 3}
           m_ObjectArgumentAssemblyTypeName: DynamicMeshCutter.MeshTarget, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -3524,7 +3524,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &1572965389
@@ -4056,7 +4056,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sliceManager: {fileID: 2092767461}
-  selectedPrefab: {fileID: 7003393076719665567, guid: a8a0ef54f435d904f9b047de30729707, type: 3}
+  selectedPrefab: {fileID: 168606947957208454, guid: 16f1b9d3aabec8d48ba78e153cd82068, type: 3}
   selectedPrefabToggleGroup: {fileID: 676677890}
   sliceTypeToggleGroup: {fileID: 571293289}
   sliceCountField: {fileID: 269627460}
@@ -4169,7 +4169,7 @@ MonoBehaviour:
         m_MethodName: SetSelectedPrefab
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 7003393076719665567, guid: ee00087ccf5c1ee4abfb8160f8d6b92a, type: 3}
+          m_ObjectArgument: {fileID: 6689447371572568198, guid: 5318d05b017c43c4eb673f2499a136ac, type: 3}
           m_ObjectArgumentAssemblyTypeName: DynamicMeshCutter.MeshTarget, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0

@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 5555473742176458707}
   - component: {fileID: 1886750609795874791}
   - component: {fileID: 7003393076719665567}
-  - component: {fileID: 3652063456619966632}
-  - component: {fileID: 3223392923191813240}
-  - component: {fileID: 5318819031836349912}
+  - component: {fileID: 8605165551328935162}
+  - component: {fileID: -5803573524612091925}
+  - component: {fileID: -6338526631631828720}
   m_Layer: 0
-  m_Name: Steak Softbody
+  m_Name: Default_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,13 +29,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 15032677109574166}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!33 &1886750609795874791
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -43,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 15032677109574166}
-  m_Mesh: {fileID: -4733786327514660179, guid: 5e82f6284f090fd448dc1aeca5e6f962, type: 3}
+  m_Mesh: {fileID: 0}
 --- !u!114 &7003393076719665567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameobjectRoot: {fileID: 15032677109574166}
-  OverrideFaceMaterial: {fileID: 2100000, guid: bd48cb68d2d1026448dd45550f7956a2, type: 2}
+  OverrideFaceMaterial: {fileID: 0}
   SeparateMeshes: 0
   ApplyTranslation: 1
   DefaultBehaviour: 0000000000000000
@@ -68,36 +68,8 @@ MonoBehaviour:
   CreateMeshCollider: 0000
   Physics: 0200000002000000
   Inherit: 0000
---- !u!114 &3652063456619966632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 15032677109574166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f34e5650326d42f48ed54336d58073d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  solverIndices:
-    serializedContents: 
-    m_AlignBytes: 16
-  groupID: 0
-  m_CollisionMaterial: {fileID: 0}
-  m_SurfaceCollisions: 0
-  m_SoftbodyBlueprint: {fileID: 0}
-  m_SelfCollisions: 0
-  centerBatch: -1
-  centerShape: -1
-  _shapeMatchingConstraintsEnabled: 1
-  _deformationResistance: 1
-  _maxDeformation: 0
-  _plasticYield: 0
-  _plasticCreep: 0
-  _plasticRecovery: 0
---- !u!137 &3223392923191813240
-SkinnedMeshRenderer:
+--- !u!23 &8605165551328935162
+MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -111,7 +83,7 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 3
+  m_RayTracingMode: 2
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
@@ -119,7 +91,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bd48cb68d2d1026448dd45550f7956a2, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -140,35 +112,53 @@ SkinnedMeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  serializedVersion: 2
-  m_Quality: 0
-  m_UpdateWhenOffscreen: 0
-  m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: -4733786327514660179, guid: 5e82f6284f090fd448dc1aeca5e6f962, type: 3}
-  m_Bones: []
-  m_BlendShapeWeights: []
-  m_RootBone: {fileID: 0}
-  m_AABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0.75, y: 0.5, z: 0.1}
-  m_DirtyAABB: 0
---- !u!114 &5318819031836349912
-MonoBehaviour:
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!54 &-5803573524612091925
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 15032677109574166}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!64 &-6338526631631828720
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15032677109574166}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83bf94c6a4abf4495a5a12f7f2f234ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  softbody: {fileID: 3652063456619966632}
-  customSkinMap: {fileID: 0}
-  radius: 0.5
-  falloff: 1
-  maxInfluences: 4
-  softbodyInfluence: 1
-  m_softbodyInfluences: []
-  <sourceMesh>k__BackingField: {fileID: 0}
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}

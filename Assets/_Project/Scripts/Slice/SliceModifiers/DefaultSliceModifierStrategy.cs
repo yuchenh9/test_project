@@ -12,11 +12,10 @@ public class DefaultSliceModifierStrategy : ISliceModifierStrategy
     {
         foreach (var item in objects)
         {
-            item.transform.rotation = target.transform.rotation;
             var meshCollider = item.AddComponent<MeshCollider>();
-            var rigidbody = item.AddComponent<Rigidbody>();
-            
             meshCollider.convex = true;
+            
+            var allComponents = item.gameObject.AddAllComponentCopy(target, new []{"GameobjectRoot"});
         }
         yield return null;
     }
