@@ -1,16 +1,18 @@
-using System;
 using Obi;
 using UnityEngine;
 
-public class ObiMaterialSetter : MonoBehaviour
+namespace _Project.Scripts.Slice
 {
-    [SerializeField] private ObiCollisionMaterial collisionMaterial;
-
-    private void Start()
+    public class ObiMaterialSetter : MonoBehaviour
     {
-        if (TryGetComponent<ObiCloth>(out var obiCloth))
-            obiCloth.collisionMaterial = collisionMaterial;
-        else if (TryGetComponent<ObiSoftbody>(out var obiSoftbody))
-            obiSoftbody.collisionMaterial = collisionMaterial;
+        [SerializeField] private ObiCollisionMaterial collisionMaterial;
+
+        private void Start()
+        {
+            if (TryGetComponent<ObiCloth>(out var obiCloth))
+                obiCloth.collisionMaterial = collisionMaterial;
+            else if (TryGetComponent<ObiSoftbody>(out var obiSoftbody))
+                obiSoftbody.collisionMaterial = collisionMaterial;
+        }
     }
 }

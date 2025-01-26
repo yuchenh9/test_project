@@ -1,9 +1,12 @@
-using _Project;
+using _Project.Scripts.Slice.Structs;
 using UnityEngine;
 
-public class SliceTypeToggleInfoElementUI : MonoBehaviour
+namespace _Project.Scripts.UI
 {
-    [SerializeField] private SliceType sliceType;
+    public class SliceTypeToggleInfoElementUI : MonoBehaviour
+    {
+        [SerializeField] private SliceType sliceType;
     
-    public SliceType SliceType => sliceType;
+        public SliceType SliceType => sliceType;
+    }
 }

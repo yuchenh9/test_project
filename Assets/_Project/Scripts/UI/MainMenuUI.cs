@@ -1,30 +1,32 @@
-using System;
-using _Project;
+using _Project.Scripts.Slice;
 using DynamicMeshCutter;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainMenuUI : MonoBehaviour
+namespace _Project.Scripts.UI
 {
-    [SerializeField] private SliceManager sliceManager;
-    [SerializeField] private MeshTarget selectedPrefab;
-    [SerializeField] private ToggleGroup selectedPrefabToggleGroup;
-    [SerializeField] private ToggleGroup sliceTypeToggleGroup;
-    [SerializeField] private TMP_InputField sliceCountField;
-    [SerializeField] private Slider slider;
-    
-    public void SetSelectedPrefab(MeshTarget prefab)
+    public class MainMenuUI : MonoBehaviour
     {
-        selectedPrefab = prefab;
-    }
+        [SerializeField] private SliceManager sliceManager;
+        [SerializeField] private MeshTarget selectedPrefab;
+        [SerializeField] private ToggleGroup selectedPrefabToggleGroup;
+        [SerializeField] private ToggleGroup sliceTypeToggleGroup;
+        [SerializeField] private TMP_InputField sliceCountField;
+        [SerializeField] private Slider slider;
     
-    public void ButtonCutClicked()
-    {
-        var sliceType = sliceTypeToggleGroup.GetFirstActiveToggle().GetComponent<SliceTypeToggleInfoElementUI>().SliceType;
-        StartCoroutine(sliceManager.Slice(selectedPrefab, SliceCount, CutAngle, UtilityHelper.GetCalculator(sliceType)));
-    }
+        public void SetSelectedPrefab(MeshTarget prefab)
+        {
+            selectedPrefab = prefab;
+        }
     
-    private int SliceCount => int.Parse(sliceCountField.text);
-    private Vector3 CutAngle => UtilityHelper.AngleToAxis(slider.value);
+        public void ButtonCutClicked()
+        {
+            var sliceType = sliceTypeToggleGroup.GetFirstActiveToggle().GetComponent<SliceTypeToggleInfoElementUI>().SliceType;
+            StartCoroutine(sliceManager.Slice(selectedPrefab, SliceCount, CutAngle, UtilityHelper.GetCalculator(sliceType)));
+        }
+    
+        private int SliceCount => int.Parse(sliceCountField.text);
+        private Vector3 CutAngle => UtilityHelper.AngleToAxis(slider.value);
+    }
 }

@@ -1,22 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
-using _Project;
 using DynamicMeshCutter;
-using Obi;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class DefaultSliceModifierStrategy : ISliceModifierStrategy
+namespace _Project.Scripts.Slice.SliceModifiers
 {
-    public IEnumerator Modify(MonoBehaviour coroutineHost, List<MeshTarget> objects, GameObject target)
+    public class DefaultSliceModifierStrategy : ISliceModifierStrategy
     {
-        foreach (var item in objects)
+        public IEnumerator Modify(MonoBehaviour coroutineHost, List<MeshTarget> objects, GameObject target)
         {
-            var meshCollider = item.AddComponent<MeshCollider>();
-            meshCollider.convex = true;
+            foreach (var item in objects)
+            {
+                var meshCollider = item.AddComponent<MeshCollider>();
+                meshCollider.convex = true;
             
-            var allComponents = item.gameObject.AddAllComponentCopy(target, new []{"GameobjectRoot"});
+                var allComponents = item.gameObject.AddAllComponentCopy(target, new []{"GameobjectRoot"});
+            }
+            yield return null;
         }
-        yield return null;
     }
 }

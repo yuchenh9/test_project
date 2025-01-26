@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using DynamicMeshCutter;
 using UnityEngine;
 
-namespace _Project
+namespace _Project.Scripts.Slice.SliceModifiers
 {
     public interface ISliceModifierStrategy
     {

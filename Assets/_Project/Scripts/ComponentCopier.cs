@@ -1,81 +1,83 @@
 using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
 using System.Reflection;
+using UnityEngine;
 
-public static class ComponentCopier
+namespace _Project.Scripts
 {
-    public static IEnumerable<Component> AddAllComponentCopy(this GameObject target, GameObject source, IEnumerable<string> exceptFields = null)
+    public static class ComponentCopier
     {
-        var sourceComponents = source.GetComponents<Component>();
-
-        var addComponentCopyMethod = typeof(ComponentCopier)
-            .GetMethod(nameof(AddComponentCopy), BindingFlags.Public | BindingFlags.Static);
-        if (addComponentCopyMethod == null)
+        public static IEnumerable<Component> AddAllComponentCopy(this GameObject target, GameObject source, IEnumerable<string> exceptFields = null)
         {
-            Debug.LogError("AddComponentCopy method not found.");
-            return null;
-        }
+            var sourceComponents = source.GetComponents<Component>();
 
-        var copiedComponents = new List<Component>();
-
-        foreach (var sourceComponent in sourceComponents)
-        {
-            var type = sourceComponent.GetType();
-            var genericMethod = addComponentCopyMethod.MakeGenericMethod(type);
-            var copiedComponent = genericMethod.Invoke(null, new object[] { target, source, exceptFields }) as Component;
-
-            if (copiedComponent != null)
+            var addComponentCopyMethod = typeof(ComponentCopier)
+                .GetMethod(nameof(AddComponentCopy), BindingFlags.Public | BindingFlags.Static);
+            if (addComponentCopyMethod == null)
             {
-                copiedComponents.Add(copiedComponent);
+                Debug.LogError("AddComponentCopy method not found.");
+                return null;
             }
-        }
 
-        return copiedComponents;
-    }
+            var copiedComponents = new List<Component>();
 
-    public static T AddComponentCopy<T>(this GameObject target, GameObject source, IEnumerable<string> exceptFields = null) where T : Component
-    {
-        if (!source.TryGetComponent<T>(out var sourceComponent))
-        {
-            Debug.LogError($"Source object {source.name} does not have component of type {typeof(T)}.");
-            return null;
-        }
-
-        if (!target.TryGetComponent<T>(out var targetComponent))
-        {
-            targetComponent = target.AddComponent<T>();
-        }
-
-        CopyComponentFields(sourceComponent, targetComponent, exceptFields);
-
-        return targetComponent;
-    }
-    
-    private static void CopyComponentFields<T>(T sourceComponent, T targetComponent, IEnumerable<string> exceptFields = null) where T : Component
-    {
-        var fields = typeof(T).GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-
-        var excludeFieldsSet = exceptFields != null ? new HashSet<string>(exceptFields) : null;
-
-        foreach (var field in fields)
-        {
-            if (excludeFieldsSet != null && excludeFieldsSet.Contains(field.Name))
+            foreach (var sourceComponent in sourceComponents)
             {
-                continue;
-            }
-            
-            if (field.GetCustomAttribute<HideInInspector>() == null && 
-                (field.IsPublic || !field.IsPublic && field.GetCustomAttribute<SerializeField>() != null))
-            {
-                try
+                var type = sourceComponent.GetType();
+                var genericMethod = addComponentCopyMethod.MakeGenericMethod(type);
+                var copiedComponent = genericMethod.Invoke(null, new object[] { target, source, exceptFields }) as Component;
+
+                if (copiedComponent != null)
                 {
-                    var value = field.GetValue(sourceComponent);
-                    field.SetValue(targetComponent, value);
+                    copiedComponents.Add(copiedComponent);
                 }
-                catch (System.Exception ex)
+            }
+
+            return copiedComponents;
+        }
+
+        public static T AddComponentCopy<T>(this GameObject target, GameObject source, IEnumerable<string> exceptFields = null) where T : Component
+        {
+            if (!source.TryGetComponent<T>(out var sourceComponent))
+            {
+                Debug.LogError($"Source object {source.name} does not have component of type {typeof(T)}.");
+                return null;
+            }
+
+            if (!target.TryGetComponent<T>(out var targetComponent))
+            {
+                targetComponent = target.AddComponent<T>();
+            }
+
+            CopyComponentFields(sourceComponent, targetComponent, exceptFields);
+
+            return targetComponent;
+        }
+    
+        private static void CopyComponentFields<T>(T sourceComponent, T targetComponent, IEnumerable<string> exceptFields = null) where T : Component
+        {
+            var fields = typeof(T).GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+
+            var excludeFieldsSet = exceptFields != null ? new HashSet<string>(exceptFields) : null;
+
+            foreach (var field in fields)
+            {
+                if (excludeFieldsSet != null && excludeFieldsSet.Contains(field.Name))
                 {
-                    Debug.LogError($"Failed to copy field {field.Name} from {typeof(T)}: {ex.Message}");
+                    continue;
+                }
+            
+                if (field.GetCustomAttribute<HideInInspector>() == null && 
+                    (field.IsPublic || !field.IsPublic && field.GetCustomAttribute<SerializeField>() != null))
+                {
+                    try
+                    {
+                        var value = field.GetValue(sourceComponent);
+                        field.SetValue(targetComponent, value);
+                    }
+                    catch (System.Exception ex)
+                    {
+                        Debug.LogError($"Failed to copy field {field.Name} from {typeof(T)}: {ex.Message}");
+                    }
                 }
             }
         }

@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
+using _Project.Scripts.Slice.Structs;
 using DynamicMeshCutter;
 using UnityEngine;
 
-namespace _Project
+namespace _Project.Scripts.Slice.SliceTypeCalculators
 {
     public class RoundSliceTypeCalculatorStrategy : ISliceTypeCalculatorStrategy
     {

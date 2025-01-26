@@ -1,4 +1,4 @@
-namespace _Project
+namespace _Project.Scripts.Slice.Structs
 {
     public enum Modifier
     {

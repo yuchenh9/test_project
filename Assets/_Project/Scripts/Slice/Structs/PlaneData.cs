@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-namespace _Project
+namespace _Project.Scripts.Slice.Structs
 {
     public struct PlaneData
     {

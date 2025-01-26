@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using _Project.Scripts.Slice.SliceTypeCalculators;
+using _Project.Scripts.Slice.Structs;
 using Unity.VisualScripting;
 using UnityEngine;
 
-namespace _Project
+namespace _Project.Scripts
 {
     public class UtilityHelper
     {

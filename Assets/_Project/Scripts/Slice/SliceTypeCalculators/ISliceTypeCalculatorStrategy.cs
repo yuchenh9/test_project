@@ -1,8 +1,9 @@
 using System.Collections.Generic;
+using _Project.Scripts.Slice.Structs;
 using DynamicMeshCutter;
 using UnityEngine;
 
-namespace _Project
+namespace _Project.Scripts.Slice.SliceTypeCalculators
 {
     public interface ISliceTypeCalculatorStrategy
     {
