@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using _Project;
 using DynamicMeshCutter;
 using Obi;
@@ -11,9 +12,13 @@ public class SliceManager : MonoBehaviour
     public IEnumerator Slice(MeshTarget target, int sliceCount, Vector3 axis, ISliceTypeCalculatorStrategy planeCalculator)
     {
         yield return StartCoroutine(defaultSlicer.Cut(target, sliceCount, axis, planeCalculator));
-        Debug.Log("Objects have been sliced");
+            
 
+        Debug.Log("Objects have been sliced");
+        
         yield return StartCoroutine(SlicedObjectsModify(target.gameObject));
+         
+
     }
     
     public IEnumerator RoundSlice(MeshTarget target, int sliceCount)

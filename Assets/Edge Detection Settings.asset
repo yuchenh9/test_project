@@ -16,19 +16,19 @@ MonoBehaviour:
   showInSceneView: 1
   debugView: 0
   debugSectionsRaw: 0
-  discontinuityInput: 15
-  depthSensitivity: 1
-  depthDistanceModulation: 0.4
-  grazingAngleMaskPower: 0.2
+  discontinuityInput: -1
+  depthSensitivity: 0.82
+  depthDistanceModulation: 0
+  grazingAngleMaskPower: 1
   grazingAngleMaskHardness: 1
-  normalSensitivity: 0.4
-  luminanceSensitivity: 0.3
+  normalSensitivity: 0.128
+  luminanceSensitivity: 0
   SectionRenderingLayer:
     serializedVersion: 0
-    m_Bits: 1
+    m_Bits: 256
   objectId: 1
   particles: 0
-  sectionsMask: 0
+  sectionsMask: 1
   depthMask: 0
   normalsMask: 0
   luminanceMask: 0
@@ -38,7 +38,7 @@ MonoBehaviour:
   sectionTextureChannel: 0
   vertexColorChannel: 0
   kernel: 0
-  outlineThickness: 3
+  outlineThickness: 15
   scaleWithResolution: 0
   referenceResolution: 0
   customResolution: 0
@@ -52,6 +52,6 @@ MonoBehaviour:
   fadeStart: 100
   fadeDistance: 10
   blendMode: 0
-  showDiscontinuitySection: 0
-  showOutlineSection: 0
+  showDiscontinuitySection: 1
+  showOutlineSection: 1
   showExperimentalSection: 0

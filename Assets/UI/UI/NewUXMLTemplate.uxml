@@ -1,0 +1,5 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:Button text="Button" style="border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; background-color: rgb(0, 145, 255);">
+        <engine:Button text="Button" style="background-size: 168% 100%; border-top-width: -4px; border-right-width: -4px; border-bottom-width: -4px; border-left-width: -4px; padding-top: 19px; margin-top: -8px; margin-right: -7px; margin-bottom: -8px; margin-left: -8px; border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; width: 333px; padding-right: 21px; padding-bottom: 19px; padding-left: 19px;" />
+    </engine:Button>
+</engine:UXML>

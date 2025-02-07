@@ -7,6 +7,7 @@ public class foodCutMenu : MonoBehaviour
     // Define a public static event for the plus button
 
     [SerializeField] private TextMeshProUGUI text;
+    [SerializeField]    private TextMeshProUGUI cutSomethingToText;
     private int cutNumber=2;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,7 +20,9 @@ public class foodCutMenu : MonoBehaviour
     {
         
     }
-
+    public void onDropdown(int index){
+        Debug.Log(index);
+    }
 
     public void onGoBack()
     {

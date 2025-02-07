@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour
 {
+    
     [SerializeField] private SliceManager sliceManager;
     [SerializeField] public GameObject selectedObject;
     [SerializeField] private ToggleGroup selectedPrefabToggleGroup;
@@ -23,4 +24,5 @@ public class MainMenuUI : MonoBehaviour
     
     private int SliceCount => int.Parse(sliceCountField.text);
     private Vector3 CutAngle => UtilityHelper.AngleToAxis(slider.value);
+    
 }
