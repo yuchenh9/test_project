@@ -9,8 +9,9 @@ public class SliceManager : MonoBehaviour
 {
     [SerializeField] private CustomSlicerBehaviour defaultSlicer;
 
-    public IEnumerator Slice(MeshTarget target, int sliceCount, Vector3 axis, ISliceTypeCalculatorStrategy planeCalculator)
+    public IEnumerator Slice(Transform container, MeshTarget target, int sliceCount, Vector3 axis, ISliceTypeCalculatorStrategy planeCalculator)
     {
+        defaultSlicer.setContainer(container);
         yield return StartCoroutine(defaultSlicer.Cut(target, sliceCount, axis, planeCalculator));
             
 

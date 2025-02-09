@@ -11,7 +11,7 @@ public class SceneData : MonoBehaviour
 {
     public static SceneData Instance { get; private set; }
     [SerializeField] private SliceManager sliceManager;
-    [SerializeField] public List<GameObject> selectedObjects;
+    [SerializeField] public List<MeshTarget> selectedObjects;
     public GameObject vessels;
     public GameObject selectedGameobject;
     public Camera camera;
@@ -34,9 +34,8 @@ public class SceneData : MonoBehaviour
     void Start()
     {
         
-        foreach(GameObject selectedObject in selectedObjects){
-            selectedObject.transform.position=new Vector3(0f,0f,0f
-            );
+        foreach(MeshTarget selectedObject in selectedObjects){
+            //selectedObject.transform.position=new Vector3(0f,0f,0f);
 
             int scenesCount=scenes.Count;
             GameObject newScene = new GameObject($"scene{scenesCount}");
@@ -48,8 +47,8 @@ public class SceneData : MonoBehaviour
             foods.transform.parent=newScene.transform;
             foods.transform.localPosition=new Vector3(0f,0f,0f);
 
-            selectedObject.transform.parent=foods.transform;
-            selectedObject.transform.localPosition=new Vector3(0f,0f,0f);
+            //selectedObject.transform.parent=foods.transform;
+            //selectedObject.transform.localPosition=new Vector3(0f,0f,0f);
 
             GameObject Scene_vessels=Instantiate(vessels, 
                                   newScene.transform.position, 
@@ -72,57 +71,26 @@ public class SceneData : MonoBehaviour
     public void ButtonCutClicked()
     {
         //List<MeshTarget> selectedPrefabs=selectedObjects.Select(i=>i.GetComponent<MeshTarget>()).ToList();
-        MeshTarget selectedPrefab = null;
+        MeshTarget selectedPrefab = selectedObjects[selectedSceneIndex];
 
-// Check if scenes[selectedSceneIndex] is valid
-if (scenes != null && selectedSceneIndex >= 0 && selectedSceneIndex < scenes.Count)
-{
-    // Find the "foods" GameObject
-    Transform foodsTransform = scenes[selectedSceneIndex].transform.Find("foods");
-  
-    if (foodsTransform != null)
-    {
-        // Ensure there is at least one child
-        if (foodsTransform.childCount > 0)
-        {
-            // Try to get the MeshTarget component
-            selectedPrefab = foodsTransform.GetChild(0).GetComponent<MeshTarget>();
-            
-            if (selectedPrefab == null)
-            {
-                Debug.LogError("MeshTarget component not found on the first child.");
-            }
-        }
-        else
-        {
-            Debug.LogError("No children found under 'foods'.");
-        }
-    }
-    else
-    {
-        Debug.LogError("'foods' child not found.");
-    }
-}
-else
-{
-    Debug.LogError("Selected scene index is out of range or scenes array is null.");
-}
+
 
         //MeshTarget selectedPrefab=scenes[selectedSceneIndex].transform.Find("foods").transform.GetChild(0).GetComponent<MeshTarget>();
-        var sliceType = sliceTypeToggleGroup.GetFirstActiveToggle().GetComponent<SliceTypeToggleInfoElementUI>().SliceType;
+        //var sliceType = sliceTypeToggleGroup.GetFirstActiveToggle().GetComponent<SliceTypeToggleInfoElementUI>().SliceType;
         if (sliceManager == null)
         Debug.LogError("sliceManager is null.");
-    if (selectedPrefab == null)
-        Debug.LogError("selectedPrefab is null.");
-    if (SliceCount <= 0)
-        Debug.LogError("SliceCount is invalid.");
-    if (new Vector3(1, 0, 0).normalized == null)
-        Debug.LogError("Direction vector is null.");
-    if (UtilityHelper.GetCalculator(sliceType) == null)
+        if (selectedPrefab == null)
+            Debug.LogError("selectedPrefab is null.");
+        if (SliceCount <= 0)
+            Debug.LogError("SliceCount is invalid.");
+        if (new Vector3(1, 0, 0).normalized == null)
+            Debug.LogError("Direction vector is null.");
+        if (UtilityHelper.GetCalculator() == null)
         Debug.LogError("Calculator for sliceType is null.");
         if (selectedPrefab!=null)
         {
-            StartCoroutine(sliceManager.Slice(selectedPrefab, SliceCount, new Vector3(1, 0, 0).normalized, UtilityHelper.GetCalculator(sliceType)));
+            Transform foodsTransform=scenes[selectedSceneIndex].transform.Find("foods");
+            StartCoroutine(sliceManager.Slice(foodsTransform,selectedPrefab, SliceCount, new Vector3(1, 0, 0).normalized, UtilityHelper.GetCalculator()));
     
         } else {
 

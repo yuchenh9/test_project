@@ -9,7 +9,7 @@ public class MainMenuUI : MonoBehaviour
 {
     
     [SerializeField] private SliceManager sliceManager;
-    [SerializeField] public GameObject selectedObject;
+    [SerializeField] public MeshTarget selectedPrefab;
     [SerializeField] private ToggleGroup selectedPrefabToggleGroup;
     [SerializeField] private ToggleGroup sliceTypeToggleGroup;
     [SerializeField] private TMP_InputField sliceCountField;
@@ -17,9 +17,8 @@ public class MainMenuUI : MonoBehaviour
     
     public void ButtonCutClicked()
     {
-        MeshTarget selectedPrefab=selectedObject.GetComponent<MeshTarget>();
-        var sliceType = sliceTypeToggleGroup.GetFirstActiveToggle().GetComponent<SliceTypeToggleInfoElementUI>().SliceType;
-        StartCoroutine(sliceManager.Slice(selectedPrefab, SliceCount, CutAngle, UtilityHelper.GetCalculator(sliceType)));
+        //var sliceType = sliceTypeToggleGroup.GetFirstActiveToggle().GetComponent<SliceTypeToggleInfoElementUI>().SliceType;
+        //StartCoroutine(sliceManager.Slice(selectedPrefab, SliceCount, CutAngle, UtilityHelper.GetCalculator()));
     }
     
     private int SliceCount => int.Parse(sliceCountField.text);

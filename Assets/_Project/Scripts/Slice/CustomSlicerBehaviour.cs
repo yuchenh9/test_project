@@ -14,7 +14,9 @@ public class CustomSlicerBehaviour : CutterBehaviour
 
     private ISliceTypeCalculatorStrategy _planeCalculator;
     private bool _isFinished;
-    
+    public void setContainer(Transform set_container){
+        container=set_container;
+    }
     public IEnumerator Cut(MeshTarget targetObject, int sliceCount, Vector3 slicingAxis, ISliceTypeCalculatorStrategy planeCalculator)
     {
         if (!planeCalculator.ValidateInputValues(targetObject, sliceCount, slicingAxis))

@@ -37,14 +37,16 @@ namespace _Project
             }
         }
         
-        public static ISliceTypeCalculatorStrategy GetCalculator(SliceType calculator)
+        public static ISliceTypeCalculatorStrategy GetCalculator()
         {
+            return new LinearSliceTypeCalculatorStrategy();
+            /*
             return calculator switch
             {
                 SliceType.Linear=> new LinearSliceTypeCalculatorStrategy(),
                 SliceType.Radial => new RoundSliceTypeCalculatorStrategy(),
                 _ => throw new ArgumentOutOfRangeException()
-            };
+            };*/
         }
         
         public static Vector3 AngleToAxis(float cutAngle)
