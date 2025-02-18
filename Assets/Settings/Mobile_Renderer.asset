@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9377bada70366419aa6301068e988aa4, type: 3}
   m_Name: EdgeDetection
   m_EditorClassIdentifier: 
-  m_Active: 0
+  m_Active: 1
   settings: {fileID: 0}
   shaders:
     section: {fileID: 4800000, guid: 555b69c4bab64af2aab316a4335ad6be, type: 3}

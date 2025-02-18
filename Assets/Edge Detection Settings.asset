@@ -17,22 +17,22 @@ MonoBehaviour:
   debugView: 0
   debugSectionsRaw: 0
   discontinuityInput: -1
-  depthSensitivity: 0.82
-  depthDistanceModulation: 0
-  grazingAngleMaskPower: 1
+  depthSensitivity: 1
+  depthDistanceModulation: 0.4
+  grazingAngleMaskPower: 0.2
   grazingAngleMaskHardness: 1
-  normalSensitivity: 0.128
-  luminanceSensitivity: 0
+  normalSensitivity: 0.4
+  luminanceSensitivity: 0.3
   SectionRenderingLayer:
     serializedVersion: 0
-    m_Bits: 256
+    m_Bits: 1
   objectId: 1
   particles: 0
   sectionsMask: 1
   depthMask: 0
   normalsMask: 0
   luminanceMask: 0
-  sectionMapInput: 0
+  sectionMapInput: 1
   sectionTexture: {fileID: 0}
   sectionTextureUvSet: 0
   sectionTextureChannel: 0
@@ -46,7 +46,7 @@ MonoBehaviour:
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
   overrideColorInShadow: 0
   outlineColorShadow: {r: 1, g: 1, b: 1, a: 1}
-  fillColor: {r: 0, g: 0, b: 0, a: 1}
+  fillColor: {r: 0.62352943, g: 0, b: 0, a: 1}
   fadeInDistance: 0
   fadeColor: {r: 0, g: 0, b: 0, a: 0}
   fadeStart: 100
