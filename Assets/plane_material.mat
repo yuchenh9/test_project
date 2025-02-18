@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_New Shader Graph 1
+  m_Name: plane_material
   m_Shader: {fileID: -6465566751694194690, guid: afa61bf4cb5b149318a1a75335cfdcd2, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0

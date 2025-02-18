@@ -1,26 +1,36 @@
 using UnityEngine;
 
-public class Capsule_shape_adjust : MonoBehaviour
+public class DynamicCapsule : MonoBehaviour
 {
-    public Transform cylinder;
-    public Transform left_sphere;
-    public Transform right_sphere;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    public Transform Cylinder;
+    //public Transform LeftSphere;
+    public Transform RightSphere;
+    public float ratio=1f;
+    private float _ratio;
+    private void OnValidate()
+    {
+        if (ratio!=_ratio){
+            _ratio=ratio;
+            UpdateCapsule(ratio);
+        }
+    }
     void Start()
     {
-        
     }
-    private void adjust_positions(){
 
-        Vector3 cylinder_position = cylinder.position;
-        Vector3 right_sphere_position=right_sphere.position;
-        Vector3 scale = cylinder.localScale;
-        float y=scale.y;
-        right_sphere_position.y+=y-1;
-    }
-    // Update is called once per frame
-    void Update()
+    // Call this method whenever CylinderLength changes
+    public void UpdateCapsule(float ratio)
     {
-        
+        Vector3 newscale=new Vector3(1f,ratio,1f);
+        Cylinder.transform.localScale=newscale;
+        Renderer renderer = Cylinder.GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            // You can now use the renderer, e.g., access its bounds
+            Bounds bounds = renderer.bounds;
+            Debug.Log("Bounds center: " + bounds.center);
+            RightSphere.transform.position=new Vector3(bounds.max.x,RightSphere.transform.position.y,RightSphere.transform.position.z);
+        }
     }
 }

@@ -16,7 +16,7 @@ MonoBehaviour:
   showInSceneView: 1
   debugView: 0
   debugSectionsRaw: 0
-  discontinuityInput: -1
+  discontinuityInput: 8
   depthSensitivity: 1
   depthDistanceModulation: 0.4
   grazingAngleMaskPower: 0.2
@@ -36,9 +36,9 @@ MonoBehaviour:
   sectionTexture: {fileID: 0}
   sectionTextureUvSet: 0
   sectionTextureChannel: 0
-  vertexColorChannel: 0
+  vertexColorChannel: 3
   kernel: 0
-  outlineThickness: 15
+  outlineThickness: 14
   scaleWithResolution: 0
   referenceResolution: 0
   customResolution: 0

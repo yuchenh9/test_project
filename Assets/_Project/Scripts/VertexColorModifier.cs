@@ -7,6 +7,24 @@ public class VertexColorModifier : MonoBehaviour
 
     private Color _lastTargetColor; // Track the last target color
     private float _lastBottomRange;
+
+
+    public enum Axis { X, Y, Z } // Enum to define the axis options
+    public Axis selectedAxis = Axis.Y; 
+    private float GetAxisValue(Vector3 worldVertex)
+    {
+        switch (selectedAxis)
+        {
+            case Axis.X:
+                return worldVertex.x;
+            case Axis.Y:
+                return worldVertex.y;
+            case Axis.Z:
+                return worldVertex.z;
+            default:
+                return worldVertex.y; // Default to Y-axis
+        }
+    }
     private void OnValidate()
     {
         // Check if the targetColor has changed
@@ -47,21 +65,27 @@ public class VertexColorModifier : MonoBehaviour
         Vector3[] vertices = modifiedMesh.vertices;
         Color[] colors = new Color[modifiedMesh.vertexCount];
 
-        float minY = float.MaxValue;
-        float maxY = float.MinValue;
+        float minAxisValue = float.MaxValue;
+        float maxAxisValue = float.MinValue;
 
         // Find min and max Y positions
-        foreach (var vertex in vertices)
+         for (int i = 0; i < vertices.Length; i++)
         {
-            if (vertex.z < minY) minY = vertex.z;
-            if (vertex.z > maxY) maxY = vertex.z;
+            Vector3 worldVertex = transform.TransformPoint(vertices[i]); // Convert to world space
+            float axisValue = GetAxisValue(worldVertex); // Get the value for the selected axis
+
+            if (axisValue < minAxisValue) minAxisValue = axisValue;
+            if (axisValue > maxAxisValue) maxAxisValue = axisValue;
         }
 
-        float threshold = minY + (maxY - minY) * bottomRange;
+        float threshold = minAxisValue + (maxAxisValue - minAxisValue) * bottomRange;
 
         for (int i = 0; i < colors.Length; i++)
         {
-            if (vertices[i].z <= threshold)
+            Vector3 worldVertex = transform.TransformPoint(vertices[i]); // Convert to world space
+            float axisValue = GetAxisValue(worldVertex); // Get the value for the selected axis
+
+            if (axisValue <= threshold)
                 colors[i] = targetColor;
             else
                 colors[i] = Color.white; // Keep other vertices white
