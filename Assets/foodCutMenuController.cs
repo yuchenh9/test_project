@@ -23,7 +23,10 @@ public class foodCutMenu : MonoBehaviour
     public void onDropdown(int index){
         Debug.Log(index);
     }
-
+    public void onApply(){
+        Debug.Log("apply clicked");
+        SceneData.Instance.ButtonCutClicked();
+    }
     public void onGoBack()
     {
         UIController.Instance.HandleChangeUI("foodMenu");
