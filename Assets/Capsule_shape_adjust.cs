@@ -4,10 +4,11 @@ public class DynamicCapsule : MonoBehaviour
 {
 
     public Transform Cylinder;
-    //public Transform LeftSphere;
+    public Transform LeftSphere;
     public Transform RightSphere;
     public float ratio=1f;
     private float _ratio;
+    public Color capsuleColor = Color.white;
     private void OnValidate()
     {
         if (ratio!=_ratio){
@@ -19,6 +20,21 @@ public class DynamicCapsule : MonoBehaviour
     {
     }
 
+    private void ApplyColorToAllParts()
+    {
+        SetColor(Cylinder);
+        SetColor(LeftSphere);
+        SetColor(RightSphere);
+    }
+
+    private void SetColor(Transform part)
+    {
+        var partRenderer = part.GetComponent<Renderer>();
+        if (partRenderer != null)
+        {
+            partRenderer.material.color = capsuleColor;
+        }
+    }
     // Call this method whenever CylinderLength changes
     public void UpdateCapsule(float ratio)
     {
@@ -32,5 +48,9 @@ public class DynamicCapsule : MonoBehaviour
             Debug.Log("Bounds center: " + bounds.center);
             RightSphere.transform.position=new Vector3(bounds.max.x,RightSphere.transform.position.y,RightSphere.transform.position.z);
         }
+
+        ApplyColorToAllParts();
     }
 }
+
+
