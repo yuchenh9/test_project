@@ -33,7 +33,7 @@ public class cylinder_controller : MonoBehaviour
         ""value"": 0.27
         },
         {
-        ""name"": ""Vitamin A (Beta-Carotene)"",
+        ""name"": ""Vitamin A"",
         ""color"": ""#FFA500"",
         ""value"": 0.01
         },
@@ -48,7 +48,7 @@ public class cylinder_controller : MonoBehaviour
         ""value"": 0.26
         },
         {
-        ""name"": ""Folate (Vitamin B9)"",
+        ""name"": ""Vitamin B9"",
         ""color"": ""#FFD700"",
         ""value"": 0.18
         }
@@ -115,6 +115,7 @@ public class cylinder_controller : MonoBehaviour
             capsule.capsuleColor=cylinder_list[i].color;
             capsule.max_ratio=cylinder_list[i].max_length;
             capsule.ratio=cylinder_list[i].ratio;
+            capsule.Nutrient_name.text=cylinder_list[i].name;
             FloatTweener floatTweener=capsule.GetComponent<FloatTweener>();
             floatTweener.StartTweenFloat();
         }

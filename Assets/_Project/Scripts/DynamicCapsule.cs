@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using TMPro;
 public class DynamicCapsule : MonoBehaviour
 {
 
@@ -7,6 +7,8 @@ public class DynamicCapsule : MonoBehaviour
     public Transform LeftSphere;
     public Transform RightSphere;
     public string name;
+    public TextMeshPro DV_value;
+    public TextMeshPro Nutrient_name;
     public float max_ratio=3.7f;
     public float ratio=1f;
     public FloatTweener floatTweener;
@@ -50,11 +52,13 @@ public class DynamicCapsule : MonoBehaviour
         Vector3 newscale=new Vector3(1f,ratio*max_ratio,1f);
         Cylinder.transform.localScale=newscale;
         Renderer renderer = Cylinder.GetComponent<Renderer>();
+        
         if (renderer != null)
         {
             Bounds bounds = renderer.bounds;
             //Debug.Log("Bounds center: " + bounds.center);
             RightSphere.transform.position=new Vector3(bounds.max.x,RightSphere.transform.position.y,RightSphere.transform.position.z);
+            DV_value.text=((int)(ratio*100f)).ToString()+"%"; 
         }
 
         ApplyColorToAllParts();
