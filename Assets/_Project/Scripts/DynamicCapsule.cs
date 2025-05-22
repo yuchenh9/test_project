@@ -6,6 +6,7 @@ public class DynamicCapsule : MonoBehaviour
     public Transform Cylinder;
     public Transform LeftSphere;
     public Transform RightSphere;
+    public string name;
     public float max_ratio=3.7f;
     public float ratio=1f;
     public FloatTweener floatTweener;
@@ -52,7 +53,7 @@ public class DynamicCapsule : MonoBehaviour
         if (renderer != null)
         {
             Bounds bounds = renderer.bounds;
-            Debug.Log("Bounds center: " + bounds.center);
+            //Debug.Log("Bounds center: " + bounds.center);
             RightSphere.transform.position=new Vector3(bounds.max.x,RightSphere.transform.position.y,RightSphere.transform.position.z);
         }
 
