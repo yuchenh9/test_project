@@ -3,6 +3,24 @@ using UnityEngine;
 
 namespace DynamicMeshCutter
 {
+    /*
+    Scene_data
+        SliceManager
+        ->Slice(//was not successful
+            CustomSlicerBehaviour
+            ->Cut(
+                CalculatedCut()
+                    *CutterBehaviour
+                    ->Cut(//was not successful
+                        OnCut,OnCreated
+                            MakeNextCut
+                    ->Update()
+                        ->CreateGameObjects
+                            MeshCreation
+                                ->CreateObjects()//was not called
+            ObiSoftbodySliceModifierStrategy 
+                ->Modify()// TODO:solve bug#1
+    */
     /* 
         Use the following to delegates to create callback functions that can be passed into the 
         public void Cut(MeshTarget target, Vector3 worldPosition, Vector3 worldNormal, OnCut onCut = null, OnCreated onCreated = null, object boxedUserData = null)
@@ -184,9 +202,15 @@ namespace DynamicMeshCutter
 
         public void Cut(MeshTarget target, Vector3 worldPosition, Vector3 worldNormal, OnCut onCut = null, OnCreated onCreated = null, object boxedUserData = null)
         {
+            /*
+            worldPosition,worldNormal
+                ->Info
+                    ->
+
+            */
             if (!target.isActiveAndEnabled)
                 return;
-
+            DebugPlaneDrawer.DrawPlane(worldPosition, worldNormal, 1f);
             Matrix4x4 worldToLocalMatrix = target.transform.worldToLocalMatrix;
 
             if (target.RequireLocal)
@@ -249,7 +273,7 @@ namespace DynamicMeshCutter
         protected virtual void CreateGameObjects(Info info)
         {
             MeshCreationData creationInfo = MeshCreation.CreateObjects(info, DefaultMaterial, VertexCreationThreshold);
-
+            Debug.Log("creationInfo"+creationInfo);
             if (DestroyTargets)
             {
                 if (info.MeshTarget)

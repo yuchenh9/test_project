@@ -16,7 +16,7 @@ MonoBehaviour:
   showInSceneView: 1
   debugView: 0
   debugSectionsRaw: 0
-  discontinuityInput: 8
+  discontinuityInput: 0
   depthSensitivity: 1
   depthDistanceModulation: 0.4
   grazingAngleMaskPower: 0.2

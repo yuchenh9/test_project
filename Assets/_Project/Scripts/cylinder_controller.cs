@@ -103,7 +103,7 @@ public class cylinder_controller : MonoBehaviour
         }
         for (int i = 0; i < cylinder_list.Count; i++)
         {
-            Debug.Log(transform);
+            //Debug.Log(transform);
             GameObject new_gameobject = Instantiate(cylinder_preset);
             new_gameobject.transform.SetParent(transform);
             new_gameobject.transform.localPosition=new Vector3(0f,-y_distance*i,0f);
@@ -113,7 +113,6 @@ public class cylinder_controller : MonoBehaviour
             new_gameobject.name = $"Cylinder_{i}";
             DynamicCapsule capsule=new_gameobject.GetComponent<DynamicCapsule>();
             capsule.capsuleColor=cylinder_list[i].color;
-            capsule.max_ratio=cylinder_list[i].max_length;
             capsule.ratio=cylinder_list[i].ratio;
             capsule.Nutrient_name.text=cylinder_list[i].name;
             FloatTweener floatTweener=capsule.GetComponent<FloatTweener>();

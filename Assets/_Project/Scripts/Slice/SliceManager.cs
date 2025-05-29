@@ -7,10 +7,28 @@ using UnityEngine;
 
 public class SliceManager : MonoBehaviour
 {
+    
+    /*
+    Scene_data
+        *->SliceManager
+        Slice(
+            ->CustomSlicerBehaviour
+            Cut(
+                CalculatedCut()
+                    ->CutterBehaviour
+                    Cut(
+                        OnCut,OnCreated
+                            MakeNextCut
+            ->ObiSoftbodySliceModifierStrategy 
+                Modify()// TODO:solve bug#1
+    */
     [SerializeField] private CustomSlicerBehaviour defaultSlicer;
 
     public IEnumerator Slice(Transform container, MeshTarget target, int sliceCount, Vector3 axis, ISliceTypeCalculatorStrategy planeCalculator)
     {
+        Debug.Log("slicing");
+        Debug.Log("target:"+target);
+        Debug.Log("sliceCount:"+sliceCount);
         defaultSlicer.setContainer(container);
         yield return StartCoroutine(defaultSlicer.Cut(target, sliceCount, axis, planeCalculator));
             

@@ -7,6 +7,28 @@ using _Project;
 
 public class CustomSlicerBehaviour : CutterBehaviour
 {
+    
+    /*
+    Scene_data
+        SliceManager
+        ->Slice(//was not successful
+            *CustomSlicerBehaviour
+            ->Cut(
+                CalculatedCut()
+                    CutterBehaviour
+                    ->Cut(//was not successful
+                        OnCut,OnCreated
+                            MakeNextCut
+                    ->Update()
+                        ->CreateGameObjects
+                            MeshCreation
+                                ->CreateObjects()//was not called
+            ObiSoftbodySliceModifierStrategy 
+                ->Modify()// TODO:solve bug#1
+    
+    */
+
+
     [SerializeField] private Transform container;
 
     public SliceInfo SliceInfo { private set; get; }
@@ -71,6 +93,7 @@ public class CustomSlicerBehaviour : CutterBehaviour
     private void CalculatedCut(MeshTarget nextObject)
     {
         var plane = _planeCalculator.Calculate(SliceInfo);
+        Debug.Log("sliceInfo:"+SliceInfo.ToString());
         Cut(nextObject, plane.Position, plane.Normal, OnCut, OnCreated);
     }
     
@@ -85,7 +108,6 @@ public class CustomSlicerBehaviour : CutterBehaviour
     private void OnCreated(Info info, MeshCreationData cData)
     {
         MeshCreation.TranslateCreatedObjects(info, cData.CreatedObjects, cData.CreatedTargets, Separation);
-        
         foreach (var t in cData.CreatedObjects) 
             t.transform.SetParent(container);
 
@@ -99,7 +121,7 @@ public class CustomSlicerBehaviour : CutterBehaviour
     private void MakeNextCut(IEnumerable<MeshTarget> objects)
     {
         SliceInfo.SliceIndex++;
-
+        Debug.Log("making next cut"+SliceInfo.SliceIndex);
         if (SliceInfo.SliceIndex < SliceInfo.SliceCount - 1)
         {
             foreach (var item in objects)

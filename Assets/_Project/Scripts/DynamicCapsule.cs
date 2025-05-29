@@ -9,7 +9,7 @@ public class DynamicCapsule : MonoBehaviour
     public string name;
     public TextMeshPro DV_value;
     public TextMeshPro Nutrient_name;
-    public float max_ratio=3.7f;
+    public float max_ratio=1f;
     public float ratio=1f;
     public FloatTweener floatTweener;
     private float _ratio;

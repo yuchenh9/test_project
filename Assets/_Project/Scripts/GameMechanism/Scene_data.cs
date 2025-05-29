@@ -9,6 +9,12 @@ using UnityEngine.UI;
 using System.Linq;
 public class SceneData : MonoBehaviour
 {
+    /*
+    selectedSceneIndex->
+        selectedObjects[]
+        scenes[]
+            ->selectedPrefab
+    */
     public static SceneData Instance { get; private set; }
     [SerializeField] private SliceManager sliceManager;
     [SerializeField] public List<MeshTarget> selectedObjects;
@@ -61,6 +67,8 @@ public class SceneData : MonoBehaviour
             GameObject foods= new GameObject("foods");
             foods.transform.parent=newScene.transform;
             foods.transform.localPosition=new Vector3(0f,0f,0f);
+
+
 
             selectedObject.transform.parent=foods.transform;
             selectedObject.transform.localPosition=new Vector3(0f,0f,0f);

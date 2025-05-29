@@ -33,7 +33,7 @@ public class FloatTweener : MonoBehaviour
         //Debug.Log(dynamicCapsule);
         StartCoroutine(TweenFloat());
 
-        Debug.Log("start");
+        //Debug.Log("start");
     }
 
     IEnumerator TweenFloat()

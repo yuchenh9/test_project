@@ -1,11 +1,30 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace DynamicMeshCutter
 {
+    /*
+    Scene_data
+        SliceManager
+        ->Slice(
+            CustomSlicerBehaviour
+            ->Cut(
+                CalculatedCut()
+                    CutterBehaviour
+                    ->Cut(
+                        OnCut,OnCreated
+                            MakeNextCut
+                    ->Update()
+                        ->CreateGameObjects
+                            *MeshCreation
+                                ->CreateObjects()
+            ObiSoftbodySliceModifierStrategy 
+                ->Modify()// TODO:solve bug#1
+    */
     public class MeshCreationData
     {
         public GameObject[] CreatedObjects;
@@ -16,6 +35,48 @@ namespace DynamicMeshCutter
             CreatedObjects = new GameObject[size];
             CreatedTargets = new MeshTarget[size];
         }
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            sb.Append("MeshCreationData [");
+
+            // Append CreatedObjects names
+            sb.Append("Objects: (");
+            if (CreatedObjects != null)
+            {
+                for (int i = 0; i < CreatedObjects.Length; i++)
+                {
+                    if (CreatedObjects[i] != null)
+                        sb.Append(CreatedObjects[i].name);
+                    else
+                        sb.Append("null");
+
+                    if (i < CreatedObjects.Length - 1)
+                        sb.Append(", ");
+                }
+            }
+            sb.Append("), ");
+
+            // Append CreatedTargets names
+            sb.Append("Targets: (");
+            if (CreatedTargets != null)
+            {
+                for (int i = 0; i < CreatedTargets.Length; i++)
+                {
+                    if (CreatedTargets[i] != null)
+                        sb.Append(CreatedTargets[i].name);
+                    else
+                        sb.Append("null");
+
+                    if (i < CreatedTargets.Length - 1)
+                        sb.Append(", ");
+                }
+            }
+            sb.Append(")]");
+
+            return sb.ToString();
+        }
+        
     }
     public static class MeshCreation
     {
@@ -118,7 +179,7 @@ namespace DynamicMeshCutter
                 string prefix = $"({i}/{createdMeshes.Length})";
                 parent.name = prefix + parent.name;
                 parent.name = parent.name.Replace("(Clone)", "");
-
+                
                 var nTarget = root.GetComponent<MeshTarget>();
                 if (nTarget == null)
                     nTarget = root.AddComponent<MeshTarget>();
