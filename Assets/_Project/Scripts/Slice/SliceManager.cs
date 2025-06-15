@@ -7,20 +7,32 @@ using UnityEngine;
 
 public class SliceManager : MonoBehaviour
 {
-    
-    /*
+      /*
     Scene_data
-        *->SliceManager
-        Slice(
-            ->CustomSlicerBehaviour
-            Cut(
-                CalculatedCut()
-                    ->CutterBehaviour
-                    Cut(
-                        OnCut,OnCreated
-                            MakeNextCut
-            ->ObiSoftbodySliceModifierStrategy 
-                Modify()// TODO:solve bug#1
+        SliceManager
+        ->Slice(//was not successful
+            CustomSlicerBehaviour
+            onCut()
+            onCreated()
+            ->Cut(
+                ->CalculatedCut()
+                    *CutterBehaviour
+                    ->Cut(//takes the data of a single plane, world position and world normal
+                        ->new Info(onCut,onCreated)
+                        ->OnCut()
+                            add Info
+                    ->Update()
+                        ->Indo invoke onCut
+                            CustomSlicerBehaviour
+                            ->MakeNextCut()
+                                ->CalculatedCut()
+                                
+                        ->CreateGameObjects()
+                            ->Info invoke onCreated
+                            MeshCreation
+                                ->CreateObjects()//was not called
+            ObiSoftbodySliceModifierStrategy 
+                ->Modify()// TODO:solve bug#1
     */
     [SerializeField] private CustomSlicerBehaviour defaultSlicer;
 

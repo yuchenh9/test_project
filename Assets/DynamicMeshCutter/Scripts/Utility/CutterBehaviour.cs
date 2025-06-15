@@ -6,20 +6,33 @@ namespace DynamicMeshCutter
     /*
     Scene_data
         SliceManager
-        ->Slice(//was not successful
-            CustomSlicerBehaviour
-            ->Cut(
-                CalculatedCut()
-                    *CutterBehaviour
-                    ->Cut(//was not successful
-                        OnCut,OnCreated
-                            MakeNextCut
-                    ->Update()
-                        ->CreateGameObjects
-                            MeshCreation
-                                ->CreateObjects()//was not called
-            ObiSoftbodySliceModifierStrategy 
-                ->Modify()// TODO:solve bug#1
+            ->Slice(//was not successful
+                *CustomSlicerBehaviour
+                    onCut()
+                    onCreated()
+                    ->Cut(
+                        -> new SliceInfo
+                        ->CalculatedCut()
+                            LinearSliceTypeCalculatorStrategy
+                                ->Calculate(SliceInfo)
+                            CutterBehaviour
+                                ->Cut(//takes the data of a single plane, world position and world normal
+                                    ->DrawPlane()
+                                    ->new Info(onCut,onCreated)
+                                    ->OnCut()
+                                        add Info
+                                ->Update()
+                                    ->Info invoke onCut
+                                        CustomSlicerBehaviour
+                                            ->MakeNextCut()
+                                                ->CalculatedCut()
+                                            
+                                    ->CreateGameObjects()
+                                        ->Info invoke onCreated
+                                        MeshCreation
+                                            ->CreateObjects()//was not called
+                    ObiSoftbodySliceModifierStrategy 
+                        ->Modify()// 
     */
     /* 
         Use the following to delegates to create callback functions that can be passed into the 
@@ -93,7 +106,7 @@ namespace DynamicMeshCutter
 
     public abstract class CutterBehaviour : MonoBehaviour
     {
-        public float Separation = 0.02f;
+        public float Separation = 0.1f;
         [Tooltip("Automatically destroy the original object that is cut, when cut")]
         public bool DestroyTargets = true;
         [Tooltip("Use multiple threads to cut. Drastically reduces lag. Recommend ON")]
@@ -210,7 +223,7 @@ namespace DynamicMeshCutter
             */
             if (!target.isActiveAndEnabled)
                 return;
-            DebugPlaneDrawer.DrawPlane(worldPosition, worldNormal, 1f);
+            //DebugPlaneDrawer.DrawPlane(worldPosition, worldNormal, 1f);
             Matrix4x4 worldToLocalMatrix = target.transform.worldToLocalMatrix;
 
             if (target.RequireLocal)
@@ -273,7 +286,7 @@ namespace DynamicMeshCutter
         protected virtual void CreateGameObjects(Info info)
         {
             MeshCreationData creationInfo = MeshCreation.CreateObjects(info, DefaultMaterial, VertexCreationThreshold);
-            Debug.Log("creationInfo"+creationInfo);
+            //Debug.Log("creationInfo"+creationInfo);
             if (DestroyTargets)
             {
                 if (info.MeshTarget)

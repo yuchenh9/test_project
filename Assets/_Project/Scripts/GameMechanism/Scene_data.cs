@@ -95,6 +95,8 @@ public class SceneData : MonoBehaviour
     {
         //List<MeshTarget> selectedPrefabs=selectedObjects.Select(i=>i.GetComponent<MeshTarget>()).ToList();
         MeshTarget selectedPrefab = selectedObjects[selectedSceneIndex];
+
+        //hide the orginal object in place, because it will not get cut
         disableRenderer(selectedPrefab);
 
 

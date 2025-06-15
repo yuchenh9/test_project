@@ -15,11 +15,11 @@ public class ObiSoftbodySliceModifierStrategy : ISliceModifierStrategy
         ->Slice(//was not successful
             CustomSlicerBehaviour
             ->Cut(
-                CalculatedCut()
+                ->CalculatedCut()
                     CutterBehaviour
                     ->Cut(//was not successful
-                        OnCut,OnCreated
-                            MakeNextCut
+                        ->OnCut,OnCreated
+                            ->MakeNextCut
                     ->Update()
                         ->CreateGameObjects
                             MeshCreation

@@ -21,10 +21,11 @@ namespace _Project
             var slicePosition = begin + axisNormalized * (stepSize * step);
 
             var separationDistance = sliceInfo.Separation * (step - 1);
-            slicePosition += axisNormalized * separationDistance;
+            //slicePosition += axisNormalized * separationDistance;//by removing this line, it no longer make cut planes over the boundary
 
             return new PlaneData(slicePosition, sliceInfo.SlicingAxis);
         }
+
 
         public IEnumerable<MeshTarget> GetNextObjectsForCut(IEnumerable<MeshTarget> slicedObjects)
         {

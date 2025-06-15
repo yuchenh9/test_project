@@ -11,27 +11,41 @@ public class CustomSlicerBehaviour : CutterBehaviour
     /*
     Scene_data
         SliceManager
-        ->Slice(//was not successful
-            *CustomSlicerBehaviour
-            ->Cut(
-                CalculatedCut()
-                    CutterBehaviour
-                    ->Cut(//was not successful
-                        OnCut,OnCreated
-                            MakeNextCut
-                    ->Update()
-                        ->CreateGameObjects
-                            MeshCreation
-                                ->CreateObjects()//was not called
-            ObiSoftbodySliceModifierStrategy 
-                ->Modify()// TODO:solve bug#1
-    
+            ->Slice(//was not successful
+                *CustomSlicerBehaviour
+                    onCut()
+                    onCreated()
+                    ->Cut(
+                        -> new SliceInfo
+                        ->CalculatedCut()
+                            LinearSliceTypeCalculatorStrategy
+                                ->Calculate(SliceInfo)
+                            CutterBehaviour
+                                ->Cut(//takes the data of a single plane, world position and world normal
+                                    ->DrawPlane()
+                                    ->new Info(onCut,onCreated)
+                                    ->OnCut()
+                                        add Info
+                                ->Update()
+                                    ->Info invoke onCut
+                                        CustomSlicerBehaviour
+                                            ->MakeNextCut()
+                                                ->CalculatedCut()
+                                            
+                                    ->CreateGameObjects()
+                                        ->Info invoke onCreated
+                                        MeshCreation
+                                            ->CreateObjects()//was not called
+                    ObiSoftbodySliceModifierStrategy 
+                        ->Modify()// 
     */
 
 
     [SerializeField] private Transform container;
 
     public SliceInfo SliceInfo { private set; get; }
+
+    //SlicedObjects will be actively added newly cut objects, and its objects will be cut
     public List<MeshTarget> SlicedObjects { get; } = new();
 
     private ISliceTypeCalculatorStrategy _planeCalculator;
@@ -52,6 +66,9 @@ public class CustomSlicerBehaviour : CutterBehaviour
         _planeCalculator = planeCalculator;
 
         var target = Instantiate(targetObject, container);
+        Debug.Log("target name:"+target.gameObject.name);
+
+        //this constructs the public SliceInfo
         SliceInfo = new SliceInfo
         {
             SliceCount = sliceCount,
@@ -69,6 +86,7 @@ public class CustomSlicerBehaviour : CutterBehaviour
             _isFinished = true;
             yield break;
         }
+        // calculate all the planes, and then pass a single plane to calculatedcut, and then increment the slice index
         
         CalculatedCut(target);
         
@@ -78,6 +96,7 @@ public class CustomSlicerBehaviour : CutterBehaviour
         }
     }
     
+    //Refresh() sets SliceIndex to 0 and clears SlicedObjects
     private void Refresh()
     {
         var targetRoots = SlicedObjects
@@ -90,11 +109,31 @@ public class CustomSlicerBehaviour : CutterBehaviour
         SliceInfo.SliceIndex = 0;
     }
 
+/*
+MakeNextCut(MeshTarget[])
+    SliceInfo.index++
+    ->CalculatedCut(MeshTarget)
+        Calculate(SliceInfo)
+        ->Cut(MeshTarget,normal,position)
+
+->Cut(MeshTarget,normal,position)
+
+create planes
+iterate plane
+    iterate object
+        cut(meshtarget, plane)//should be cutting newly created meshes instead of the old ones after the first cut
+*/
+//takes a meshtarget object, and calculate the plane position and normal, and call cut
     private void CalculatedCut(MeshTarget nextObject)
-    {
+    {   //now it returns a plane to the plane var each time calling the calculate
+        //change it so that it alculates all the planes, and returns each plane to the plane var
+
         var plane = _planeCalculator.Calculate(SliceInfo);
         Debug.Log("sliceInfo:"+SliceInfo.ToString());
         Cut(nextObject, plane.Position, plane.Normal, OnCut, OnCreated);
+        //DebugPlaneDrawer.DrawPlane(SliceInfo.StartBounds.min, plane.Normal, 1f);
+        //DebugPlaneDrawer.DrawPlane(SliceInfo.StartBounds.max, plane.Normal, 1f);
+        //DebugPlaneDrawer.CreateBoundsCube(SliceInfo.StartBounds);
     }
     
     private void OnCut(bool success, Info info)
@@ -107,7 +146,7 @@ public class CustomSlicerBehaviour : CutterBehaviour
     
     private void OnCreated(Info info, MeshCreationData cData)
     {
-        MeshCreation.TranslateCreatedObjects(info, cData.CreatedObjects, cData.CreatedTargets, Separation);
+        //MeshCreation.TranslateCreatedObjects(info, cData.CreatedObjects, cData.CreatedTargets, Separation);
         foreach (var t in cData.CreatedObjects) 
             t.transform.SetParent(container);
 
@@ -117,7 +156,7 @@ public class CustomSlicerBehaviour : CutterBehaviour
         MakeNextCut(_planeCalculator.GetNextObjectsForCut(cData.CreatedTargets));
     }
 
-
+    //increment slice index, than iterate through all meshtarget objects, and call calcula
     private void MakeNextCut(IEnumerable<MeshTarget> objects)
     {
         SliceInfo.SliceIndex++;
