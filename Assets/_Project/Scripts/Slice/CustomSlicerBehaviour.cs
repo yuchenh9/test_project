@@ -10,14 +10,26 @@ public class CustomSlicerBehaviour : CutterBehaviour
     
     /*
     Scene_data
+        CutterBehaviour
+            ->Update()//Cut is called as an IEnumerator, but updata() is a main function of the parent class, 
+                        so updata() is not called by the tree but called by the system itself
+                ->Info invoke onCut
+                    CustomSlicerBehaviour
+                        ->MakeNextCut()//increment sliceIndex
+                            ->CalculatedCut()
+                        
+                ->CreateGameObjects()
+                    ->Info invoke onCreated
+                    MeshCreation
+                        ->CreateObjects()//was not called
         SliceManager
-            ->Slice(//was not successful
+            ->IEnumerator Slice()//onclick()
                 *CustomSlicerBehaviour
                     onCut()
                     onCreated()
-                    ->Cut(
-                        -> new SliceInfo
-                        ->CalculatedCut()
+                    ->IEnumerator Cut(
+                        -> new SliceInfo//
+                        ->CalculatedCut() (not a)recursion
                             LinearSliceTypeCalculatorStrategy
                                 ->Calculate(SliceInfo)
                             CutterBehaviour
@@ -25,19 +37,10 @@ public class CustomSlicerBehaviour : CutterBehaviour
                                     ->DrawPlane()
                                     ->new Info(onCut,onCreated)
                                     ->OnCut()
-                                        add Info
-                                ->Update()
-                                    ->Info invoke onCut
-                                        CustomSlicerBehaviour
-                                            ->MakeNextCut()
-                                                ->CalculatedCut()
-                                            
-                                    ->CreateGameObjects()
-                                        ->Info invoke onCreated
-                                        MeshCreation
-                                            ->CreateObjects()//was not called
+                                        add Info //to be poped by the update()
+                                
                     ObiSoftbodySliceModifierStrategy 
-                        ->Modify()// 
+                        ->IEnumerator Modify()// 
     */
 
 
@@ -53,7 +56,7 @@ public class CustomSlicerBehaviour : CutterBehaviour
     public void setContainer(Transform set_container){
         container=set_container;
     }
-    public IEnumerator Cut(MeshTarget targetObject, int sliceCount, Vector3 slicingAxis, ISliceTypeCalculatorStrategy planeCalculator)
+    public IEnumerator Cut(MeshTarget targetObject, int sliceCount, Vector3 slicingAxis, ISliceTypeCalculatorStrategy planeCalculator,SliceInfo newSliceInfo)
     {
         if (!planeCalculator.ValidateInputValues(targetObject, sliceCount, slicingAxis))
         {
@@ -65,17 +68,11 @@ public class CustomSlicerBehaviour : CutterBehaviour
         _isFinished = false;
         _planeCalculator = planeCalculator;
 
-        var target = Instantiate(targetObject, container);
+        var target = Instantiate(targetObject, container);//copy target and perform cut on the new object
         Debug.Log("target name:"+target.gameObject.name);
 
         //this constructs the public SliceInfo
-        SliceInfo = new SliceInfo
-        {
-            SliceCount = sliceCount,
-            SlicingAxis = slicingAxis,
-            Separation = Separation,
-            StartBounds = UtilityHelper.GetObjectBounds(target.gameObject)
-        };
+        SliceInfo = newSliceInfo;
         
         Refresh();
         

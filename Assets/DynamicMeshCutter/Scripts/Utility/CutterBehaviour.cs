@@ -5,14 +5,26 @@ namespace DynamicMeshCutter
 {
     /*
     Scene_data
+        CutterBehaviour
+            ->Update()//Cut is called as an IEnumerator, but updata() is a main function of the parent class, 
+                        so updata() is not called by the tree but called by the system itself
+                ->Info invoke onCut
+                    CustomSlicerBehaviour
+                        ->MakeNextCut()
+                            ->CalculatedCut()
+                        
+                ->CreateGameObjects()
+                    ->Info invoke onCreated
+                    MeshCreation
+                        ->CreateObjects()//was not called
         SliceManager
-            ->Slice(//was not successful
+            ->IEnumerator Slice()//onclick()
                 *CustomSlicerBehaviour
                     onCut()
                     onCreated()
-                    ->Cut(
+                    ->IEnumerator Cut(
                         -> new SliceInfo
-                        ->CalculatedCut()
+                        ->CalculatedCut() (not a)recursion
                             LinearSliceTypeCalculatorStrategy
                                 ->Calculate(SliceInfo)
                             CutterBehaviour
@@ -20,19 +32,10 @@ namespace DynamicMeshCutter
                                     ->DrawPlane()
                                     ->new Info(onCut,onCreated)
                                     ->OnCut()
-                                        add Info
-                                ->Update()
-                                    ->Info invoke onCut
-                                        CustomSlicerBehaviour
-                                            ->MakeNextCut()
-                                                ->CalculatedCut()
-                                            
-                                    ->CreateGameObjects()
-                                        ->Info invoke onCreated
-                                        MeshCreation
-                                            ->CreateObjects()//was not called
+                                        add Info //to be poped by the update()
+                                
                     ObiSoftbodySliceModifierStrategy 
-                        ->Modify()// 
+                        ->IEnumerator Modify()// 
     */
     /* 
         Use the following to delegates to create callback functions that can be passed into the 

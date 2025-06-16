@@ -116,7 +116,7 @@ public class SceneData : MonoBehaviour
         {
 
             Transform foodsTransform=scenes[selectedSceneIndex].transform.Find("foods");
-            StartCoroutine(sliceManager.Slice(foodsTransform,selectedPrefab, SliceCount, new Vector3(1, 0, 0).normalized, UtilityHelper.GetCalculator()));
+            StartCoroutine(sliceManager.Slice(foodsTransform,selectedPrefab, {SliceCount} {new Vector3(0, 1, 0).normalized}, UtilityHelper.GetCalculator()));//root
     
         } else {
 
