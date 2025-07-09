@@ -16,7 +16,7 @@ public class CustomSlicerBehaviour : CutterBehaviour
                 ->Info invoke onCut  
                     CustomSlicerBehaviour
                         ->MakeNextCut()//increment sliceIndex
-                            ->CalculatedCut() 
+                            ->CalculatedCut() 
                                
                 ->CreateGameObjects()
                     ->Info invoke onCreated
@@ -56,10 +56,6 @@ public class CustomSlicerBehaviour : CutterBehaviour
     private ISliceTypeCalculatorStrategy _planeCalculator;
     private bool _isFinished;
     private bool _anyCutSucceeded; // For restoring original object if all cuts fail
-    
-    // Store all cutting planes calculated at the beginning
-    private List<PlaneData> _allCuttingPlanes = new List<PlaneData>();
-    
     public void setContainer(Transform set_container){
         container=set_container;
     }
@@ -98,11 +94,8 @@ public class CustomSlicerBehaviour : CutterBehaviour
             _isFinished = true;
             yield break;
         }
+        // calculate all the planes, and then pass a single plane to calculatedcut, and then increment the slice index
         
-        // Calculate all cutting planes at the beginning
-        CalculateAllCuttingPlanes();
-        
-        // Start the first cut with the first plane
         CalculatedCut(target);
         
         while (!_isFinished)
@@ -117,28 +110,6 @@ public class CustomSlicerBehaviour : CutterBehaviour
         }
     }
     
-    // Calculate all cutting planes at the beginning and store them
-    private void CalculateAllCuttingPlanes()
-    {
-        _allCuttingPlanes.Clear();
-        
-        // Calculate all planes for the entire cutting operation
-        for (int i = 0; i < SliceInfo.SliceCount - 1; i++)
-        {
-            // Temporarily set the slice index to calculate each plane
-            int originalIndex = SliceInfo.SliceIndex;
-            SliceInfo.SliceIndex = i;
-            
-            PlaneData plane = _planeCalculator.Calculate(SliceInfo);
-            _allCuttingPlanes.Add(plane);
-            
-            // Restore original index
-            SliceInfo.SliceIndex = originalIndex;
-        }
-        
-        Debug.Log($"Calculated {_allCuttingPlanes.Count} cutting planes at the beginning");
-    }
-    
     //Refresh() sets SliceIndex to 0 and clears SlicedObjects
     private void Refresh()
     {
@@ -150,14 +121,13 @@ public class CustomSlicerBehaviour : CutterBehaviour
             Destroy(item.gameObject);
         SlicedObjects.Clear();
         SliceInfo.SliceIndex = 0;
-        _allCuttingPlanes.Clear(); // Clear the pre-calculated planes
     }
 
 /*
 MakeNextCut(MeshTarget[])
     SliceInfo.index++
     ->CalculatedCut(MeshTarget)
-        Get pre-calculated plane
+        Calculate(SliceInfo)
         ->Cut(MeshTarget,normal,position)
 
 ->Cut(MeshTarget,normal,position)
@@ -167,22 +137,15 @@ iterate plane
     iterate object
         cut(meshtarget, plane)//should be cutting newly created meshes instead of the old ones after the first cut
 */
-//takes a meshtarget object, and get the pre-calculated plane, and call cut
+//takes a meshtarget object, and calculate the plane position and normal, and call cut
     private void CalculatedCut(MeshTarget nextObject)
-    {   // Use pre-calculated plane instead of calculating it each time
+    {   //now it returns a plane to the plane var each time calling the calculate
+        //change it so that it alculates all the planes, and returns each plane to the plane var
         Debug.Log("CalculatedCut"+SliceInfo.SliceIndex);
-        
-        // Get the pre-calculated plane for current slice index
-        if (SliceInfo.SliceIndex < _allCuttingPlanes.Count)
-        {
-            PlaneData plane = _allCuttingPlanes[SliceInfo.SliceIndex];
-            Cut(nextObject, plane.Position, plane.Normal, OnCut, OnCreated);
-            DebugPlaneDrawer.DrawPlane(plane.Position, plane.Normal, 1f);
-        }
-        else
-        {
-            Debug.LogError($"No pre-calculated plane found for slice index {SliceInfo.SliceIndex}");
-        }
+        var plane = _planeCalculator.Calculate(SliceInfo);
+        //Debug.Log("sliceInfo:"+SliceInfo.ToString());
+        Cut(nextObject, plane.Position, plane.Normal, OnCut, OnCreated);
+        DebugPlaneDrawer.DrawPlane(plane.Position, plane.Normal, 1f);
         //DebugPlaneDrawer.DrawPlane(SliceInfo.StartBounds.min, plane.Normal, 1f);
         //DebugPlaneDrawer.DrawPlane(SliceInfo.StartBounds.max, plane.Normal, 1f);
         //DebugPlaneDrawer.CreateBoundsCube(SliceInfo.StartBounds);

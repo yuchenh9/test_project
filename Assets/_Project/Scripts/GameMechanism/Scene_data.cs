@@ -91,7 +91,7 @@ public class SceneData : MonoBehaviour
 
         camera.transform.position = camPos;
     }
-    public void ButtonCutClicked1d()
+    public void ButtonCutClicked()
     {
         //List<MeshTarget> selectedPrefabs=selectedObjects.Select(i=>i.GetComponent<MeshTarget>()).ToList();
         MeshTarget selectedPrefab = selectedObjects[selectedSceneIndex];
@@ -129,7 +129,7 @@ public class SceneData : MonoBehaviour
     private Vector3 CutAngle => UtilityHelper.AngleToAxis(slider.value);
 
     // Button handler for 3D slicing (cuts in X, then Y, then Z)
-    public void ButtonCutClicked()
+    public void ButtonCutClicked3d()
     {
         MeshTarget selectedPrefab = selectedObjects[selectedSceneIndex];
         disableRenderer(selectedPrefab);
