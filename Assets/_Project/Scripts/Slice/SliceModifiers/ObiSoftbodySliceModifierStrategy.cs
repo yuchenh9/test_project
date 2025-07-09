@@ -51,7 +51,7 @@ public class ObiSoftbodySliceModifierStrategy : ISliceModifierStrategy
         <Slice>d__1:MoveNext() (at Assets/_Project/Scripts/Slice/SliceManager.cs:33)
         UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr) (at /Users/bokken/build/output/unity/unity/Runtime/Export/Scripting/Coroutines.cs:17)
 
-        issue1:does not render any softbody when cut number set to 3 Answer: the every cut plane is outside the boundary, so no cut is performed, resulting in no new mesh getting created
+        issue1:does not render any softbody when cut number set to 3 Answer:  every cut plane is outside the boundary, so no cut is performed, resulting in no new mesh getting created
         issue2:only cut to 2 softbodies when cut number set to >3 Answer:the cut planes lie outside the boundary
     */
     public IEnumerator Modify(MonoBehaviour coroutineHost, List<MeshTarget> objects, GameObject target)
@@ -69,7 +69,7 @@ public class ObiSoftbodySliceModifierStrategy : ISliceModifierStrategy
             
             Debug.Log(obj);
             coroutines.Add(blueprint.Generate());
-            blueprints.Add(softbody, blueprint);//
+            //blueprints.Add(softbody, blueprint);//
         }
     
         yield return coroutineHost.StartCoroutine(UtilityHelper.RunAllCoroutines(coroutines));

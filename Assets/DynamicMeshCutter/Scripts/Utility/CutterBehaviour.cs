@@ -150,7 +150,7 @@ namespace DynamicMeshCutter
             _isInitialized = true;
 
             _asyncWorker = new AsycWorker(this);
-            _asyncWorker.OnCut += OnCut;
+            _asyncWorker.OnCut += OnCut1;
         }
 
         void Terminate()
@@ -269,10 +269,10 @@ namespace DynamicMeshCutter
                 VirtualMesh[] virtualMeshes = meshcutting.Cut(ref info);
                 info.CreatedMeshes = virtualMeshes;
                 if (virtualMeshes == null)
-                    OnCut(false, info);
+                    OnCut1(false, info);
                 else
                 {
-                    OnCut(true, info);
+                    OnCut1(true, info);
                     amount = virtualMeshes.Length;
                 }
 
@@ -299,6 +299,7 @@ namespace DynamicMeshCutter
                         Destroy(info.MeshTarget.GameobjectRoot, 0);
                     else
                         Destroy(info.MeshTarget.gameObject, 0);
+                        
                 }
             }
 
@@ -313,7 +314,7 @@ namespace DynamicMeshCutter
             info.OnCreatedCallback?.Invoke(info, creationInfo);
         }
 
-        private void OnCut(bool success, Info info)
+        private void OnCut1(bool success, Info info)
         {
             if (success)
             {

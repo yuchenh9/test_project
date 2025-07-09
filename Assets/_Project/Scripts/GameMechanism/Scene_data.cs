@@ -91,7 +91,7 @@ public class SceneData : MonoBehaviour
 
         camera.transform.position = camPos;
     }
-    public void ButtonCutClicked()
+    public void ButtonCutClicked1d()
     {
         //List<MeshTarget> selectedPrefabs=selectedObjects.Select(i=>i.GetComponent<MeshTarget>()).ToList();
         MeshTarget selectedPrefab = selectedObjects[selectedSceneIndex];
@@ -116,7 +116,7 @@ public class SceneData : MonoBehaviour
         {
 
             Transform foodsTransform=scenes[selectedSceneIndex].transform.Find("foods");
-            StartCoroutine(sliceManager.Slice(foodsTransform,selectedPrefab, {SliceCount} {new Vector3(0, 1, 0).normalized}, UtilityHelper.GetCalculator()));//root
+            StartCoroutine(sliceManager.Slice(foodsTransform,selectedPrefab, SliceCount, new Vector3(1, 0, 0).normalized, UtilityHelper.GetCalculator()));
     
         } else {
 
@@ -127,4 +127,30 @@ public class SceneData : MonoBehaviour
     
     private int SliceCount => int.Parse(sliceCountField.text);
     private Vector3 CutAngle => UtilityHelper.AngleToAxis(slider.value);
+
+    // Button handler for 3D slicing (cuts in X, then Y, then Z)
+    public void ButtonCutClicked()
+    {
+        MeshTarget selectedPrefab = selectedObjects[selectedSceneIndex];
+        disableRenderer(selectedPrefab);
+        if (sliceManager == null)
+            Debug.LogError("sliceManager is null.");
+        if (selectedPrefab == null)
+            Debug.LogError("selectedPrefab is null.");
+        if (SliceCount <= 0)
+            Debug.LogError("SliceCount is invalid.");
+        if (new Vector3(1, 0, 0).normalized == null)
+            Debug.LogError("Direction vector is null.");
+        if (UtilityHelper.GetCalculator() == null)
+            Debug.LogError("Calculator for sliceType is null.");
+        if (selectedPrefab != null)
+        {
+            Transform foodsTransform = scenes[selectedSceneIndex].transform.Find("foods");
+            StartCoroutine(sliceManager.Slice3D(foodsTransform, selectedPrefab, SliceCount, UtilityHelper.GetCalculator()));
+        }
+        else
+        {
+            Debug.LogError("selectedPrefab is null!");
+        }
+    }
 }
