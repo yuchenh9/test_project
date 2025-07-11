@@ -117,76 +117,59 @@ public class CustomSlicerBehaviour : CutterBehaviour
     }
     
     // Variation of Cut function that takes a list of cutting planes instead of sliceCount and slicingAxis - for using pre-calculated planes
-    public IEnumerator CutWithPlanes(MeshTarget target, List<PlaneData> cuttingPlanes, ISliceTypeCalculatorStrategy planeCalculator)
+    public IEnumerator CutWithPlanes(MeshTarget target, List<PlaneData> cuttingPlanes, ISliceTypeCalculatorStrategy planeCalculator) // for using pre-calculated planes
     {
-        _anyCutSucceeded = false;
-        if (cuttingPlanes == null || cuttingPlanes.Count == 0)
+        _anyCutSucceeded = false; // For restoring original object if all cuts fail
+        
+        if (cuttingPlanes == null || cuttingPlanes.Count == 0) // for using pre-calculated planes
         {
-            Debug.LogWarning("No cutting planes provided");
-            _isFinished = true;
-            yield break;
+            Debug.LogWarning("No cutting planes provided"); // for using pre-calculated planes
+            _isFinished = true; // for using pre-calculated planes
+            yield break; // for using pre-calculated planes
         }
-        _isFinished = false;
-        _planeCalculator = planeCalculator;
+        
+        _isFinished = false; // for using pre-calculated planes
+        _planeCalculator = planeCalculator; // FIX: ensure this is set!
 
-        // Setup SliceInfo for plane calculation
-        SliceInfo = new SliceInfo
+        //this constructs the public SliceInfo - for using pre-calculated planes
+        SliceInfo = new SliceInfo // for using pre-calculated planes
         {
-            SliceCount = cuttingPlanes.Count + 1,
-            SlicingAxis = Vector3.zero,
-            Separation = Separation,
-            StartBounds = UtilityHelper.GetObjectBounds(target.gameObject)
+            SliceCount = cuttingPlanes.Count + 1, // for using pre-calculated planes
+            SlicingAxis = Vector3.zero, // Not used when using pre-calculated planes - for using pre-calculated planes
+            Separation = Separation, // for using pre-calculated planes
+            StartBounds = UtilityHelper.GetObjectBounds(target.gameObject) // for using pre-calculated planes
         };
-
-        Refresh();
-        // Iterative approach
-        List<MeshTarget> objectsToBeCut = new List<MeshTarget> { target };
-        for (int i = 0; i < cuttingPlanes.Count; i++)
+        
+        Refresh(); // for using pre-calculated planes
+        
+        SlicedObjects.Add(target.GetComponent<MeshTarget>()); // for using pre-calculated planes
+        
+        // Store the provided cutting planes instead of calculating them - for using pre-calculated planes
+        _allCuttingPlanes.Clear(); // for using pre-calculated planes
+        _allCuttingPlanes.AddRange(cuttingPlanes); // for using pre-calculated planes
+        
+        // Start the first cut with the first plane - for using pre-calculated planes
+        CalculatedCut(target); // for using pre-calculated planes
+        
+        while (!_isFinished) // for using pre-calculated planes
         {
-            PlaneData plane = cuttingPlanes[i];
-            List<MeshTarget> nextObjects = new List<MeshTarget>();
-            foreach (var obj in objectsToBeCut)
-            {
-                bool cutSuccess = false;
-                List<MeshTarget> createdTargets = new List<MeshTarget>();
-                // Use a local OnCreated to capture results synchronously
-                void OnCreatedLocal(Info info, MeshCreationData cData)
-                {
-                    if (cData.CreatedTargets != null && cData.CreatedTargets.Length > 0)
-                    {
-                        createdTargets.AddRange(cData.CreatedTargets);
-                        cutSuccess = true;
-                    }
-                }
-                DebugPlaneDrawer.DrawPlane(plane.Position, plane.Normal,1f);
-                // Perform the cut (no recursion)
-                Cut(obj, plane.Position, plane.Normal, null, OnCreatedLocal);
-                // Wait for the cut to complete (wait for one frame)
-                yield return null;
-                if (cutSuccess)
-                {
-                    foreach (var created in createdTargets)
-                    {
-                        created.transform.SetParent(container);
-                        nextObjects.Add(created);
-                    }
-                    // Destroy the original object after cut
-                    if (obj != null && obj.gameObject != null)
-                        GameObject.Destroy(obj.gameObject);
-                }
-                else
-                {
-                    // If cut failed, keep the original object
-                    nextObjects.Add(obj);
-                }
-            }
-            objectsToBeCut = nextObjects;
+            yield return null; // for using pre-calculated planes
         }
-        // Finalize SlicedObjects
-        SlicedObjects.Clear();
-        SlicedObjects.AddRange(objectsToBeCut);
+        // Debugging: log SlicedObjects count after cut for diagnosing 3D slicing bug
         Debug.Log($"[3D Slicing Bug] CutWithPlanes: SlicedObjects count = {SlicedObjects.Count}");
-        _isFinished = true;
+        if (!_anyCutSucceeded) // For restoring original object if all cuts fail
+        {
+            var renderer = target.GetComponent<Renderer>(); // For restoring original object if all cuts fail
+            if (renderer != null) // for using pre-calculated planes
+                renderer.enabled = true; // For restoring original object if all cuts fail
+        }
+        else // If any cut succeeded, destroy the original object
+        {
+            if (target != null && target.gameObject != null)
+            {
+                GameObject.Destroy(target.gameObject);
+            }
+        }
     }
     
     private void CalculateAllCuttingPlanes() // for pre-calculating planes
