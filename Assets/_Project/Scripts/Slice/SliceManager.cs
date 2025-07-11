@@ -57,7 +57,8 @@ public class SliceManager : MonoBehaviour
 
         // Calculate all cutting planes for the given axis
         Bounds bounds = UtilityHelper.GetObjectBounds(target.gameObject);
-        List<PlaneData> planes = CalculateAllCuttingPlanes(bounds, sliceCount, axis);
+        //List<PlaneData> planes = CalculateAllCuttingPlanes(bounds, sliceCount, axis);
+        List<PlaneData> planes = CalculateAllCuttingPlanes3D(bounds,sliceCount,sliceCount,sliceCount);
         yield return StartCoroutine(defaultSlicer.CutWithPlanes(newtarget, planes, planeCalculator));
 
         Debug.Log("Objects have been sliced");
@@ -132,114 +133,49 @@ public class SliceManager : MonoBehaviour
         return planes; // for using pre-calculated planes
     }
 
-    // 3D cutting: cut in X, then Y, then Z, using the same sliceCount and planeCalculator
-    public IEnumerator Slice3D(Transform container, MeshTarget target, int int_x, ISliceTypeCalculatorStrategy planeCalculator) // for 3D slicing
+    // Returns all cutting planes to cut the bounds into x, y, z pieces along X, Y, Z axes
+    // If any int <= 1, do not return planes for that axis
+    private List<PlaneData> CalculateAllCuttingPlanes3D(Bounds bounds, int x, int y, int z)
     {
-        defaultSlicer.setContainer(container); // Ensure correct parenting
-        int int_y = int_x;
-        int int_z = int_x;
-        if (int_x == 0 && int_y == 0 && int_z == 0) yield break; // for 3D slicing
-
-        // Always keep a reference to the original prefab
-        MeshTarget originalPrefab = target;
-
-        // X axis cut
-        List<MeshTarget> selectedObjects = new List<MeshTarget> { target };
-        Bounds bounds = UtilityHelper.GetObjectBounds(target.gameObject);
-        List<PlaneData> xPlanes = CalculateAllCuttingPlanes(bounds, int_x, Vector3.right);
-        List<PlaneData> yPlanes = CalculateAllCuttingPlanes(bounds, int_y, Vector3.up);
-        List<PlaneData> zPlanes = CalculateAllCuttingPlanes(bounds, int_z, Vector3.forward);
-
-        Debug.Log($"[3D Slicing Bug] X planes: {xPlanes.Count}, Y planes: {yPlanes.Count}, Z planes: {zPlanes.Count}");
-
-        // --- X axis cut ---
-        Debug.Log($"[3D Slicing Bug] Starting X axis cut on {selectedObjects.Count} objects");
-        List<MeshTarget> xResults = new List<MeshTarget>();
-        foreach (var obj in selectedObjects)
+        List<PlaneData> planes = new List<PlaneData>();
+        if (x > 1)
         {
-            MeshTarget fresh = Instantiate(originalPrefab, container);
-            fresh.transform.position = obj.transform.position;
-            fresh.transform.rotation = obj.transform.rotation;
-            fresh.transform.localScale = obj.transform.localScale;
-            if (obj != originalPrefab)
-                Destroy(obj.gameObject);
-            var slicer = defaultSlicer;
-            yield return slicer.CutWithPlanes(fresh, xPlanes, planeCalculator);
-            Debug.Log($"[3D Slicing Bug] After X cut: {slicer.SlicedObjects.Count} objects");
-            if (slicer.SlicedObjects.Count > 0)
+            float step = bounds.size.x / x;
+            Vector3 min = bounds.min;
+            Vector3 center = bounds.center;
+            for (int i = 1; i < x; i++)
             {
-                xResults.AddRange(slicer.SlicedObjects);
-                // Removed: yield return StartCoroutine(SlicedObjectsModify(xObj.gameObject));
-            }
-            else
-            {
-                xResults.Add(fresh);
-                // Removed: yield return StartCoroutine(SlicedObjectsModify(fresh.gameObject));
-                Debug.Log("[3D Slicing Bug] No cut made, keeping original object");
+                Vector3 pos = min + Vector3.right * (step * i);
+                pos.y = center.y; pos.z = center.z;
+                planes.Add(new PlaneData(pos, Vector3.right));
             }
         }
-        Debug.Log($"[3D Slicing Bug] X axis cut produced {xResults.Count} objects");
-
-        // --- Y axis cut ---
-        Debug.Log($"[3D Slicing Bug] Starting Y axis cut on {xResults.Count} objects");
-        List<MeshTarget> yResults = new List<MeshTarget>();
-        foreach (var obj in xResults)
+        if (y > 1)
         {
-            MeshTarget fresh = Instantiate(originalPrefab, container);
-            fresh.transform.position = obj.transform.position;
-            fresh.transform.rotation = obj.transform.rotation;
-            fresh.transform.localScale = obj.transform.localScale;
-            if (obj != originalPrefab)
-                Destroy(obj.gameObject);
-            var slicer = defaultSlicer;
-            yield return slicer.CutWithPlanes(fresh, yPlanes, planeCalculator);
-            Debug.Log($"[3D Slicing Bug] After Y cut: {slicer.SlicedObjects.Count} objects");
-            if (slicer.SlicedObjects.Count > 0)
+            float step = bounds.size.y / y;
+            Vector3 min = bounds.min;
+            Vector3 center = bounds.center;
+            for (int i = 1; i < y; i++)
             {
-                yResults.AddRange(slicer.SlicedObjects);
-                // Removed: yield return StartCoroutine(SlicedObjectsModify(yObj.gameObject));
-            }
-            else
-            {
-                yResults.Add(fresh);
-                // Removed: yield return StartCoroutine(SlicedObjectsModify(fresh.gameObject));
-                Debug.Log("[3D Slicing Bug] No Y cut made, keeping original object");
+                Vector3 pos = min + Vector3.up * (step * i);
+                pos.x = center.x; pos.z = center.z;
+                planes.Add(new PlaneData(pos, Vector3.up));
             }
         }
-        Debug.Log($"[3D Slicing Bug] Y axis cut produced {yResults.Count} objects");
-
-        // --- Z axis cut ---
-        Debug.Log($"[3D Slicing Bug] Starting Z axis cut on {yResults.Count} objects");
-        List<MeshTarget> zResults = new List<MeshTarget>();
-        foreach (var obj in yResults)
+        if (z > 1)
         {
-            MeshTarget fresh = Instantiate(originalPrefab, container);
-            fresh.transform.position = obj.transform.position;
-            fresh.transform.rotation = obj.transform.rotation;
-            fresh.transform.localScale = obj.transform.localScale;
-            if (obj != originalPrefab)
-                Destroy(obj.gameObject);
-            var slicer = defaultSlicer;
-            yield return slicer.CutWithPlanes(fresh, zPlanes, planeCalculator);
-            Debug.Log($"[3D Slicing Bug] After Z cut: {slicer.SlicedObjects.Count} objects");
-            if (slicer.SlicedObjects.Count > 0)
+            float step = bounds.size.z / z;
+            Vector3 min = bounds.min;
+            Vector3 center = bounds.center;
+            for (int i = 1; i < z; i++)
             {
-                zResults.AddRange(slicer.SlicedObjects);
-                // Removed: yield return StartCoroutine(SlicedObjectsModify(zObj.gameObject));
-            }
-            else
-            {
-                zResults.Add(fresh);
-                // Removed: yield return StartCoroutine(SlicedObjectsModify(fresh.gameObject));
-                Debug.Log("[3D Slicing Bug] No Z cut made, keeping original object");
+                Vector3 pos = min + Vector3.forward * (step * i);
+                pos.x = center.x; pos.y = center.y;
+                planes.Add(new PlaneData(pos, Vector3.forward));
             }
         }
-        Debug.Log($"[3D Slicing Bug] Z axis cut produced {zResults.Count} objects");
-
-        // Only add physics components after all cuts are complete
-        if (zResults.Count > 0)
-            yield return StartCoroutine(SlicedObjectsModify(zResults, zResults[0].gameObject));
-        //Debug.Log($"3D slicing complete. Final pieces: {zResults.Count}");
+        return planes;
     }
 
+    // 3D cutting: cut in X, then Y, then Z, using the same sliceCount and planeCalculator
 }
