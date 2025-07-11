@@ -93,6 +93,7 @@ public class SceneData : MonoBehaviour
     }
     public void ButtonCutClicked()
     {
+        DebugPlaneDrawer.RemoveAllPlanes();
         //List<MeshTarget> selectedPrefabs=selectedObjects.Select(i=>i.GetComponent<MeshTarget>()).ToList();
         MeshTarget selectedPrefab = selectedObjects[selectedSceneIndex];
 
@@ -129,7 +130,8 @@ public class SceneData : MonoBehaviour
     private Vector3 CutAngle => UtilityHelper.AngleToAxis(slider.value);
 
     // Button handler for 3D slicing (cuts in X, then Y, then Z)
-    public void ButtonCutClicked3d()
+    /*
+    public void ButtonCutClicked3dv2()
     {
         MeshTarget selectedPrefab = selectedObjects[selectedSceneIndex];
         disableRenderer(selectedPrefab);
@@ -152,5 +154,27 @@ public class SceneData : MonoBehaviour
         {
             Debug.LogError("selectedPrefab is null!");
         }
+    }
+    */
+    // Button handler for 3D slicing (cuts in X, then Y, then Z) using a fresh prefab each time - for robust repeated cuts
+    public void ButtonCutClicked2()
+    {
+        MeshTarget selectedPrefab = selectedObjects[selectedSceneIndex];
+        disableRenderer(selectedPrefab);
+        if (selectedPrefab == null)
+        {
+            Debug.LogError("selectedPrefab is null.");
+            return;
+        }
+        // Instantiate a fresh copy of the prefab for each cut - for robust repeated cuts
+        Transform foodsTransform = scenes[selectedSceneIndex].transform.Find("foods");
+        MeshTarget newTarget = Instantiate(selectedPrefab, foodsTransform);
+        
+        if (sliceManager == null)
+        {
+            Debug.LogError("sliceManager is null.");
+            return;
+        }
+        StartCoroutine(sliceManager.Slice3D(foodsTransform, newTarget, SliceCount, UtilityHelper.GetCalculator()));
     }
 }

@@ -57,8 +57,7 @@ public class CustomSlicerBehaviour : CutterBehaviour
     private bool _isFinished;
     private bool _anyCutSucceeded; // For restoring original object if all cuts fail
     
-    // Store all cutting planes calculated at the beginning
-    private List<PlaneData> _allCuttingPlanes = new List<PlaneData>();
+    private List<PlaneData> _allCuttingPlanes = new List<PlaneData>(); // for pre-calculating planes
     
     public void setContainer(Transform set_container){
         container=set_container;
@@ -99,11 +98,11 @@ public class CustomSlicerBehaviour : CutterBehaviour
             yield break;
         }
         
-        // Calculate all cutting planes at the beginning
-        CalculateAllCuttingPlanes();
+        // Calculate all cutting planes at the beginning - for pre-calculating planes
+        CalculateAllCuttingPlanes(); // for pre-calculating planes
         
-        // Start the first cut with the first plane
-        CalculatedCut(target);
+        // Start the first cut with the first plane - for pre-calculating planes
+        CalculatedCut(target); // for pre-calculating planes
         
         while (!_isFinished)
         {
@@ -117,26 +116,98 @@ public class CustomSlicerBehaviour : CutterBehaviour
         }
     }
     
-    // Calculate all cutting planes at the beginning and store them
-    private void CalculateAllCuttingPlanes()
+    // Variation of Cut function that takes a list of cutting planes instead of sliceCount and slicingAxis - for using pre-calculated planes
+    public IEnumerator CutWithPlanes(MeshTarget target, List<PlaneData> cuttingPlanes, ISliceTypeCalculatorStrategy planeCalculator)
     {
-        _allCuttingPlanes.Clear();
-        
-        // Calculate all planes for the entire cutting operation
-        for (int i = 0; i < SliceInfo.SliceCount - 1; i++)
+        _anyCutSucceeded = false;
+        if (cuttingPlanes == null || cuttingPlanes.Count == 0)
         {
-            // Temporarily set the slice index to calculate each plane
-            int originalIndex = SliceInfo.SliceIndex;
-            SliceInfo.SliceIndex = i;
+            Debug.LogWarning("No cutting planes provided");
+            _isFinished = true;
+            yield break;
+        }
+        _isFinished = false;
+        _planeCalculator = planeCalculator;
+
+        // Setup SliceInfo for plane calculation
+        SliceInfo = new SliceInfo
+        {
+            SliceCount = cuttingPlanes.Count + 1,
+            SlicingAxis = Vector3.zero,
+            Separation = Separation,
+            StartBounds = UtilityHelper.GetObjectBounds(target.gameObject)
+        };
+
+        Refresh();
+        // Iterative approach
+        List<MeshTarget> objectsToBeCut = new List<MeshTarget> { target };
+        for (int i = 0; i < cuttingPlanes.Count; i++)
+        {
+            PlaneData plane = cuttingPlanes[i];
+            List<MeshTarget> nextObjects = new List<MeshTarget>();
+            foreach (var obj in objectsToBeCut)
+            {
+                bool cutSuccess = false;
+                List<MeshTarget> createdTargets = new List<MeshTarget>();
+                // Use a local OnCreated to capture results synchronously
+                void OnCreatedLocal(Info info, MeshCreationData cData)
+                {
+                    if (cData.CreatedTargets != null && cData.CreatedTargets.Length > 0)
+                    {
+                        createdTargets.AddRange(cData.CreatedTargets);
+                        cutSuccess = true;
+                    }
+                }
+                DebugPlaneDrawer.DrawPlane(plane.Position, plane.Normal,1f);
+                // Perform the cut (no recursion)
+                Cut(obj, plane.Position, plane.Normal, null, OnCreatedLocal);
+                // Wait for the cut to complete (wait for one frame)
+                yield return null;
+                if (cutSuccess)
+                {
+                    foreach (var created in createdTargets)
+                    {
+                        created.transform.SetParent(container);
+                        nextObjects.Add(created);
+                    }
+                    // Destroy the original object after cut
+                    if (obj != null && obj.gameObject != null)
+                        GameObject.Destroy(obj.gameObject);
+                }
+                else
+                {
+                    // If cut failed, keep the original object
+                    nextObjects.Add(obj);
+                }
+            }
+            objectsToBeCut = nextObjects;
+        }
+        // Finalize SlicedObjects
+        SlicedObjects.Clear();
+        SlicedObjects.AddRange(objectsToBeCut);
+        Debug.Log($"[3D Slicing Bug] CutWithPlanes: SlicedObjects count = {SlicedObjects.Count}");
+        _isFinished = true;
+    }
+    
+    private void CalculateAllCuttingPlanes() // for pre-calculating planes
+    {
+        _allCuttingPlanes.Clear(); // for pre-calculating planes
+        
+        // Calculate all planes for the entire cutting operation - for pre-calculating planes
+        for (int i = 0; i < SliceInfo.SliceCount - 1; i++) // for pre-calculating planes
+        {
+            // Temporarily set the slice index to calculate each plane - for pre-calculating planes
+            int originalIndex = SliceInfo.SliceIndex; // for pre-calculating planes
+            SliceInfo.SliceIndex = i; // for pre-calculating planes
             
-            PlaneData plane = _planeCalculator.Calculate(SliceInfo);
-            _allCuttingPlanes.Add(plane);
+            PlaneData plane = _planeCalculator.Calculate(SliceInfo); // for pre-calculating planes
+            _allCuttingPlanes.Add(plane); // for pre-calculating planes
             
-            // Restore original index
-            SliceInfo.SliceIndex = originalIndex;
+            // Restore original index - for pre-calculating planes
+            SliceInfo.SliceIndex = originalIndex; // for pre-calculating planes
         }
         
-        Debug.Log($"Calculated {_allCuttingPlanes.Count} cutting planes at the beginning");
+        Debug.Log($"Calculated {_allCuttingPlanes.Count} cutting planes at the beginning"); // for pre-calculating planes
     }
     
     //Refresh() sets SliceIndex to 0 and clears SlicedObjects
@@ -150,14 +221,14 @@ public class CustomSlicerBehaviour : CutterBehaviour
             Destroy(item.gameObject);
         SlicedObjects.Clear();
         SliceInfo.SliceIndex = 0;
-        _allCuttingPlanes.Clear(); // Clear the pre-calculated planes
+        _allCuttingPlanes.Clear(); // Clear the pre-calculated planes - for pre-calculating planes
     }
 
 /*
 MakeNextCut(MeshTarget[])
     SliceInfo.index++
     ->CalculatedCut(MeshTarget)
-        Get pre-calculated plane
+        Get pre-calculated plane - for pre-calculating planes
         ->Cut(MeshTarget,normal,position)
 
 ->Cut(MeshTarget,normal,position)
@@ -167,21 +238,19 @@ iterate plane
     iterate object
         cut(meshtarget, plane)//should be cutting newly created meshes instead of the old ones after the first cut
 */
-//takes a meshtarget object, and get the pre-calculated plane, and call cut
+//takes a meshtarget object, and get the pre-calculated plane, and call cut - for pre-calculating planes
     private void CalculatedCut(MeshTarget nextObject)
-    {   // Use pre-calculated plane instead of calculating it each time
-        Debug.Log("CalculatedCut"+SliceInfo.SliceIndex);
+    {   // Debug.Log("CalculatedCut"+SliceInfo.SliceIndex);
         
-        // Get the pre-calculated plane for current slice index
-        if (SliceInfo.SliceIndex < _allCuttingPlanes.Count)
+        if (SliceInfo.SliceIndex < _allCuttingPlanes.Count) // for pre-calculating planes
         {
-            PlaneData plane = _allCuttingPlanes[SliceInfo.SliceIndex];
-            Cut(nextObject, plane.Position, plane.Normal, OnCut, OnCreated);
-            DebugPlaneDrawer.DrawPlane(plane.Position, plane.Normal, 1f);
+            PlaneData plane = _allCuttingPlanes[SliceInfo.SliceIndex]; // for pre-calculating planes
+            Cut(nextObject, plane.Position, plane.Normal, OnCut, OnCreated); // for pre-calculating planes
+            DebugPlaneDrawer.DrawPlane(plane.Position, plane.Normal, 1f); // for pre-calculating planes
         }
-        else
+        else // for pre-calculating planes
         {
-            Debug.LogError($"No pre-calculated plane found for slice index {SliceInfo.SliceIndex}");
+            Debug.LogError($"No pre-calculated plane found for slice index {SliceInfo.SliceIndex}"); // for pre-calculating planes
         }
         //DebugPlaneDrawer.DrawPlane(SliceInfo.StartBounds.min, plane.Normal, 1f);
         //DebugPlaneDrawer.DrawPlane(SliceInfo.StartBounds.max, plane.Normal, 1f);
@@ -204,6 +273,23 @@ iterate plane
     
     private void OnCreated(Info info, MeshCreationData cData)
     {
+        // Debugging: log created objects and targets for diagnosing 3D slicing bug
+        Debug.Log($"[3D Slicing Bug] OnCreated: cData.CreatedObjects count = {(cData.CreatedObjects != null ? cData.CreatedObjects.Length.ToString() : "null")}");
+        if (cData.CreatedObjects != null)
+        {
+            for (int i = 0; i < cData.CreatedObjects.Length; i++)
+            {
+                Debug.Log($"[3D Slicing Bug] OnCreated: CreatedObjects[{i}] = {(cData.CreatedObjects[i] != null ? cData.CreatedObjects[i].name : "null")}");
+            }
+        }
+        Debug.Log($"[3D Slicing Bug] OnCreated: cData.CreatedTargets count = {(cData.CreatedTargets != null ? cData.CreatedTargets.Length.ToString() : "null")}");
+        if (cData.CreatedTargets != null)
+        {
+            for (int i = 0; i < cData.CreatedTargets.Length; i++)
+            {
+                Debug.Log($"[3D Slicing Bug] OnCreated: CreatedTargets[{i}] = {(cData.CreatedTargets[i] != null ? cData.CreatedTargets[i].name : "null")}");
+            }
+        }
         //MeshCreation.TranslateCreatedObjects(info, cData.CreatedObjects, cData.CreatedTargets, Separation);
         foreach (var t in cData.CreatedObjects) 
             t.transform.SetParent(container);
@@ -211,12 +297,21 @@ iterate plane
         foreach (var item in cData.CreatedTargets) 
             SlicedObjects.Add(item);
         Debug.Log("Successfully");
+        // Debugging: log _planeCalculator and cData.CreatedTargets before MakeNextCut - for diagnosing 3D slicing bug
+        Debug.Log($"[3D Slicing Bug] _planeCalculator is {( _planeCalculator != null ? _planeCalculator.GetType().Name : "null") }");
+        Debug.Log($"[3D Slicing Bug] cData.CreatedTargets is {(cData.CreatedTargets != null ? "not null" : "null")}");
+        if (cData.CreatedTargets == null)
+        {
+            Debug.LogError("[3D Slicing Bug] ERROR: cData.CreatedTargets is null in OnCreated, aborting MakeNextCut");
+            return;
+        }
         MakeNextCut(_planeCalculator.GetNextObjectsForCut(cData.CreatedTargets));
     }
 
     //increment slice index, than iterate through all meshtarget objects, and call calcula
     private void MakeNextCut(IEnumerable<MeshTarget> objects)
     {
+        Debug.Log($"[3D Slicing Bug] MakeNextCut called. objects null? {objects == null}"); // for diagnosing 3D slicing bug
         SliceInfo.SliceIndex++;
         Debug.Log(SliceInfo.SliceIndex);
         //Debug.Log("making next cut"+SliceInfo.SliceIndex);

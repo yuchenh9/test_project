@@ -29,6 +29,10 @@ public static class DebugPlaneDrawer
         plane.transform.rotation = Quaternion.LookRotation(normal);
         plane.transform.localScale = new Vector3(size, size, 0.001f); // Thin Z-scale
 
+        // Remove the collider so it does not interact with physics
+        Collider col = plane.GetComponent<Collider>();
+        if (col != null) Object.Destroy(col);
+
         // Make it semi-transparent red
         Material material = new Material(Shader.Find("Standard"));
         material.color = new Color(1, 0, 0, 0.5f);
@@ -60,5 +64,16 @@ public static class DebugPlaneDrawer
             cubeRenderer.material.color = new Color(0, 1, 0, 0.3f);
         }
 
+    }
+    public static void RemoveAllPlanes()
+    {
+        var planes = GameObject.FindGameObjectsWithTag("Untagged"); // fallback if not tagged
+        foreach (var obj in GameObject.FindObjectsOfType<GameObject>())
+        {
+            if (obj.name == "CutPlane")
+            {
+                Object.Destroy(obj);
+            }
+        }
     }
 }
