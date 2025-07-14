@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace DynamicMeshCutter
 {
+    [System.Serializable]
     public class MeshTarget : MonoBehaviour
     {
         //basic both

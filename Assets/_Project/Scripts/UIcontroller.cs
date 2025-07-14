@@ -26,7 +26,7 @@ public class UIController : MonoBehaviour
     {
         if (child == null) // Check if child is assigned in Inspector
         {
-            Debug.LogError("UIController: 'child' Transform is not assigned in the Inspector!");
+            // Debug.LogError("UIController: 'child' Transform is not assigned in the Inspector!");
             return; // Prevent execution if no child is assigned
         }
 
@@ -50,7 +50,7 @@ public class UIController : MonoBehaviour
         }
         else
         {
-            Debug.LogError("UIController: Attempted to select a null Transform!");
+            // Debug.LogError("UIController: Attempted to select a null Transform!");
         }
     }
     

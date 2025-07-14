@@ -55,7 +55,7 @@ public class VertexColorModifier : MonoBehaviour
 
         if (mesh == null)
         {
-            Debug.LogError("Mesh is missing!");
+            // Debug.LogError("Mesh is missing!");
             return;
         }
 

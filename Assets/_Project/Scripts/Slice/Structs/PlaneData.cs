@@ -3,7 +3,8 @@ using UnityEngine;
 
 namespace _Project
 {
-    public struct PlaneData
+    [System.Serializable]
+    public class PlaneData
     {
         public Vector3 Position;
         public Vector3 Normal;

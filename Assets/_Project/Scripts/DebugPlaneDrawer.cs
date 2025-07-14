@@ -20,11 +20,11 @@ public static class DebugPlaneDrawer
         }
     }
 
-    public static void DrawPlane(Vector3 position, Vector3 normal, float size = 1f)
+    public static GameObject DrawPlane(Vector3 position, Vector3 normal, float size = 1f, string planeName = "CutPlane")
     {
         // Create a thin cube (acts as a plane)
         GameObject plane = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        plane.name = "CutPlane";
+        plane.name = planeName;
         plane.transform.position = position;
         plane.transform.rotation = Quaternion.LookRotation(normal);
         plane.transform.localScale = new Vector3(size, size, 0.001f); // Thin Z-scale
@@ -38,6 +38,10 @@ public static class DebugPlaneDrawer
         material.color = new Color(1, 0, 0, 0.5f);
         plane.GetComponent<Renderer>().material = material;
 
+        // Disable the renderer so the plane is not visible
+        plane.GetComponent<Renderer>().enabled = false;
+
+        return plane;
     }
     public static void CreateBoundsCube(Bounds bounds)
     {
@@ -67,12 +71,13 @@ public static class DebugPlaneDrawer
     }
     public static void RemoveAllPlanes()
     {
-        var planes = GameObject.FindGameObjectsWithTag("Untagged"); // fallback if not tagged
-        foreach (var obj in GameObject.FindObjectsOfType<GameObject>())
+        // Find all GameObjects in the scene
+        var allObjects = GameObject.FindObjectsOfType<GameObject>();
+        foreach (var obj in allObjects)
         {
-            if (obj.name == "CutPlane")
+            if (obj != null && obj.name.StartsWith("CutPlane"))
             {
-                Object.Destroy(obj);
+                Object.DestroyImmediate(obj);
             }
         }
     }

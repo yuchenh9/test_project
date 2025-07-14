@@ -67,7 +67,6 @@ public class ObiSoftbodySliceModifierStrategy : ISliceModifierStrategy
             var blueprint = ScriptableObject.CreateInstance<ObiSoftbodySurfaceBlueprint>();
             blueprint.inputMesh = meshFilter.mesh;
             
-            Debug.Log(obj);
             coroutines.Add(blueprint.Generate());
             //blueprints.Add(softbody, blueprint);//
         }

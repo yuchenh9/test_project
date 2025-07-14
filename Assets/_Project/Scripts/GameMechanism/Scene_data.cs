@@ -175,6 +175,6 @@ public class SceneData : MonoBehaviour
             Debug.LogError("sliceManager is null.");
             return;
         }
-        //StartCoroutine(sliceManager.Slice3D(foodsTransform, newTarget, SliceCount, UtilityHelper.GetCalculator()));
+        ///StartCoroutine(sliceManager.Slice3D(foodsTransform, newTarget, SliceCount, UtilityHelper.GetCalculator()));
     }
 }

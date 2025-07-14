@@ -49,19 +49,23 @@ public class SliceManager : MonoBehaviour
 
     public IEnumerator Slice(Transform container, MeshTarget target, int sliceCount, Vector3 axis, ISliceTypeCalculatorStrategy planeCalculator)
     {
-        Debug.Log("slicing");
-        Debug.Log("target:"+target);
-        Debug.Log("sliceCount:"+sliceCount);
+        //Debug.Log("slicing");
+        //Debug.Log("target:"+target);
+        //Debug.Log("sliceCount:"+sliceCount);
         defaultSlicer.setContainer(container);
         var newtarget = Instantiate(target, container);
 
         // Calculate all cutting planes for the given axis
         Bounds bounds = UtilityHelper.GetObjectBounds(target.gameObject);
         //List<PlaneData> planes = CalculateAllCuttingPlanes(bounds, sliceCount, axis);
-        List<PlaneData> planes = CalculateAllCuttingPlanes3D(bounds,sliceCount,sliceCount,sliceCount);
+        List<PlaneData> planes = CalculateAllCuttingPlanes(bounds, sliceCount, sliceCount, sliceCount);
+        foreach (var plane in planes)
+        {
+            //Debug.Log($"Generated plane: pos={plane.Position}, normal={plane.Normal}");
+        }
         yield return StartCoroutine(defaultSlicer.CutWithPlanes(newtarget, planes, planeCalculator));
 
-        Debug.Log("Objects have been sliced");
+        //Debug.Log("Objects have been sliced");
         yield return StartCoroutine(SlicedObjectsModify(defaultSlicer.SlicedObjects, target.gameObject)); //only the slicedObject gets generated blueprints, not the target
     }
     
@@ -76,7 +80,7 @@ public class SliceManager : MonoBehaviour
     {
         var cutStrategy = GetStrategy(target.gameObject);
         yield return cutStrategy.Modify(this, objects, target);
-        Debug.Log("Sliced objects modified");
+        //Debug.Log("Sliced objects modified");
     }
 
     private ISliceModifierStrategy GetStrategy(GameObject target)
@@ -135,7 +139,7 @@ public class SliceManager : MonoBehaviour
 
     // Returns all cutting planes to cut the bounds into x, y, z pieces along X, Y, Z axes
     // If any int <= 1, do not return planes for that axis
-    private List<PlaneData> CalculateAllCuttingPlanes3D(Bounds bounds, int x, int y, int z)
+    private List<PlaneData> CalculateAllCuttingPlanes(Bounds bounds, int x, int y, int z)
     {
         List<PlaneData> planes = new List<PlaneData>();
         if (x > 1)
