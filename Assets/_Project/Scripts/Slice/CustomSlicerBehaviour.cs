@@ -330,7 +330,6 @@ public class CustomSlicerBehaviour : CutterBehaviour
     //Refresh() sets SliceIndex to 0 and clears SlicedObjects
     private void Refresh()
     {
-        Debug.Log($"CustomSlicerBehaviour.Refresh called. SlicedObjects count before clear: {slicedObjects.Count}");
         var targetRoots = slicedObjects
             .Where(item => item != null && item.GameobjectRoot != null)
             .Select(x => x.GameobjectRoot);
@@ -346,10 +345,8 @@ public class CustomSlicerBehaviour : CutterBehaviour
             }
         }
         slicedObjects.Clear();
-        Debug.Log($"CustomSlicerBehaviour.Refresh: SlicedObjects cleared. Count after clear: {slicedObjects.Count}");
         SliceInfo.SliceIndex = 0;
         _allCuttingPlanes.Clear(); // Clear the pre-calculated planes - for pre-calculating planes
-        Debug.Log("CustomSlicerBehaviour.Refresh: SliceIndex set to 0 and _allCuttingPlanes cleared.");
     }
 
     /// <summary>
@@ -357,9 +354,7 @@ public class CustomSlicerBehaviour : CutterBehaviour
     /// </summary>
     public void RefreshSlicedObjects()
     {
-        Debug.Log($"CustomSlicerBehaviour.RefreshSlicedObjects called. SlicedObjects count before clear: {slicedObjects.Count}");
         slicedObjects.Clear();
-        Debug.Log($"CustomSlicerBehaviour.RefreshSlicedObjects: SlicedObjects cleared. Count after clear: {slicedObjects.Count}");
     }
 
 /*

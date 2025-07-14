@@ -55,7 +55,7 @@ namespace Obi
 
         [Tooltip("Resolution of the surface particle distribution.")]
         [Range(2, 128)]
-        public int surfaceResolution = 4;
+        public int surfaceResolution = 16;
 
         [Tooltip("Method used to distribute particles on the volume of the mesh.")]
         public VolumeSamplingMode volumeSamplingMode = VolumeSamplingMode.None;
