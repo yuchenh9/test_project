@@ -61,6 +61,9 @@ public class ObiSoftbodySliceModifierStrategy : ISliceModifierStrategy
 
         foreach (var obj in objects.Select(x=>x.gameObject))
         {
+            // Skip if parent exists and is not active in hierarchy
+            if (obj.transform.parent != null && !obj.transform.parent.gameObject.activeInHierarchy)
+                continue;
             var meshFilter = obj.GetComponent<MeshFilter>();
             var softbody = obj.AddComponent<ObiSoftbody>();
             var skinner = obj.AddComponent<ObiSoftbodySkinner>();
@@ -68,7 +71,7 @@ public class ObiSoftbodySliceModifierStrategy : ISliceModifierStrategy
             blueprint.inputMesh = meshFilter.mesh;
             
             coroutines.Add(blueprint.Generate());
-            //blueprints.Add(softbody, blueprint);//
+            blueprints.Add(softbody, blueprint);//
         }
     
         yield return coroutineHost.StartCoroutine(UtilityHelper.RunAllCoroutines(coroutines));

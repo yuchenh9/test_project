@@ -218,34 +218,34 @@ namespace DynamicMeshCutter
 
         public void Cut(MeshTarget target, Vector3 worldPosition, Vector3 worldNormal, OnCut onCut = null, OnCreated onCreated = null, object boxedUserData = null)
         {
-            Debug.Log($"CutterBehaviour.Cut: Start, target={target}, worldPosition={worldPosition}, worldNormal={worldNormal}");
+            //Debug.Log($"CutterBehaviour.Cut: Start, target={target}, worldPosition={worldPosition}, worldNormal={worldNormal}");
             if (!target.isActiveAndEnabled)
             {
-                Debug.Log("CutterBehaviour.Cut: target not active and enabled, returning");
+                //Debug.Log("CutterBehaviour.Cut: target not active and enabled, returning");
                 return;
             }
             //DebugPlaneDrawer.DrawPlane(worldPosition, worldNormal, 1f);
             Matrix4x4 worldToLocalMatrix = target.transform.worldToLocalMatrix;
-            Debug.Log($"CutterBehaviour.Cut: worldToLocalMatrix={worldToLocalMatrix}");
+            //Debug.Log($"CutterBehaviour.Cut: worldToLocalMatrix={worldToLocalMatrix}");
 
             if (target.RequireLocal)
             {
                 Matrix4x4 scalingMatrix = Matrix4x4.Scale(target.transform.lossyScale);
-                Debug.Log($"CutterBehaviour.Cut: scalingMatrix={scalingMatrix}");
+                //Debug.Log($"CutterBehaviour.Cut: scalingMatrix={scalingMatrix}");
                 worldToLocalMatrix = scalingMatrix * worldToLocalMatrix;
-                Debug.Log($"CutterBehaviour.Cut: updated worldToLocalMatrix={worldToLocalMatrix}");
+                //Debug.Log($"CutterBehaviour.Cut: updated worldToLocalMatrix={worldToLocalMatrix}");
             }
 
             //Get Local Position
             Vector4 worldP = new Vector4(worldPosition.x, worldPosition.y, worldPosition.z, 1f);
-            Debug.Log($"CutterBehaviour.Cut: worldP={worldP}");
+            //Debug.Log($"CutterBehaviour.Cut: worldP={worldP}");
             Vector4[] worldPColumn = new Vector4[4];
             Vector3 localP = worldToLocalMatrix * worldP;
-            Debug.Log($"CutterBehaviour.Cut: localP={localP}");
+            //Debug.Log($"CutterBehaviour.Cut: localP={localP}");
 
             //Get Local Normal
             Vector3 worldN = new Vector4(worldNormal.x, worldNormal.y, worldNormal.z, 1f);
-            Debug.Log($"CutterBehaviour.Cut: worldN={worldN}");
+            //Debug.Log($"CutterBehaviour.Cut: worldN={worldN}");
             Matrix4x4 worldToLocalMatrixNormal = new Matrix4x4();
             for (int i = 0; i < 4; i++)
             {
@@ -254,55 +254,56 @@ namespace DynamicMeshCutter
                     column = new Vector4(0, 0, 0, 1f);
                 worldToLocalMatrixNormal.SetColumn(i, column);
             }
-            Debug.Log($"CutterBehaviour.Cut: worldToLocalMatrixNormal before inverse={worldToLocalMatrixNormal}");
+            //Debug.Log($"CutterBehaviour.Cut: worldToLocalMatrixNormal before inverse={worldToLocalMatrixNormal}");
             worldToLocalMatrixNormal = worldToLocalMatrixNormal.inverse.transpose;
-            Debug.Log($"CutterBehaviour.Cut: worldToLocalMatrixNormal after inverse={worldToLocalMatrixNormal}");
+            //Debug.Log($"CutterBehaviour.Cut: worldToLocalMatrixNormal after inverse={worldToLocalMatrixNormal}");
             Vector3 localN = worldToLocalMatrixNormal * worldN;
             localN.Normalize();
-            Debug.Log($"CutterBehaviour.Cut: localN={localN}");
+            //Debug.Log($"CutterBehaviour.Cut: localN={localN}");
 
             VirtualPlane plane = new VirtualPlane(localP, localN, worldPosition, worldNormal);
-            Debug.Log($"CutterBehaviour.Cut: Created VirtualPlane {plane}");
+            //Debug.Log($"CutterBehaviour.Cut: Created VirtualPlane {plane}");
             Info info = new Info(target, plane, onCut, onCreated, boxedUserData);
-            Debug.Log($"CutterBehaviour.Cut: Created Info {info}");
+            //Debug.Log($"CutterBehaviour.Cut: Created Info {info}");
 
             if (!UseAsync)
             {
-                Debug.Log("CutterBehaviour.Cut: UseAsync is false");
+                //Debug.Log("CutterBehaviour.Cut: UseAsync is false");
                 var watch = new System.Diagnostics.Stopwatch();
                 watch.Start();
                 int amount = 0;
 
                 MeshCutting meshcutting = new MeshCutting();
-                Debug.Log("CutterBehaviour.Cut: Created MeshCutting");
+                //Debug.Log("CutterBehaviour.Cut: Created MeshCutting");
                 VirtualMesh[] virtualMeshes = meshcutting.Cut(ref info);
-                Debug.Log($"CutterBehaviour.Cut: meshcutting.Cut returned {virtualMeshes}");
+                //Debug.Log($"CutterBehaviour.Cut: meshcutting.Cut returned {virtualMeshes}");
                 info.CreatedMeshes = virtualMeshes;
                 if (virtualMeshes == null)
                 {
-                    Debug.Log("CutterBehaviour.Cut: virtualMeshes is null, calling OnCut1(false, info)");
+                    //Debug.Log("CutterBehaviour.Cut: virtualMeshes is null, calling OnCut1(false, info)");
                     OnCut1(false, info);
                 }
                 else
                 {
-                    Debug.Log("CutterBehaviour.Cut: virtualMeshes is not null, calling OnCut1(true, info)");
+                    //Debug.Log("CutterBehaviour.Cut: virtualMeshes is not null, calling OnCut1(true, info)");
                     OnCut1(true, info);
                     amount = virtualMeshes.Length;
                 }
 
                 watch.Stop();
-                Debug.Log($"Synchronus cut creating {amount} meshes took {watch.ElapsedMilliseconds} ms. Success ? {virtualMeshes != null}");
+                //Debug.Log($"Synchronus cut creating {amount} meshes took {watch.ElapsedMilliseconds} ms. Success ? {virtualMeshes != null}");
             }
             else
             {
-                Debug.Log("CutterBehaviour.Cut: UseAsync is true, enqueueing info");
+                //Debug.Log("CutterBehaviour.Cut: UseAsync is true, enqueueing info");
                 AsyncWorker.Enqeue(info);
             }
-            Debug.Log("CutterBehaviour.Cut: End");
+            //Debug.Log("CutterBehaviour.Cut: End");
         }
 
         protected virtual void CreateGameObjects(Info info)
         {
+            Debug.Log("CutterBehaviour.CreateGameObjects called");
             MeshCreationData creationInfo = MeshCreation.CreateObjects(info, DefaultMaterial, VertexCreationThreshold);
             //Debug.Log("creationInfo"+creationInfo);
             if (DestroyTargets)
@@ -326,10 +327,11 @@ namespace DynamicMeshCutter
             {
                 if (creationInfo.CreatedObjects[i] == null)
                 {
-                    Debug.Log("Dynamic Mesh Cutter: Cut supressed creation of object due to VertexCreationThreshold. Make sure you handle NullReferenceExceptions!");
+                    //Debug.Log("Dynamic Mesh Cutter: Cut supressed creation of object due to VertexCreationThreshold. Make sure you handle NullReferenceExceptions!");
                 }
             }
 
+            Debug.Log("CutterBehaviour: About to invoke OnCreatedCallback");
             info.OnCreatedCallback?.Invoke(info, creationInfo);
         }
 

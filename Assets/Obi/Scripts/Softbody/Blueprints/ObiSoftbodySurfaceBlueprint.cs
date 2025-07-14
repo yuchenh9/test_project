@@ -55,14 +55,14 @@ namespace Obi
 
         [Tooltip("Resolution of the surface particle distribution.")]
         [Range(2, 128)]
-        public int surfaceResolution = 16;
+        public int surfaceResolution = 4;
 
         [Tooltip("Method used to distribute particles on the volume of the mesh.")]
         public VolumeSamplingMode volumeSamplingMode = VolumeSamplingMode.None;
 
         [Tooltip("Resolution of the volume particle distribution.")]
         [Range(2, 128)]
-        public int volumeResolution = 16;
+        public int volumeResolution = 8;
 
         [Tooltip("GameObject that contains the skeleton to sample.")]
         public GameObject skeleton;
