@@ -62,7 +62,7 @@ namespace Obi
 
         [Tooltip("Resolution of the volume particle distribution.")]
         [Range(2, 128)]
-        public int volumeResolution = 8;
+        public int volumeResolution = 16;
 
         [Tooltip("GameObject that contains the skeleton to sample.")]
         public GameObject skeleton;

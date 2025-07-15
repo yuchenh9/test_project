@@ -58,7 +58,7 @@ public class SliceManager : MonoBehaviour
         // Calculate all cutting planes for the given axis
         Bounds bounds = UtilityHelper.GetObjectBounds(target.gameObject);
         //List<PlaneData> planes = CalculateAllCuttingPlanes(bounds, sliceCount, axis);
-        List<PlaneData> planes = CalculateAllCuttingPlanes(bounds, sliceCount, sliceCount, sliceCount);
+        List<PlaneData> planes = CalculateAllCuttingPlanes(bounds, sliceCount, 1, 1);
         foreach (var plane in planes)
         {
             //Debug.Log($"Generated plane: pos={plane.Position}, normal={plane.Normal}");
