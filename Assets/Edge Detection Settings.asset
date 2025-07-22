@@ -16,7 +16,7 @@ MonoBehaviour:
   showInSceneView: 1
   debugView: 0
   debugSectionsRaw: 0
-  discontinuityInput: 0
+  discontinuityInput: 15
   depthSensitivity: 1
   depthDistanceModulation: 0.4
   grazingAngleMaskPower: 0.2
@@ -28,17 +28,17 @@ MonoBehaviour:
     m_Bits: 1
   objectId: 1
   particles: 0
-  sectionsMask: 1
+  sectionsMask: 0
   depthMask: 0
   normalsMask: 0
   luminanceMask: 0
-  sectionMapInput: 1
+  sectionMapInput: 0
   sectionTexture: {fileID: 0}
   sectionTextureUvSet: 0
   sectionTextureChannel: 0
-  vertexColorChannel: 3
+  vertexColorChannel: 0
   kernel: 0
-  outlineThickness: 12
+  outlineThickness: 8
   scaleWithResolution: 0
   referenceResolution: 0
   customResolution: 0
@@ -46,12 +46,12 @@ MonoBehaviour:
   outlineColor: {r: 0, g: 0, b: 0, a: 1}
   overrideColorInShadow: 0
   outlineColorShadow: {r: 1, g: 1, b: 1, a: 1}
-  fillColor: {r: 0.62352943, g: 0, b: 0, a: 1}
+  fillColor: {r: 0, g: 0, b: 0, a: 1}
   fadeInDistance: 0
   fadeColor: {r: 0, g: 0, b: 0, a: 0}
   fadeStart: 100
   fadeDistance: 10
   blendMode: 0
-  showDiscontinuitySection: 1
+  showDiscontinuitySection: 0
   showOutlineSection: 1
   showExperimentalSection: 0
