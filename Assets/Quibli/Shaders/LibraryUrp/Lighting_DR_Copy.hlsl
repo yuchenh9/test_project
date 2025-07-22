@@ -19,23 +19,10 @@ inline half NdotLTransitionPrimary(half3 normal, half3 lightDir) {
 
 half3 LightingPhysicallyBased_DSTRM(Light light, InputData inputData)
 {
-    // Pretend light direction is +X, full intensity, no shadows
-    const half3 fakeDir   = float3(1,0,0);
-    const half3 fakeColor = half3(1,1,1);
-
-    // ----- Toon ramp sampling -----
-    const half NdotL = dot(inputData.normalWS, fakeDir);
-    const half NdotLTPrimary = NdotLTransitionPrimary(inputData.normalWS, fakeDir);
-    const half2 gradient_uv = half2(NdotLTPrimary, 0.5);
-    half3 c = SAMPLE_TEXTURE2D(_GradientRamp, sampler_GradientRamp, gradient_uv).rgb;
-
-    // ----- Apply Quibli features that don’t rely on real lights -----
-    // Rim, specular, gradient, etc. all remain identical,
-    // because they use the fakeDir and constant intensities
-
-    // ... keep the existing rim/specular blocks, but use fakeDir/fakeColor ...
-
-    return c;           // return final colour, no attenuation
+    // Sample gradient ramp purely from world normal Y (up/down) independent of lights
+    half rampT = saturate(inputData.normalWS.y * 0.5 + 0.5); // Map -1..1 -> 0..1
+    half3 c = SAMPLE_TEXTURE2D(_GradientRamp, sampler_GradientRamp, half2(rampT, 0.5)).rgb;
+    return c;
 }
 
 void StylizeLight(inout Light light) {

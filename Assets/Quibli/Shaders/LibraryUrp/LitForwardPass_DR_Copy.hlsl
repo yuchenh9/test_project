@@ -60,6 +60,9 @@ struct Varyings
 
     float4 positionCS               : SV_POSITION;
 
+    // Object-space normal for rotation-invariant shading
+    float3 normalOS                 : TEXCOORD9;
+
     // ---
     #if defined(DR_VERTEX_COLORS_ON)
     float4 VertexColor              : COLOR;
@@ -148,28 +151,22 @@ half4 StylizedPassFragment(Varyings input) : SV_Target
     UNITY_SETUP_INSTANCE_ID(input);
     UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
 
+    // Basic surface data (for alpha, etc.)
     SurfaceData surfaceData;
     InitializeSimpleLitSurfaceData(input.uv, surfaceData);
 
-    #if defined(LOD_FADE_CROSSFADE) && !VERSION_LOWER(13, 0)
-    LODFadeCrossFade(input.positionCS);
-    #endif
-
+    // Compute fog factor etc.
     InputData inputData;
     InitializeInputData(input, surfaceData.normalTS, inputData);
-    #if UNITY_VERSION >= 202330
-    SETUP_DEBUG_TEXTURE_DATA(inputData, input.uv);
-    #elif UNITY_VERSION >= 202210
-    SETUP_DEBUG_TEXTURE_DATA(inputData, input.uv, _BaseMap);
-    #endif
 
-    #ifdef _DBUFFER
-    ApplyDecalToSurfaceData(input.positionCS, surfaceData, inputData);
-    #endif
+    // Rotation-invariant colour from object-space normal Y component
+    half rampT = saturate(input.normalOS.y * 0.5 + 0.5);
+    half3 col = SAMPLE_TEXTURE2D(_GradientRamp, sampler_GradientRamp, half2(rampT, 0.5)).rgb;
 
-    half4 color = UniversalFragment_DSTRM(inputData, surfaceData, input.uv);
+    // Optional: apply fog
+    col = MixFog(col, inputData.fogCoord);
 
-    color.rgb = MixFog(color.rgb, inputData.fogCoord);
+    half4 color = half4(col, surfaceData.alpha);
 
     #if UNITY_VERSION >= 202220
     color.a = OutputAlpha(color.a, IsSurfaceTypeTransparent(_Surface));

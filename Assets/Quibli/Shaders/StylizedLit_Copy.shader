@@ -208,7 +208,7 @@
 
             #include "LibraryUrp/StylizedInput.hlsl"
             #include "LibraryUrp/LitForwardPass_DR_Copy.hlsl"
-            #include "LibraryUrp/QuibliVertex.hlsl"
+            #include "LibraryUrp/QuibliVertex_Copy.hlsl"
             ENDHLSL
         }
 
