@@ -5,7 +5,7 @@
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 #if LIGHTMAP_ON && defined(DR_BAKED_GI)
 #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl"
-#endif
+#endif 
 
 inline half NdotLTransition(half3 normal, half3 lightDir, half selfShadingSize) {
     const half NdotL = dot(normal, lightDir);

@@ -21,9 +21,8 @@ struct Attributes
     float2 staticLightmapUV    : TEXCOORD1;
     float2 dynamicLightmapUV    : TEXCOORD2;
 
-#if defined(DR_VERTEX_COLORS_ON)
+    // Always include vertex colors for RGB usage
     float4 color        : COLOR;
-#endif
 
     UNITY_VERTEX_INPUT_INSTANCE_ID
 };
@@ -60,14 +59,11 @@ struct Varyings
 
     float4 positionCS               : SV_POSITION;
 
-    // Object-space normal for rotation-invariant shading
+    // Object-space normal for rotation-invariant shading (kept for compatibility)
     float3 normalOS                 : TEXCOORD9;
 
-    // ---
-    #if defined(DR_VERTEX_COLORS_ON)
+    // Always include vertex colors for RGB usage
     float4 VertexColor              : COLOR;
-    #endif
-    // ---
 
     UNITY_VERTEX_INPUT_INSTANCE_ID
     UNITY_VERTEX_OUTPUT_STEREO
@@ -109,11 +105,6 @@ void InitializeInputData(Varyings input, half3 normalTS, out InputData inputData
     #else
     inputData.fogCoord = InitializeInputDataFog(float4(inputData.positionWS, 1.0), input.fogFactor);
     inputData.vertexLighting = half3(0, 0, 0);
-    #endif
-
-    // Note: This needs to not interfere with _ADDITIONAL_LIGHTS_VERTEX
-    #if defined(DR_VERTEX_COLORS_ON)
-    inputData.vertexLighting = input.VertexColor.rgb;
     #endif
 
     #if defined(DYNAMICLIGHTMAP_ON)
@@ -159,8 +150,9 @@ half4 StylizedPassFragment(Varyings input) : SV_Target
     InputData inputData;
     InitializeInputData(input, surfaceData.normalTS, inputData);
 
-    // Rotation-invariant colour from object-space normal Y component
-    half rampT = saturate(input.normalOS.y * 0.5 + 0.5);
+    // Use red channel from vertex colors to sample gradient texture
+    // Red channel is already in 0-1 range, perfect for texture sampling
+    half rampT = input.VertexColor.r;
     half3 col = SAMPLE_TEXTURE2D(_GradientRamp, sampler_GradientRamp, half2(rampT, 0.5)).rgb;
 
     // Optional: apply fog

@@ -87,11 +87,10 @@ Varyings LitPassVertex(Attributes input)
 
     output.positionCS = vertexInput.positionCS;
 
-#if defined(DR_VERTEX_COLORS_ON)
+    // Always pass vertex colors for RGB usage
     output.VertexColor = input.color;
-#endif
 
-    // NEW: pass object-space normal to the fragment
+    // NEW: pass object-space normal to the fragment (kept for compatibility)
     output.normalOS = input.normalOS;
 
     return output;
