@@ -100,6 +100,27 @@ namespace DynamicMeshCutter
             materialsNew[materialsNew.Length - 1] = (target.FaceMaterial != null) ? target.FaceMaterial : defaultMaterial;
             materials = materialsNew;
 
+            // NEW: cache vertex colors of the original mesh (if any) so we can transfer them to the sliced meshes.
+            Mesh _sourceMesh;
+            Matrix4x4[] _dummy;
+            GetMeshInfo(target, out _sourceMesh, out _dummy);
+            Dictionary<Vector3, Color> _colorLookup = null;
+            if (_sourceMesh != null && _sourceMesh.colors != null && _sourceMesh.colors.Length > 0)
+            {
+                var srcVerts = _sourceMesh.vertices;
+                var srcColors = _sourceMesh.colors;
+                _colorLookup = new Dictionary<Vector3, Color>(srcVerts.Length);
+                for (int v = 0; v < srcVerts.Length; v++)
+                {
+                    // Avoid duplicates – first color found for a position is stored.
+                    if (!_colorLookup.ContainsKey(srcVerts[v]))
+                    {
+                        Color col = (v < srcColors.Length) ? srcColors[v] : Color.white;
+                        _colorLookup.Add(srcVerts[v], col);
+                    }
+                }
+            }
+
             for (int i = 0; i < createdMeshes.Length; i++)
             {
                 if (createdMeshes[i].Vertices.Length < vertexCreationThreshold)
@@ -121,6 +142,32 @@ namespace DynamicMeshCutter
                 for (int j = 0; j < vMesh.SubMeshCount; j++)
                 {
                     mesh.SetIndices(vMesh.GetIndices(j), MeshTopology.Triangles, j);
+                }
+
+                // NEW: Transfer vertex colors if lookup is available
+                if (_colorLookup != null)
+                {
+                    Vector3[] newVerts = mesh.vertices;
+                    Color[] newColors = new Color[newVerts.Length];
+                    for (int v = 0; v < newVerts.Length; v++)
+                    {
+                        if (!_colorLookup.TryGetValue(newVerts[v], out newColors[v]))
+                        {
+                            newColors[v] = Color.white; // default for newly created vertices (cut faces)
+                        }
+                    }
+                    mesh.colors = newColors;
+                    // also set colors32 to avoid NaN issues in some Unity versions
+                    Color32[] cols32 = new Color32[newColors.Length];
+                    for(int ci=0; ci<cols32.Length; ci++) cols32[ci] = newColors[ci];
+                    mesh.colors32 = cols32;
+                }
+                else if(vMesh.Colors != null && vMesh.Colors.Length == mesh.vertexCount)
+                {
+                    mesh.colors = vMesh.Colors;
+                    Color32[] cols32 = new Color32[vMesh.Colors.Length];
+                    for(int ci=0; ci<cols32.Length; ci++) cols32[ci] = vMesh.Colors[ci];
+                    mesh.colors32 = cols32;
                 }
 
                 Behaviour behaviour = target.DefaultBehaviour[bt];
@@ -618,7 +665,13 @@ namespace DynamicMeshCutter
             {
                 Mesh mesh = new Mesh();
                 renderer.BakeMesh(mesh);
+                // copy skin weights and vertex colours so downstream slicer has full data
                 mesh.boneWeights = renderer.sharedMesh.boneWeights;
+                if(renderer.sharedMesh.colors != null && renderer.sharedMesh.colors.Length == renderer.sharedMesh.vertexCount)
+                {
+                    mesh.colors = renderer.sharedMesh.colors;
+                }
+                Debug.Log($"[MeshCreation.GetMeshInfo] Baked mesh '{mesh.name}' colours len = {mesh.colors?.Length ?? 0} vertices={mesh.vertexCount}");
                 outMesh = mesh;
 
                 Matrix4x4 scale = Matrix4x4.Scale(target.transform.localScale).inverse;

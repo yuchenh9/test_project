@@ -1,5 +1,54 @@
-using System;using System.Collections.Generic;using UnityEngine;using Unity.Collections;using System.Linq;using UnityEngine.Rendering;using System.Runtime.InteropServices;namespace Obi{    [AddComponentMenu("Physics/Obi/Obi Softbody Skinner", 931)]    [RequireComponent(typeof(SkinnedMeshRenderer))]
-    [ExecuteInEditMode]    public class ObiSoftbodySkinner : MonoBehaviour, ObiActorRenderer<ObiSoftbodySkinner>, IMeshDataProvider    {        public struct BoneWeightComparer : IComparer<BoneWeight1>        {            public int Compare(BoneWeight1 x, BoneWeight1 y)            {                return y.weight.CompareTo(x.weight);            }        }        [Tooltip("Softbody to skin to.")]        public ObiSoftbody softbody;        [Tooltip("Skinmap asset to store the skin data into.")]        [SerializeField] public ObiSkinMap customSkinMap;        [Tooltip("The maximum distance a cluster can be from a vertex before it will not influence it any more.")]        public float radius = 0.5f;        [Tooltip("The ratio at which the cluster's influence on a vertex falls off with distance.")]        public float falloff = 1.0f;        [Tooltip("Maximum amount of bone influences for each vertex.")]        public uint maxInfluences = 4;        [Tooltip("Influence of the softbody in the resulting skin.")]        [Range(0, 1)]        public float softbodyInfluence = 1;        public Renderer sourceRenderer { get; protected set; }        public Material[] materials        {            get { return skinnedMeshRenderer.sharedMaterials; }        }        public virtual ObiSkinMap skinMap
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+using Unity.Collections;
+using System.Linq;
+using UnityEngine.Rendering;
+using System.Runtime.InteropServices;
+
+namespace Obi
+{
+    [AddComponentMenu("Physics/Obi/Obi Softbody Skinner", 931)]
+    [RequireComponent(typeof(SkinnedMeshRenderer))]
+    [ExecuteInEditMode]
+    public class ObiSoftbodySkinner : MonoBehaviour, ObiActorRenderer<ObiSoftbodySkinner>, IMeshDataProvider
+    {
+
+        public struct BoneWeightComparer : IComparer<BoneWeight1>
+        {
+            public int Compare(BoneWeight1 x, BoneWeight1 y)
+            {
+                return y.weight.CompareTo(x.weight);
+            }
+        }
+
+        [Tooltip("Softbody to skin to.")]
+        public ObiSoftbody softbody;
+
+        [Tooltip("Skinmap asset to store the skin data into.")]
+        [SerializeField] public ObiSkinMap customSkinMap;
+
+        [Tooltip("The maximum distance a cluster can be from a vertex before it will not influence it any more.")]
+        public float radius = 0.5f;
+
+        [Tooltip("The ratio at which the cluster's influence on a vertex falls off with distance.")]
+        public float falloff = 1.0f;
+
+        [Tooltip("Maximum amount of bone influences for each vertex.")]
+        public uint maxInfluences = 4;
+
+        [Tooltip("Influence of the softbody in the resulting skin.")]
+        [Range(0, 1)]
+        public float softbodyInfluence = 1;
+
+        public Renderer sourceRenderer { get; protected set; }
+        public Material[] materials
+        {
+            get { return skinnedMeshRenderer.sharedMaterials; }
+        }
+
+
+        public virtual ObiSkinMap skinMap
         {
             get
             {
@@ -8,34 +57,105 @@ using System;using System.Collections.Generic;using UnityEngine;using Unity.C
                 return softbody.softbodyBlueprint.defaultSkinmap;
             }
             set { customSkinMap = value; }
-        }        [HideInInspector] [SerializeField] public float[] m_softbodyInfluences;        [HideInInspector] private List<Transform> boneTransforms;        private SkinnedMeshRenderer skinnedMeshRenderer;        public ObiActor actor { get { return softbody; } }
+        }
+
+        [HideInInspector] [SerializeField] public float[] m_softbodyInfluences;
+        [HideInInspector] private List<Transform> boneTransforms;
+
+        private SkinnedMeshRenderer skinnedMeshRenderer;
+
+        public ObiActor actor { get { return softbody; } }
         public uint meshInstances { get { return 1; } }
 
         // specify vertex count and layout
-        public static VertexAttributeDescriptor[] layout =        {            new VertexAttributeDescriptor(VertexAttribute.Position, VertexAttributeFormat.Float32, 3,0),            new VertexAttributeDescriptor(VertexAttribute.Normal, VertexAttributeFormat.Float32, 3,0),            new VertexAttributeDescriptor(VertexAttribute.Tangent, VertexAttributeFormat.Float32, 4,0),            new VertexAttributeDescriptor(VertexAttribute.Color, VertexAttributeFormat.Float32, 4,0),            new VertexAttributeDescriptor(VertexAttribute.TexCoord0, VertexAttributeFormat.Float32, 2,1),            new VertexAttributeDescriptor(VertexAttribute.TexCoord1, VertexAttributeFormat.Float32, 2,1),            new VertexAttributeDescriptor(VertexAttribute.TexCoord2, VertexAttributeFormat.Float32, 2,1),            new VertexAttributeDescriptor(VertexAttribute.TexCoord3, VertexAttributeFormat.Float32, 2,1),        };        [StructLayout(LayoutKind.Sequential)]        public struct StaticClothVertexData        {            public Vector2 uv;            public Vector2 uv1;            public Vector2 uv2;            public Vector2 uv3;        }        public Matrix4x4 renderMatrix        {            get { return softbody.transform.worldToLocalMatrix; }        }        [field: SerializeField]
-        [HideInInspector]        public Mesh sourceMesh { get; protected set; }        public int vertexCount { get { return sourceMesh.vertexCount; } }        public int triangleCount { get { return sourceMesh.triangles.Length / 3; } }        public void GetVertices(List<Vector3> vertices) { sourceMesh.GetVertices(vertices); }        public void GetNormals(List<Vector3> normals) { sourceMesh.GetNormals(normals); }        public void GetTangents(List<Vector4> tangents) { sourceMesh.GetTangents(tangents); }        public void GetColors(List<Color> colors) { sourceMesh.GetColors(colors); }        public void GetUVs(int channel, List<Vector2> uvs) { sourceMesh.GetUVs(channel, uvs); }        public void GetTriangles(List<int> triangles) { triangles.Clear(); triangles.AddRange(sourceMesh.triangles); }        public void Awake()        {            sourceRenderer = skinnedMeshRenderer = GetComponent<SkinnedMeshRenderer>();
+        public static VertexAttributeDescriptor[] layout =
+        {
+            new VertexAttributeDescriptor(VertexAttribute.Position, VertexAttributeFormat.Float32, 3,0),
+            new VertexAttributeDescriptor(VertexAttribute.Normal, VertexAttributeFormat.Float32, 3,0),
+            new VertexAttributeDescriptor(VertexAttribute.Tangent, VertexAttributeFormat.Float32, 4,0),
+            new VertexAttributeDescriptor(VertexAttribute.Color, VertexAttributeFormat.Float32, 4,0),
+
+            new VertexAttributeDescriptor(VertexAttribute.TexCoord0, VertexAttributeFormat.Float32, 2,1),
+            new VertexAttributeDescriptor(VertexAttribute.TexCoord1, VertexAttributeFormat.Float32, 2,1),
+            new VertexAttributeDescriptor(VertexAttribute.TexCoord2, VertexAttributeFormat.Float32, 2,1),
+            new VertexAttributeDescriptor(VertexAttribute.TexCoord3, VertexAttributeFormat.Float32, 2,1),
+        };
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct StaticClothVertexData
+        {
+            public Vector2 uv;
+            public Vector2 uv1;
+            public Vector2 uv2;
+            public Vector2 uv3;
+        }
+
+        public Matrix4x4 renderMatrix
+        {
+            get { return softbody.transform.worldToLocalMatrix; }
+        }
+
+        [field: SerializeField]
+        [HideInInspector]
+        public Mesh sourceMesh { get; protected set; }
+
+        public int vertexCount { get { return sourceMesh.vertexCount; } }
+        public int triangleCount { get { return sourceMesh.triangles.Length / 3; } }
+
+        public void GetVertices(List<Vector3> vertices) { sourceMesh.GetVertices(vertices); }
+        public void GetNormals(List<Vector3> normals) { sourceMesh.GetNormals(normals); }
+        public void GetTangents(List<Vector4> tangents) { sourceMesh.GetTangents(tangents); }
+        public void GetColors(List<Color> colors) { sourceMesh.GetColors(colors); }
+        public void GetUVs(int channel, List<Vector2> uvs) { sourceMesh.GetUVs(channel, uvs); }
+
+        public void GetTriangles(List<int> triangles) { triangles.Clear(); triangles.AddRange(sourceMesh.triangles); }
+
+        public void Awake()
+        {
+            sourceRenderer = skinnedMeshRenderer = GetComponent<SkinnedMeshRenderer>();
 
             // In case there's no user-set softbody reference,
             // try to find one in the same object:
-            if (softbody == null)                softbody = GetComponent<ObiSoftbody>();        }
+            if (softbody == null)
+                softbody = GetComponent<ObiSoftbody>();
+        }
 
-        public void OnEnable()        {            ((ObiActorRenderer<ObiSoftbodySkinner>)this).EnableRenderer();            if (Application.isPlaying && softbody != null)
+        public void OnEnable()
+        {
+            ((ObiActorRenderer<ObiSoftbodySkinner>)this).EnableRenderer();
+
+            if (Application.isPlaying && softbody != null)
             {
                 if (softbody.isLoaded)
                     Softbody_OnBlueprintLoaded(softbody, softbody.sourceBlueprint);
 
                 softbody.OnBlueprintLoaded += Softbody_OnBlueprintLoaded;
                 softbody.OnSimulationStart += Softbody_OnSimulate;
-            }        }
+            }
+        }
 
-        public void OnDisable()        {            ((ObiActorRenderer<ObiSoftbodySkinner>)this).DisableRenderer();            if (Application.isPlaying && softbody != null)
+        public void OnDisable()
+        {
+            ((ObiActorRenderer<ObiSoftbodySkinner>)this).DisableRenderer();
+
+            if (Application.isPlaying && softbody != null)
             {
                 softbody.OnBlueprintLoaded -= Softbody_OnBlueprintLoaded;
                 softbody.OnSimulationStart -= Softbody_OnSimulate;
-            }        }        public void OnValidate()        {            ((ObiActorRenderer<ObiSoftbodySkinner>)this).SetRendererDirty(Oni.RenderingSystemType.Softbody);        }        public virtual void CleanupRenderer()
+            }
+        }
+
+        public void OnValidate()
+        {
+            ((ObiActorRenderer<ObiSoftbodySkinner>)this).SetRendererDirty(Oni.RenderingSystemType.Softbody);
+        }
+
+        public virtual void CleanupRenderer()
         {
             skinnedMeshRenderer.sharedMesh = sourceMesh;
-        }        public virtual bool ValidateRenderer()
+        }
+
+        public virtual bool ValidateRenderer()
         {
             if (skinnedMeshRenderer == null)
                 sourceRenderer = skinnedMeshRenderer = GetComponent<SkinnedMeshRenderer>();
@@ -62,7 +182,20 @@ using System;using System.Collections.Generic;using UnityEngine;using Unity.C
             return skm.checksum == softbody.softbodyBlueprint.checksum &&
                    skm.bindPoses.count == actor.particleCount + sourceMesh.bindposes.Length &&
                    skm.particlesOnVertices.influenceOffsets.count == vertexCount + 1;
-        }        public void InitializeInfluences()        {            if (skinnedMeshRenderer != null && skinnedMeshRenderer.sharedMesh != null)            {                if (m_softbodyInfluences == null || m_softbodyInfluences.Length != skinnedMeshRenderer.sharedMesh.vertexCount)                {                    m_softbodyInfluences = new float[skinnedMeshRenderer.sharedMesh.vertexCount];                    for (int i = 0; i < m_softbodyInfluences.Length; ++i)                        m_softbodyInfluences[i] = 1;                }            }        }
+        }
+
+        public void InitializeInfluences()
+        {
+            if (skinnedMeshRenderer != null && skinnedMeshRenderer.sharedMesh != null)
+            {
+                if (m_softbodyInfluences == null || m_softbodyInfluences.Length != skinnedMeshRenderer.sharedMesh.vertexCount)
+                {
+                    m_softbodyInfluences = new float[skinnedMeshRenderer.sharedMesh.vertexCount];
+                    for (int i = 0; i < m_softbodyInfluences.Length; ++i)
+                        m_softbodyInfluences[i] = 1;
+                }
+            }
+        }
 
         private void Softbody_OnBlueprintLoaded(ObiActor a, ObiActorBlueprint blueprint)
         {
@@ -183,20 +316,43 @@ using System;using System.Collections.Generic;using UnityEngine;using Unity.C
                     softbody.solver.orientations[solverIndex] = deformMatrix.rotation * softbody.solver.restOrientations[solverIndex];
                 }
             }
-        }        public void Bind()        {
+        }
+
+        public void Bind()
+        {
             if (skinMap != null && softbody != null && softbody.softbodyBlueprint != null)
             {
-                skinnedMeshRenderer = GetComponent<SkinnedMeshRenderer>();                InitializeInfluences();
+                skinnedMeshRenderer = GetComponent<SkinnedMeshRenderer>();
+
+                InitializeInfluences();
 
                 var blueprintTransform = Matrix4x4.TRS(Vector3.zero, softbody.softbodyBlueprint.rotation, softbody.softbodyBlueprint.scale);
 
-                skinMap.MapParticlesToVertices(skinnedMeshRenderer.sharedMesh, softbody, transform.localToWorldMatrix * blueprintTransform, softbody.transform.worldToLocalMatrix, radius, falloff, maxInfluences, true, softbodyInfluence, m_softbodyInfluences);                skinMap.checksum = softbody.softbodyBlueprint.checksum;
-            }        }        RenderSystem<ObiSoftbodySkinner> ObiRenderer<ObiSoftbodySkinner>.CreateRenderSystem(ObiSolver solver)        {            switch (solver.backendType)            {
+                skinMap.MapParticlesToVertices(skinnedMeshRenderer.sharedMesh, softbody, transform.localToWorldMatrix * blueprintTransform, softbody.transform.worldToLocalMatrix, radius, falloff, maxInfluences, true, softbodyInfluence, m_softbodyInfluences);
+                skinMap.checksum = softbody.softbodyBlueprint.checksum;
+            }
+        }
+
+        RenderSystem<ObiSoftbodySkinner> ObiRenderer<ObiSoftbodySkinner>.CreateRenderSystem(ObiSolver solver)
+        {
+            switch (solver.backendType)
+            {
 
 
 
 
 
-#if (OBI_BURST && OBI_MATHEMATICS && OBI_COLLECTIONS)                case ObiSolver.BackendType.Burst: return new BurstSoftbodyRenderSystem(solver);
-#endif                case ObiSolver.BackendType.Compute:
-                default:                    if (SystemInfo.supportsComputeShaders)                        return new ComputeSoftbodyRenderSystem(solver);                    return null;            }        }    }}
+#if (OBI_BURST && OBI_MATHEMATICS && OBI_COLLECTIONS)
+                case ObiSolver.BackendType.Burst: return new BurstSoftbodyRenderSystem(solver);
+#endif
+                case ObiSolver.BackendType.Compute:
+                default:
+
+                    if (SystemInfo.supportsComputeShaders)
+                        return new ComputeSoftbodyRenderSystem(solver);
+                    return null;
+            }
+        }
+
+    }
+}

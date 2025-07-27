@@ -220,6 +220,7 @@ namespace DynamicMeshCutter
                 Triangles = dynamicMesh.Triangles.ToArray(),
                 Normals = dynamicMesh.Normals.ToArray(),
                 UVs = dynamicMesh.UVs.ToArray(),
+                Colors = dynamicMesh.Colors.ToArray(),
                 BoneWeights = dynamicMesh.BoneWeights.ToArray(),
                 UniqueVerticesCount = dynamicMesh.AmountOfUniqueVertices,
                 

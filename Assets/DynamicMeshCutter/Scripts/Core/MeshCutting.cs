@@ -185,6 +185,19 @@ namespace DynamicMeshCutter
                 }
             }
 
+            // COLOR HANDLING --------------------
+            bool hasColors = (data.MeshTarget.Colors != null && data.MeshTarget.Colors.Length > 0);
+            Color[,] colors = new Color[3,2];
+            if(hasColors)
+            {
+                for(int i=0;i<3;i++)
+                {
+                    // init white
+                    colors[i,0] = Color.white;
+                    colors[i,1] = Color.white;
+                }
+            }
+
             //create two new data entries of the cut between the plane and the to edges of the triangle 
             for (int i = 0; i < 2; i++)
             {
@@ -199,6 +212,7 @@ namespace DynamicMeshCutter
                 boneweights[2, i] = new BoneWeight();
                 rd[2, i] = -1;
 
+                // interpolate bone weights if applicable
                 if (hasBoneWeights)
                 {
                     boneweights[2, i].boneIndex0 = boneweights[0, i].boneIndex0;
@@ -213,14 +227,27 @@ namespace DynamicMeshCutter
                     data.AddedBoneweights.Add(boneweights[2, i]);
                 }
 
-                if (doDynamicRagdoll)
-                {
-                    rd[2, i] = part;
-                }
-
                 data.AddedVertices.Add(vertices[2, i]);
+
+                if(hasColors)
+                {
+                    Color c0 = data.MeshTarget.Colors[Array.IndexOf(data.MeshTarget.Vertices, vertices[0,i])];
+                    Color c1 = data.MeshTarget.Colors[Array.IndexOf(data.MeshTarget.Vertices, vertices[1,i])];
+                    colors[0,i] = c0;
+                    colors[1,i] = c1;
+                    colors[2,i] = Color.Lerp(c0,c1,distanceNormalized);
+                }
             }
 
+            if(!hasColors)
+            {
+                // ensure colors array default to white
+                for(int i=0;i<3;i++)
+                {
+                    for(int j=0;j<2;j++)
+                        colors[i,j] = Color.white;
+                }
+            }
 
             //create new triangles given the new vertices
             //there will be exactly three new triangles we need to create. one for the side of the singular vertex, two for the other side
@@ -240,6 +267,7 @@ namespace DynamicMeshCutter
                         new Vector3[] { vertices[i, 0], vertices[2, 0], vertices[2, 1] },
                         new Vector3[] { normals[i, 0], normals[2, 0], normals[2, 1] },
                         new Vector2[] { uvs[i, 0], uvs[2, 0], uvs[2, 1] },
+                        new Color[] { colors[i,0], colors[2,0], colors[2,1] },
                         new BoneWeight[] { boneweights[i, 0], boneweights[2, 0], boneweights[2, 1] },
                         new int[] {rd[i,0],rd[2,0],rd[2,1]},
                         normals[2, 0],
@@ -253,6 +281,7 @@ namespace DynamicMeshCutter
                       new Vector3[] { vertices[i, 0], vertices[i, 1], vertices[2, 1] },
                       new Vector3[] { normals[i, 0], normals[i, 1], normals[2, 1] },
                       new Vector2[] { uvs[i, 0], uvs[i, 1], uvs[2, 1] },
+                      new Color[] { colors[i,0], colors[i,1], colors[2,1] },
                       new BoneWeight[] { boneweights[i, 0], boneweights[i, 1], boneweights[2, 1] },
                       new int[] { rd[i, 0], rd[i, 1], rd[2, 1] },
                       normals[2, 1],
@@ -341,9 +370,9 @@ namespace DynamicMeshCutter
         }
         private void FillFace(InternalData data, List<Vector3> fVertices, List<BoneWeight> fBoneWeights, ref Info info)
         {
-            bool hasBoneWeight = data.MeshTarget.HasBoneWeight;
+            bool hasBoneWeights = data.MeshTarget.HasBoneWeight;
             Vector3 center = GetVerticeCenter(fVertices);
-            BoneWeight centerWeight = hasBoneWeight ? GetBoneweightCenter(fBoneWeights) : new BoneWeight();
+            BoneWeight centerWeight = hasBoneWeights ? GetBoneweightCenter(fBoneWeights) : new BoneWeight();
 
             info.LocalFaceCenters.Add(center);
 
@@ -381,7 +410,7 @@ namespace DynamicMeshCutter
                         sign = 1;
 
                     BoneWeight[] boneweights = new BoneWeight[3];
-                    if (!hasBoneWeight)
+                    if (!hasBoneWeights)
                     {
                         for (int b = 0; b < 3; b++)
                             boneweights[b] = new BoneWeight();
@@ -397,6 +426,7 @@ namespace DynamicMeshCutter
                             new Vector3[] { fVertices[n], fVertices[o], center },
                             new Vector3[] { sign * data.Plane.LocalNormal, sign * data.Plane.LocalNormal, sign * data.Plane.LocalNormal },
                             new Vector2[] { uv[0], uv[1], new Vector2(0.5f, 0.5f) },
+                            new Color[] { Color.white, Color.white, Color.white },
                             boneweights,
                             new int[] {-1,-1,-1}, //for now we ignore collider part of the newly added face vertices
                             sign * data.Plane.LocalNormal,

@@ -471,6 +471,7 @@ namespace Obi
 
         private IEnumerator GenerateParticles(List<Vector3> particlePositions, List<Vector3> particleNormals)
         {
+            ClearParticleGroups(false, false);
             float particleRadius = ObiUtils.sqrt3 * 0.5f * surfaceVoxelizer.voxelSize;
 
             positions = new Vector3[particlePositions.Count];
@@ -484,6 +485,20 @@ namespace Obi
             principalRadii = new Vector3[particlePositions.Count];
             filters = new int[particlePositions.Count];
             colors = new Color[particlePositions.Count];
+
+            // Cache original mesh colors for mapping to particles
+            Color[] originalColors = null;
+            Vector3[] originalVertices = null;
+            if (inputMesh != null && inputMesh.colors != null && inputMesh.colors.Length > 0)
+            {
+                originalColors = inputMesh.colors;
+                originalVertices = inputMesh.vertices;
+                // Transform original vertices to match particle space
+                for (int i = 0; i < originalVertices.Length; i++)
+                {
+                    originalVertices[i] = blueprintTransform.MultiplyPoint3x4(originalVertices[i]);
+                }
+            }
 
             m_ActiveParticleCount = particlePositions.Count;
 
@@ -532,7 +547,33 @@ namespace Obi
                 restOrientations[i] = orientation;
                 principalRadii[i] = principalValues;
                 filters[i] = ObiUtils.MakeFilter(ObiUtils.CollideWithEverything, 1);
-                colors[i] = Color.white;
+                // Map color from original mesh vertices
+                if (originalColors != null && originalVertices != null)
+                {
+                    // Find closest original vertex and use its color
+                    float closestDistSq = float.MaxValue;
+                    int closestVertexIndex = 0;
+                    Vector3 particlePos = positions[i];
+                    
+                    for (int v = 0; v < originalVertices.Length; v++)
+                    {
+                        float distSq = Vector3.SqrMagnitude(particlePos - originalVertices[v]);
+                        if (distSq < closestDistSq)
+                        {
+                            closestDistSq = distSq;
+                            closestVertexIndex = v;
+                        }
+                    }
+                    
+                    if (closestVertexIndex < originalColors.Length)
+                        colors[i] = originalColors[closestVertexIndex];
+                    else
+                        colors[i] = Color.white;
+                }
+                else
+                {
+                    colors[i] = Color.white;
+                }
 
                 if (i % 100 == 0)
                     yield return new CoroutineJob.ProgressInfo("ObiSoftbody: generating particles...", i / (float)particlePositions.Count);

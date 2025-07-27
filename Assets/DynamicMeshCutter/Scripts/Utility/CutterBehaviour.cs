@@ -76,6 +76,7 @@ namespace DynamicMeshCutter
 
             MeshCreation.GetMeshInfo(target, out TargetOriginalMesh, out Bindposes);
             TargetVirtualMesh = new VirtualMesh(TargetOriginalMesh);
+            Debug.Log($"[Cutter.Info] VirtualMesh constructed from '{TargetOriginalMesh.name}' vertices={TargetVirtualMesh.Vertices.Length} colorsLen={(TargetVirtualMesh.Colors!=null?TargetVirtualMesh.Colors.Length:0)}");
 
             if (target.DynamicRagdoll != null) //dynamic ragdoll could be missing
             {

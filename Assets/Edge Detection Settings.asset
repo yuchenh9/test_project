@@ -38,9 +38,9 @@ MonoBehaviour:
   sectionTextureChannel: 0
   vertexColorChannel: 0
   kernel: 0
-  outlineThickness: 8
-  scaleWithResolution: 0
-  referenceResolution: 0
+  outlineThickness: 9
+  scaleWithResolution: 1
+  referenceResolution: 2
   customResolution: 0
   backgroundColor: {r: 0, g: 0, b: 0, a: 0}
   outlineColor: {r: 0, g: 0, b: 0, a: 1}

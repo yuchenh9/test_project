@@ -9,6 +9,7 @@ namespace DynamicMeshCutter
         public List<Vector3> Vertices = new List<Vector3>();
         public List<Vector3> Normals = new List<Vector3>();
         public List<Vector2> UVs = new List<Vector2>();
+        public List<Color> Colors = new List<Color>();
         public List<BoneWeight> BoneWeights = new List<BoneWeight>();
         public List<List<int>> SubIndices = new List<List<int>>();
 
@@ -43,6 +44,10 @@ namespace DynamicMeshCutter
                 Vertices.Add(parent.Vertices[index]);
                 Normals.Add(parent.Normals[index]);
                 UVs.Add(parent.UVs[index]);
+                if(parent.Colors.Count>index)
+                    Colors.Add(parent.Colors[index]);
+                else
+                    Colors.Add(Color.white);
                 if (parent._targetMesh.HasBoneWeight)
                     BoneWeights.Add(parent.BoneWeights[index]);
                 if (parent.DynamicRagdoll != null)
@@ -73,6 +78,10 @@ namespace DynamicMeshCutter
                 Vertices.Add(_targetMesh.Vertices[index]);
                 Normals.Add(_targetMesh.Normals[index]);
                     UVs.Add(_targetMesh.UVs[index]);
+                if(_targetMesh.Colors != null && _targetMesh.Colors.Length>index)
+                    Colors.Add(_targetMesh.Colors[index]);
+                else
+                    Colors.Add(Color.white);
                 if (_targetMesh.HasBoneWeight)
                     BoneWeights.Add(_targetMesh.BoneWeights[index]);
                 if (_targetMesh.DynamicRagdoll != null)
@@ -106,6 +115,40 @@ namespace DynamicMeshCutter
                 Vertices.Add(vertices[index]);
                 Normals.Add(normals[index]);
                 UVs.Add(uvs[index]);
+
+                if (_targetMesh.HasBoneWeight)
+                    BoneWeights.Add(boneWeights[index]);
+                if (_targetMesh.Assignments != null)
+                {
+                    int part = rd[index];
+                    RD.Add(part);
+                    if (part > -1)
+                    {
+                        if (!ColliderGroups.ContainsKey(part))
+                            ColliderGroups.Add(part, new List<Vector3>());
+                        ColliderGroups[part].Add(_targetMesh.Vertices[index]);
+                    }
+                }
+            }
+        }
+
+        //adds triangle with explicit color info (used for newly generated geometry)
+        public void AddTriangle(Vector3[] vertices, Vector3[] normals, Vector2[] uvs, Color[] colors, BoneWeight[] boneWeights, int[] rd, Vector3 faceNormal, int submesh)
+        {
+            int floor = Vertices.Count;
+            Vector3 cal_normal = Vector3.Cross((vertices[1] - vertices[0]).normalized, (vertices[2] - vertices[0]).normalized);
+            int[] order = (Vector3.Dot(cal_normal, faceNormal) >= 0) ? new int[3] { 0, 1, 2 } : new int[3] { 2, 1, 0 };
+
+            for (int i = 0; i < 3; i++)
+            {
+                SubIndices[submesh].Add(floor + i);
+                Triangles.Add(floor + i);
+
+                int index = order[i];
+                Vertices.Add(vertices[index]);
+                Normals.Add(normals[index]);
+                UVs.Add(uvs[index]);
+                Colors.Add(colors[index]);
 
                 if (_targetMesh.HasBoneWeight)
                     BoneWeights.Add(boneWeights[index]);

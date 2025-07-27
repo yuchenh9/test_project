@@ -30,6 +30,7 @@ namespace DynamicMeshCutter
         public Vector3[] Vertices;
         public Vector3[] Normals;
         public Vector2[] UVs;
+        public Color[] Colors; // vertex colors
         public BoneWeight[] BoneWeights;
 
         public DynamicRagdoll DynamicRagdoll; //the original ragdoll
@@ -60,6 +61,7 @@ namespace DynamicMeshCutter
             Vertices = mesh.vertices;
             Normals = mesh.normals;
             UVs = mesh.uv;
+            Colors = mesh.colors;
             BoneWeights = mesh.boneWeights;
 
             if (mesh.boneWeights.Length > 0)
