@@ -426,7 +426,7 @@ namespace DynamicMeshCutter
                             new Vector3[] { fVertices[n], fVertices[o], center },
                             new Vector3[] { sign * data.Plane.LocalNormal, sign * data.Plane.LocalNormal, sign * data.Plane.LocalNormal },
                             new Vector2[] { uv[0], uv[1], new Vector2(0.5f, 0.5f) },
-                            new Color[] { Color.white, Color.white, Color.white },
+                            new Color[] { Color.black, Color.black, Color.black },
                             boneweights,
                             new int[] {-1,-1,-1}, //for now we ignore collider part of the newly added face vertices
                             sign * data.Plane.LocalNormal,

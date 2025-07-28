@@ -572,7 +572,7 @@ namespace Obi
                 }
                 else
                 {
-                    colors[i] = Color.white;
+                colors[i] = Color.white;
                 }
 
                 if (i % 100 == 0)
