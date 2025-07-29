@@ -236,7 +236,7 @@ namespace DynamicMeshCutter
                     colors[0,i] = c0;
                     colors[1,i] = c1;
                     colors[2,i] = Color.Lerp(c0,c1,distanceNormalized);
-                }
+            }
             }
 
             if(!hasColors)
@@ -384,55 +384,213 @@ namespace DynamicMeshCutter
 
             Vector3 left = Vector3.Cross(data.Plane.LocalNormal, upward);
 
-            Vector3 delta; //delta between vertice and center
-            Vector3[] uv = new Vector3[2]; //new uvs
+            // Get subdivision parameter n for 1+2*n triangles
+            int n = 3; // Level 1 = n=0, Level 2 = n=1, Level 3 = n=2, etc.
+            Debug.Log($"[FillFace] *** SUBDIVISION TEST *** Level={info.CutSurfaceSubdivisionLevel}, n={n}, expected triangles per face: {1 + 2 * n}");
 
-            for (int n = 0; n < fVertices.Count; n++)
+            // Helper function to calculate UV
+            System.Func<Vector3, Vector2> CalculateUV = (vertex) => {
+                Vector3 delta = vertex - center;
+                return new Vector2(
+                    0.5f + Vector3.Dot(delta, left),
+                    0.5f + Vector3.Dot(delta, upward)
+                );
+            };
+
+            // Create initial triangular fan (center to each boundary edge)
+            List<Triangle> triangles = new List<Triangle>();
+            
+            for (int i = 0; i < fVertices.Count; i++)
             {
-                delta = fVertices[n] - center;
-                int o = (n + 1) % fVertices.Count;
+                int next = (i + 1) % fVertices.Count;
+                
+                Triangle tri = new Triangle();
+                tri.vertices = new Vector3[] { center, fVertices[i], fVertices[next] };
+                tri.boneWeights = hasBoneWeights ? 
+                    new BoneWeight[] { centerWeight, fBoneWeights[i], fBoneWeights[next] } :
+                    new BoneWeight[] { new BoneWeight(), new BoneWeight(), new BoneWeight() };
+                tri.uvs = new Vector2[] { 
+                    CalculateUV(center), 
+                    CalculateUV(fVertices[i]), 
+                    CalculateUV(fVertices[next])
+                };
+                tri.colors = new Color[] { Color.black, Color.black, Color.black };
+                
+                triangles.Add(tri);
+            }
 
+            // Apply 1+2*n subdivision to each triangle
+            List<Triangle> finalTriangles = new List<Triangle>();
+            Debug.Log($"[FillFace] Starting with {triangles.Count} original triangles");
+            foreach (Triangle tri in triangles)
+            {
+                var subdivided = SubdivideTriangle1Plus2N(tri, n, hasBoneWeights, CalculateUV);
+                Debug.Log($"[FillFace] Triangle subdivided into {subdivided.Count} triangles");
+                finalTriangles.AddRange(subdivided);
+            }
+            Debug.Log($"[FillFace] Final triangle count: {finalTriangles.Count}");
+
+            // Add all triangles to both sides
+            foreach (Triangle tri in finalTriangles)
+            {
                 for (int j = 0; j < 2; j++)
                 {
-                    uv[j] = Vector3.zero;
-                    uv[j].x = 0.5f + Vector3.Dot(delta, left);
-                    uv[j].y = 0.5f + Vector3.Dot(delta, upward);
-                    uv[j].z = 0.5f + Vector3.Dot(delta, data.Plane.LocalNormal);
-
-                    //do modulo to account for looping of last vertex
-                    delta = fVertices[o] - center;
-                }
-
-                int sign = -1;
-                for (int j = 0; j < 2; j++)
-                {
-                    if (j == 1)
-                        sign = 1;
-
-                    BoneWeight[] boneweights = new BoneWeight[3];
-                    if (!hasBoneWeights)
-                    {
-                        for (int b = 0; b < 3; b++)
-                            boneweights[b] = new BoneWeight();
-                    }
-                    else
-                    {
-                        boneweights[0] = fBoneWeights[n];
-                        boneweights[1] = fBoneWeights[o];
-                        boneweights[2] = centerWeight;
-                    }
-
+                    int sign = (j == 0) ? -1 : 1;
+                    
                     data.Sides[j].AddTriangle(
-                            new Vector3[] { fVertices[n], fVertices[o], center },
-                            new Vector3[] { sign * data.Plane.LocalNormal, sign * data.Plane.LocalNormal, sign * data.Plane.LocalNormal },
-                            new Vector2[] { uv[0], uv[1], new Vector2(0.5f, 0.5f) },
-                            new Color[] { Color.black, Color.black, Color.black },
-                            boneweights,
-                            new int[] {-1,-1,-1}, //for now we ignore collider part of the newly added face vertices
-                            sign * data.Plane.LocalNormal,
-                            data.Sides[j].SubIndices.Count - 1);
+                        tri.vertices,
+                        new Vector3[] { sign * data.Plane.LocalNormal, sign * data.Plane.LocalNormal, sign * data.Plane.LocalNormal },
+                        tri.uvs,
+                        tri.colors,
+                        tri.boneWeights,
+                        new int[] {-1,-1,-1}, //for now we ignore collider part of the newly added face vertices
+                        sign * data.Plane.LocalNormal,
+                        data.Sides[j].SubIndices.Count - 1);
                 }
             }
+        }
+
+        // Helper class for triangle subdivision
+        private class Triangle
+        {
+            public Vector3[] vertices = new Vector3[3];
+            public BoneWeight[] boneWeights = new BoneWeight[3];
+            public Vector2[] uvs = new Vector2[3];
+            public Color[] colors = new Color[3];
+        }
+
+        // Subdivide a triangle into exactly 1+2*n triangles by cutting edges
+        private List<Triangle> SubdivideTriangle1Plus2N(Triangle original, int n, bool hasBoneWeights, System.Func<Vector3, Vector2> calculateUV)
+        {
+            List<Triangle> result = new List<Triangle>();
+            Debug.Log($"[SubdivideTriangle1Plus2N] n={n}, expected result count: {1 + 2 * n}");
+            
+            if (n == 0)
+            {
+                // No subdivision, return original triangle
+                Debug.Log($"[SubdivideTriangle1Plus2N] n=0, returning original triangle");
+                result.Add(original);
+                return result;
+            }
+
+            // Get original vertices
+            Vector3 center = original.vertices[0]; // center
+            Vector3 v1 = original.vertices[1]; // boundary vertex 1
+            Vector3 v2 = original.vertices[2]; // boundary vertex 2
+
+            Debug.Log($"[SubdivideTriangle1Plus2N] Original triangle: Center({center.x:F2},{center.y:F2},{center.z:F2}) V1({v1.x:F2},{v1.y:F2},{v1.z:F2}) V2({v2.x:F2},{v2.y:F2},{v2.z:F2})");
+
+            // Create subdivision points along the radial edges (center to boundary vertices)
+            // Each radial edge is divided into (n+1) segments, creating n intermediate points
+            List<Vector3> edge1Points = new List<Vector3>(); // Points along center->v1
+            List<Vector3> edge2Points = new List<Vector3>(); // Points along center->v2
+            List<BoneWeight> edge1BoneWeights = new List<BoneWeight>();
+            List<BoneWeight> edge2BoneWeights = new List<BoneWeight>();
+            List<Color> edge1Colors = new List<Color>();
+            List<Color> edge2Colors = new List<Color>();
+
+            // Add center point
+            edge1Points.Add(center);
+            edge2Points.Add(center);
+            edge1BoneWeights.Add(original.boneWeights[0]);
+            edge2BoneWeights.Add(original.boneWeights[0]);
+            edge1Colors.Add(original.colors[0]);
+            edge2Colors.Add(original.colors[0]);
+
+            // Add n intermediate points along each radial edge
+            for (int i = 1; i <= n; i++)
+            {
+                float t = (float)i / (n + 1); // t goes from 1/(n+1) to n/(n+1)
+                
+                // Points along center->v1
+                Vector3 p1 = Vector3.Lerp(center, v1, t);
+                edge1Points.Add(p1);
+                edge1BoneWeights.Add(hasBoneWeights ? InterpolateBoneWeight(original.boneWeights[0], original.boneWeights[1], t) : new BoneWeight());
+                edge1Colors.Add(Color.Lerp(original.colors[0], original.colors[1], t));
+
+                // Points along center->v2
+                Vector3 p2 = Vector3.Lerp(center, v2, t);
+                edge2Points.Add(p2);
+                edge2BoneWeights.Add(hasBoneWeights ? InterpolateBoneWeight(original.boneWeights[0], original.boneWeights[2], t) : new BoneWeight());
+                edge2Colors.Add(Color.Lerp(original.colors[0], original.colors[2], t));
+            }
+
+            // Add boundary vertices
+            edge1Points.Add(v1);
+            edge2Points.Add(v2);
+            edge1BoneWeights.Add(original.boneWeights[1]);
+            edge2BoneWeights.Add(original.boneWeights[2]);
+            edge1Colors.Add(original.colors[1]);
+            edge2Colors.Add(original.colors[2]);
+
+            Debug.Log($"[SubdivideTriangle1Plus2N] Created {edge1Points.Count} points along each radial edge (center + {n} intermediate + 1 boundary)");
+
+            // Now create triangles using the grid pattern
+            // For n=1: 3 triangles (1 + 2*1)
+            // For n=2: 5 triangles (1 + 2*2)
+            
+            for (int i = 0; i < n + 1; i++)
+            {
+                if (i == 0)
+                {
+                    // First triangle: center -> edge1[1] -> edge2[1]
+                    Triangle tri = new Triangle();
+                    tri.vertices = new Vector3[] { edge1Points[0], edge1Points[1], edge2Points[1] };
+                    tri.boneWeights = new BoneWeight[] { edge1BoneWeights[0], edge1BoneWeights[1], edge2BoneWeights[1] };
+                    tri.uvs = new Vector2[] { calculateUV(edge1Points[0]), calculateUV(edge1Points[1]), calculateUV(edge2Points[1]) };
+                    tri.colors = new Color[] { edge1Colors[0], edge1Colors[1], edge2Colors[1] };
+                    result.Add(tri);
+                    Debug.Log($"[SubdivideTriangle1Plus2N] Triangle {result.Count}: Center({edge1Points[0].x:F2},{edge1Points[0].y:F2},{edge1Points[0].z:F2}) Edge1[1]({edge1Points[1].x:F2},{edge1Points[1].y:F2},{edge1Points[1].z:F2}) Edge2[1]({edge2Points[1].x:F2},{edge2Points[1].y:F2},{edge2Points[1].z:F2})");
+                }
+                else
+                {
+                    // Two triangles for each subsequent ring
+                    // Triangle A: edge1[i] -> edge2[i] -> edge1[i+1]
+                    Triangle triA = new Triangle();
+                    triA.vertices = new Vector3[] { edge1Points[i], edge2Points[i], edge1Points[i + 1] };
+                    triA.boneWeights = new BoneWeight[] { edge1BoneWeights[i], edge2BoneWeights[i], edge1BoneWeights[i + 1] };
+                    triA.uvs = new Vector2[] { calculateUV(edge1Points[i]), calculateUV(edge2Points[i]), calculateUV(edge1Points[i + 1]) };
+                    triA.colors = new Color[] { edge1Colors[i], edge2Colors[i], edge1Colors[i + 1] };
+                    result.Add(triA);
+                    Debug.Log($"[SubdivideTriangle1Plus2N] Triangle {result.Count}: Edge1[{i}]({edge1Points[i].x:F2},{edge1Points[i].y:F2},{edge1Points[i].z:F2}) Edge2[{i}]({edge2Points[i].x:F2},{edge2Points[i].y:F2},{edge2Points[i].z:F2}) Edge1[{i + 1}]({edge1Points[i + 1].x:F2},{edge1Points[i + 1].y:F2},{edge1Points[i + 1].z:F2})");
+
+                    // Triangle B: edge2[i] -> edge2[i+1] -> edge1[i+1]
+                    Triangle triB = new Triangle();
+                    triB.vertices = new Vector3[] { edge2Points[i], edge2Points[i + 1], edge1Points[i + 1] };
+                    triB.boneWeights = new BoneWeight[] { edge2BoneWeights[i], edge2BoneWeights[i + 1], edge1BoneWeights[i + 1] };
+                    triB.uvs = new Vector2[] { calculateUV(edge2Points[i]), calculateUV(edge2Points[i + 1]), calculateUV(edge1Points[i + 1]) };
+                    triB.colors = new Color[] { edge2Colors[i], edge2Colors[i + 1], edge1Colors[i + 1] };
+                    result.Add(triB);
+                    Debug.Log($"[SubdivideTriangle1Plus2N] Triangle {result.Count}: Edge2[{i}]({edge2Points[i].x:F2},{edge2Points[i].y:F2},{edge2Points[i].z:F2}) Edge2[{i + 1}]({edge2Points[i + 1].x:F2},{edge2Points[i + 1].y:F2},{edge2Points[i + 1].z:F2}) Edge1[{i + 1}]({edge1Points[i + 1].x:F2},{edge1Points[i + 1].y:F2},{edge1Points[i + 1].z:F2})");
+                }
+            }
+            
+            Debug.Log($"[SubdivideTriangle1Plus2N] SUMMARY: n={n}, Created {result.Count} triangles (expected: {1 + 2 * n})");
+            return result;
+        }
+
+        // Interpolate bone weights with parameter t
+        private BoneWeight InterpolateBoneWeight(BoneWeight bw1, BoneWeight bw2, float t)
+        {
+            BoneWeight result = new BoneWeight();
+            
+            result.boneIndex0 = bw1.boneIndex0;
+            result.boneIndex1 = bw1.boneIndex1;
+            result.boneIndex2 = bw1.boneIndex2;
+            result.boneIndex3 = bw1.boneIndex3;
+            
+            result.weight0 = Mathf.Lerp(bw1.weight0, bw2.weight0, t);
+            result.weight1 = Mathf.Lerp(bw1.weight1, bw2.weight1, t);
+            result.weight2 = Mathf.Lerp(bw1.weight2, bw2.weight2, t);
+            result.weight3 = Mathf.Lerp(bw1.weight3, bw2.weight3, t);
+            
+            return result;
+        }
+
+        // Interpolate bone weights (50/50 blend)
+        private BoneWeight InterpolateBoneWeight(BoneWeight bw1, BoneWeight bw2)
+        {
+            return InterpolateBoneWeight(bw1, bw2, 0.5f);
         }
 
         public Vector3 GetVerticeCenter(List<Vector3> fVertices)

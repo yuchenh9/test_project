@@ -73,7 +73,7 @@ namespace AutoLODRuntimeTest
             // Try to load AutoLOD types via reflection
             LoadAutoLODTypes();
             
-            Debug.Log($"AutoLOD Runtime Tester initialized on {gameObject.name} with {originalTriangleCount} triangles. AutoLOD Available: {autoLODAvailable}");
+            //Debug.Log($"AutoLOD Runtime Tester initialized on {gameObject.name} with {originalTriangleCount} triangles. AutoLOD Available: {autoLODAvailable}");
         }
         
         /// <summary>
@@ -165,7 +165,7 @@ namespace AutoLODRuntimeTest
             }
             
             string decimationType = useHighQuality ? "High Quality" : "Fast";
-            Debug.Log($"Starting AutoLOD {decimationType} decimation: {originalTriangleCount} → {targetTriangleCount} triangles");
+            //Debug.Log($"Starting AutoLOD {decimationType} decimation: {originalTriangleCount} → {targetTriangleCount} triangles");
             
             try
             {
@@ -190,7 +190,7 @@ namespace AutoLODRuntimeTest
                 reductionPercentage = (float)(originalTriangleCount - decimatedTriangleCount) / originalTriangleCount * 100f;
                 lastDecimationType = decimationType;
                 
-                Debug.Log($"AutoLOD {decimationType} decimation complete: {originalTriangleCount} → {decimatedTriangleCount} triangles ({reductionPercentage:F1}% reduction)");
+                //Debug.Log($"AutoLOD {decimationType} decimation complete: {originalTriangleCount} → {decimatedTriangleCount} triangles ({reductionPercentage:F1}% reduction)");
             }
             catch (System.Exception e)
             {
@@ -225,7 +225,7 @@ namespace AutoLODRuntimeTest
             }
             
             string decimationType = useHighQuality ? "High Quality" : "Fast";
-            Debug.Log($"Starting AutoLOD {decimationType} async decimation: {originalTriangleCount} → {targetTriangleCount} triangles");
+            //Debug.Log($"Starting AutoLOD {decimationType} async decimation: {originalTriangleCount} → {targetTriangleCount} triangles");
             
             bool success = false;
             System.Exception error = null;
@@ -287,7 +287,7 @@ namespace AutoLODRuntimeTest
                             reductionPercentage = (float)(originalTriangleCount - decimatedTriangleCount) / originalTriangleCount * 100f;
                             lastDecimationType = decimationType;
                             
-                            Debug.Log($"AutoLOD {decimationType} async decimation complete: {originalTriangleCount} → {decimatedTriangleCount} triangles ({reductionPercentage:F1}% reduction)");
+                            //Debug.Log($"AutoLOD {decimationType} async decimation complete: {originalTriangleCount} → {decimatedTriangleCount} triangles ({reductionPercentage:F1}% reduction)");
                             success = true;
                         }
                         catch (System.Exception e)
@@ -363,7 +363,7 @@ namespace AutoLODRuntimeTest
                 reductionPercentage = 0f;
                 lastDecimationType = "Reset";
                 
-                Debug.Log("Reset to original mesh");
+                //Debug.Log("Reset to original mesh");
             }
         }
         

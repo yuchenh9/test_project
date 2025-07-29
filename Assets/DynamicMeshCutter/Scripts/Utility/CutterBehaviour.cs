@@ -76,7 +76,7 @@ namespace DynamicMeshCutter
 
             MeshCreation.GetMeshInfo(target, out TargetOriginalMesh, out Bindposes);
             TargetVirtualMesh = new VirtualMesh(TargetOriginalMesh);
-            Debug.Log($"[Cutter.Info] VirtualMesh constructed from '{TargetOriginalMesh.name}' vertices={TargetVirtualMesh.Vertices.Length} colorsLen={(TargetVirtualMesh.Colors!=null?TargetVirtualMesh.Colors.Length:0)}");
+            //Debug.Log($"[Cutter.Info] VirtualMesh constructed from '{TargetOriginalMesh.name}' vertices={TargetVirtualMesh.Vertices.Length} colorsLen={(TargetVirtualMesh.Colors!=null?TargetVirtualMesh.Colors.Length:0)}");
 
             if (target.DynamicRagdoll != null) //dynamic ragdoll could be missing
             {
@@ -89,6 +89,7 @@ namespace DynamicMeshCutter
         public int[] Sides;
         public int[] BT; //buttom (0) or top (1)
         public List<Vector3> LocalFaceCenters = new List<Vector3>();
+        public int CutSurfaceSubdivisionLevel = 4;
         //callbacks
         public OnCut OnCutCallback;
         public OnCreated OnCreatedCallback;
@@ -117,6 +118,9 @@ namespace DynamicMeshCutter
         public bool UseAsync = true;
         [Tooltip("Cut objects whose vertices are LESS than this will NOT be created")]
         public int VertexCreationThreshold = 0;
+        [Tooltip("Subdivision level for cut surfaces (1=original, 2=1+2*1=3 triangles, 3=1+2*2=5 triangles, 4=1+2*3=7 triangles)")]
+        [Range(1, 4)]
+        public int CutSurfaceSubdivisionLevel = 2;
         public Material DefaultMaterial;
 
         private bool _cutterIsEnabled;
@@ -265,6 +269,8 @@ namespace DynamicMeshCutter
             VirtualPlane plane = new VirtualPlane(localP, localN, worldPosition, worldNormal);
             //Debug.Log($"CutterBehaviour.Cut: Created VirtualPlane {plane}");
             Info info = new Info(target, plane, onCut, onCreated, boxedUserData);
+            info.CutSurfaceSubdivisionLevel = CutSurfaceSubdivisionLevel;
+            Debug.Log($"[CutterBehaviour] Setting CutSurfaceSubdivisionLevel to {CutSurfaceSubdivisionLevel}");
             //Debug.Log($"CutterBehaviour.Cut: Created Info {info}");
 
             if (!UseAsync)
@@ -304,7 +310,7 @@ namespace DynamicMeshCutter
 
         protected virtual void CreateGameObjects(Info info)
         {
-            Debug.Log("CutterBehaviour.CreateGameObjects called");
+            //Debug.Log("CutterBehaviour.CreateGameObjects called");
             MeshCreationData creationInfo = MeshCreation.CreateObjects(info, DefaultMaterial, VertexCreationThreshold);
             //Debug.Log("creationInfo"+creationInfo);
             if (DestroyTargets)
@@ -332,7 +338,7 @@ namespace DynamicMeshCutter
                 }
             }
 
-            Debug.Log("CutterBehaviour: About to invoke OnCreatedCallback");
+            //Debug.Log("CutterBehaviour: About to invoke OnCreatedCallback");
             info.OnCreatedCallback?.Invoke(info, creationInfo);
         }
 
