@@ -144,29 +144,62 @@ namespace DynamicMeshCutter
                     mesh.SetIndices(vMesh.GetIndices(j), MeshTopology.Triangles, j);
                 }
 
-                // NEW: Transfer vertex colors if lookup is available
-                if (_colorLookup != null)
+                // Vertex colors: prefer vMesh.Colors per-index; fallback to lookup for missing; and always override cap submesh with vMesh.Colors when available
                 {
-                    Vector3[] newVerts = mesh.vertices;
-                    Color[] newColors = new Color[newVerts.Length];
-                    for (int v = 0; v < newVerts.Length; v++)
+                    int vcount = mesh.vertexCount;
+                    Color[] finalColors = new Color[vcount];
+                    bool haveAnyVColors = (vMesh.Colors != null && vMesh.Colors.Length > 0);
+ 
+                    // 1) Copy whatever is available from vMesh.Colors by index range
+                    if (haveAnyVColors)
                     {
-                        if (!_colorLookup.TryGetValue(newVerts[v], out newColors[v]))
+                        int copyLen = Mathf.Min(vcount, vMesh.Colors.Length);
+                        for (int vi = 0; vi < copyLen; vi++) finalColors[vi] = vMesh.Colors[vi];
+                    }
+ 
+                    // 2) Fallback: fill remaining unset colors from lookup (or white)
+                    if (_colorLookup != null)
+                    {
+                        Vector3[] newVerts = mesh.vertices;
+                        for (int vi = 0; vi < vcount; vi++)
                         {
-                            newColors[v] = Color.white; // default for newly created vertices (cut faces)
+                            if (finalColors[vi].a == 0f && finalColors[vi].r == 0f && finalColors[vi].g == 0f && finalColors[vi].b == 0f)
+                            {
+                                if (!_colorLookup.TryGetValue(newVerts[vi], out finalColors[vi]))
+                                    finalColors[vi] = Color.white;
+                            }
                         }
                     }
-                    mesh.colors = newColors;
-                    // also set colors32 to avoid NaN issues in some Unity versions
-                    Color32[] cols32 = new Color32[newColors.Length];
-                    for(int ci=0; ci<cols32.Length; ci++) cols32[ci] = newColors[ci];
-                    mesh.colors32 = cols32;
-                }
-                else if(vMesh.Colors != null && vMesh.Colors.Length == mesh.vertexCount)
-                {
-                    mesh.colors = vMesh.Colors;
-                    Color32[] cols32 = new Color32[vMesh.Colors.Length];
-                    for(int ci=0; ci<cols32.Length; ci++) cols32[ci] = vMesh.Colors[ci];
+                    else
+                    {
+                        // When no lookup, ensure any still-unset entries are at least white
+                        for (int vi = 0; vi < vcount; vi++)
+                        {
+                            if (finalColors[vi].a == 0f && finalColors[vi].r == 0f && finalColors[vi].g == 0f && finalColors[vi].b == 0f)
+                                finalColors[vi] = Color.white;
+                        }
+                    }
+ 
+                    // 3) Always force cap submesh to use vMesh.Colors when available
+                    if (vMesh.SubMeshCount > 0 && haveAnyVColors)
+                    {
+                        int capSubmesh = vMesh.SubMeshCount - 1;
+                        int[] capIndices = mesh.GetIndices(capSubmesh);
+                        if (capIndices != null && capIndices.Length > 0)
+                        {
+                            for (int ci = 0; ci < capIndices.Length; ci++)
+                            {
+                                int idx = capIndices[ci];
+                                if ((uint)idx < (uint)vcount && idx < vMesh.Colors.Length)
+                                    finalColors[idx] = vMesh.Colors[idx];
+                            }
+                        }
+                    }
+ 
+                    // Apply
+                    mesh.colors = finalColors;
+                    Color32[] cols32 = new Color32[finalColors.Length];
+                    for (int ci = 0; ci < cols32.Length; ci++) cols32[ci] = finalColors[ci];
                     mesh.colors32 = cols32;
                 }
 
