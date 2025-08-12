@@ -24,7 +24,7 @@ namespace DynamicMeshCutter
 
         void OnSceneGUI()
         {
-            DrawPlane(_pb.transform.forward, _pb.transform.position);
+            //DrawPlane(_pb.transform.forward, _pb.transform.position);
         }
         public void DrawPlane(Vector3 normal, Vector3 position)
         {

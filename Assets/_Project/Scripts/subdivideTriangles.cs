@@ -73,7 +73,7 @@ public static class SubdivideTriangles
             edge1Points.Add(p1);
             edge1BoneWeights.Add(hasBoneWeights ? InterpolateBoneWeight(original.boneWeights[0], original.boneWeights[1], t) : new BoneWeight());
             edge1Colors.Add(Color.Lerp(original.colors[0], original.colors[1], t));
-
+            Debug.Log($"[SubdivideTriangle1Plus2N] Edge1Color: {edge1Colors[i]}");
             // Points along center->v2
             Vector3 p2 = Vector3.Lerp(center, v2, t);
             edge2Points.Add(p2);
@@ -118,8 +118,7 @@ public static class SubdivideTriangles
                 triA.uvs = new Vector2[] { calculateUV(edge1Points[i]), calculateUV(edge2Points[i]), calculateUV(edge1Points[i + 1]) };
                 triA.colors = new Color[] { edge1Colors[i], edge2Colors[i], edge1Colors[i + 1] };
                 result.Add(triA);
-                //Debug.Log($"[SubdivideTriangle1Plus2N] Triangle {result.Count}: Edge1[{i}]({edge1Points[i].x:F2},{edge1Points[i].y:F2},{edge1Points[i].z:F2}) Edge2[{i}]({edge2Points[i].x:F2},{edge2Points[i].y:F2},{edge2Points[i].z:F2}) Edge1[{i + 1}]({edge1Points[i + 1].x:F2},{edge1Points[i + 1].y:F2},{edge1Points[i + 1].z:F2})");
-
+                Debug.Log($"Triangle A Colors: {triA.colors[0]}, {triA.colors[1]}, {triA.colors[2]}");
                 // Triangle B: edge2[i] -> edge2[i+1] -> edge1[i+1]
                 Triangle triB = new Triangle();
                 triB.vertices = new Vector3[] { edge2Points[i], edge2Points[i + 1], edge1Points[i + 1] };

@@ -229,9 +229,9 @@ public class CustomSlicerBehaviour : CutterBehaviour
                 }
                 string planeName = $"cutPlane({plane.Position},{plane.Normal})";
                //Debug.Log($"CutWithPlanes: Drawing plane {planeName}");
-                GameObject debugPlane = DebugPlaneDrawer.DrawPlane(plane.Position, plane.Normal, 1f, planeName);
+                //GameObject debugPlane = DebugPlaneDrawer.DrawPlane(plane.Position, plane.Normal, 1f, planeName);
                //Debug.Log($"CutWithPlanes: Plane drawn {debugPlane}");
-                lastCuttingPlanes.Add(debugPlane);
+                //lastCuttingPlanes.Add(debugPlane);
                //Debug.Log("CutWithPlanes: Plane added to lastCuttingPlanes");
                 Cut(obj, plane.Position, plane.Normal, OnCutLocal, OnCreated);
                //Debug.Log("CutWithPlanes: Cut called");
@@ -269,7 +269,7 @@ public class CustomSlicerBehaviour : CutterBehaviour
                    //Debug.Log($"plane:({plane.Position}, {plane.Normal}) objects:[{objNames}]");
 
                     DebugCutInfo debugInfo = new DebugCutInfo {
-                        cuttingPlane = debugPlane,
+                        cuttingPlane = null, // debugPlane is commented out
                         createdObjects = new List<DynamicMeshCutter.MeshTarget>(createdObjectsPerCut[idx])
                     };
                     debugCuts.Add(debugInfo);
@@ -384,9 +384,9 @@ iterate plane
             //Debug.Log("CalculatedCut: Called Cut");
             string planeName = $"cutPlane({plane.Position},{plane.Normal})";
             //Debug.Log("CalculatedCut: Created planeName");
-            GameObject debugPlane = DebugPlaneDrawer.DrawPlane(plane.Position, plane.Normal, 1f, planeName);
+            //GameObject debugPlane = DebugPlaneDrawer.DrawPlane(plane.Position, plane.Normal, 1f, planeName);
             //Debug.Log("CalculatedCut: Drew debug plane");
-            lastCuttingPlanes.Add(debugPlane);
+            //lastCuttingPlanes.Add(debugPlane);
             //Debug.Log("CalculatedCut: Added to lastCuttingPlanes");
         }
         else

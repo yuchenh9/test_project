@@ -385,7 +385,7 @@ namespace DynamicMeshCutter
             Vector3 left = Vector3.Cross(data.Plane.LocalNormal, upward);
 
             // Get subdivision parameter n for 1+2*n triangles
-            int n = 3; // Level 1 = n=0, Level 2 = n=1, Level 3 = n=2, etc.
+            int n = 14; // Level 1 = n=0, Level 2 = n=1, Level 3 = n=2, etc.
             Debug.Log($"[FillFace] *** SUBDIVISION TEST *** Level={info.CutSurfaceSubdivisionLevel}, n={n}, expected triangles per face: {1 + 2 * n}");
 
             // Helper function to calculate UV
@@ -414,13 +414,17 @@ namespace DynamicMeshCutter
                     CalculateUV(fVertices[i]), 
                     CalculateUV(fVertices[next])
                 };
-                tri.colors = new Color[] { Color.black, Color.black, Color.black };
+                
+                
+                tri.colors = new Color[] { new Color(0f,0f,0f,0f), new Color(1f,0f,0f,1f), new Color(1f,0f,0f,1f) };
                 
                 triangles.Add(tri);
             }
 
             // Apply 1+2*n subdivision to each triangle
             List<SubdivideTriangles.Triangle> finalTriangles = SubdivideTriangles.Subdivide(triangles, n, hasBoneWeights, CalculateUV);
+
+           
 
             // Add all triangles to both sides
             foreach (SubdivideTriangles.Triangle tri in finalTriangles)
@@ -433,7 +437,7 @@ namespace DynamicMeshCutter
                         tri.vertices,
                         new Vector3[] { sign * data.Plane.LocalNormal, sign * data.Plane.LocalNormal, sign * data.Plane.LocalNormal },
                         tri.uvs,
-                        new Color[] { Color.black, Color.black, Color.black },
+                        tri.colors,  // Use the assigned R values
                         tri.boneWeights,
                         new int[] {-1,-1,-1}, //for now we ignore collider part of the newly added face vertices
                         sign * data.Plane.LocalNormal,

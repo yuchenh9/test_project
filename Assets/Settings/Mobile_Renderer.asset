@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EdgeDetection
   m_EditorClassIdentifier: 
   m_Active: 1
-  settings: {fileID: 0}
+  settings: {fileID: 11400000, guid: dc93c27dc7df94aeb9d5ec383fb8222d, type: 2}
   shaders:
     section: {fileID: 4800000, guid: 555b69c4bab64af2aab316a4335ad6be, type: 3}
     outline: {fileID: 4800000, guid: 0049e25744c864ee4916fc340cf7957f, type: 3}
