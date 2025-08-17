@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: aac28e43d53472c4abd0ef7857e933ec
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 26286
+  packageName: Paint in 3D
+  packageVersion: 4.1.11
+  assetPath: Assets/Plugins/CW/PaintIn3D/Extras/Shaders/Unlit Overlay.shader
+  uploadId: 763290

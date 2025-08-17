@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f7602d21913c37c4eb0819b9e97e6537
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 26286
+  packageName: Paint in 3D
+  packageVersion: 4.1.11
+  assetPath: Assets/Plugins/CW/PaintIn3D/Extras/Shaders/Unlit P3D_Splat_Bundle.asset
+  uploadId: 763290

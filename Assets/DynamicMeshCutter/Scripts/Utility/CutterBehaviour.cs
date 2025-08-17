@@ -61,6 +61,7 @@ namespace DynamicMeshCutter
         //basic info
         public MeshTarget MeshTarget;
         public VirtualPlane Plane;
+        public Matrix4x4 LocalToWorldMatrix;
 
         //advanced info
         public Mesh TargetOriginalMesh;
@@ -82,6 +83,9 @@ namespace DynamicMeshCutter
             {
                 TargetVirtualMesh.AssignRagdoll(target.DynamicRagdoll);
             }
+
+            // Cache matrix to avoid accessing Transform on worker thread
+            LocalToWorldMatrix = target.transform.localToWorldMatrix;
         }
 
         //info created during cutting tasks

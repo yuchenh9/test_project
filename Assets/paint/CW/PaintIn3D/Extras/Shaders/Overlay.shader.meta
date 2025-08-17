@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: d6f550d8415a0c9418e9373a81155d4e
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 26286
+  packageName: Paint in 3D
+  packageVersion: 4.1.11
+  assetPath: Assets/Plugins/CW/PaintIn3D/Extras/Shaders/Overlay.shader
+  uploadId: 763290

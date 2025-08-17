@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: d3cdbe7f70161da4699f37f166874b28
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 26286
+  packageName: Paint in 3D
+  packageVersion: 4.1.11
+  assetPath: Assets/Plugins/CW/PaintIn3D/Extras/Shaders/Unlit Solid.shader
+  uploadId: 763290

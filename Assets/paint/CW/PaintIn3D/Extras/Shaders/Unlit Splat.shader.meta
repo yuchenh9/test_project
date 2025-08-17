@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 79724bda94cda934aaea940afc61ad8e
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 26286
+  packageName: Paint in 3D
+  packageVersion: 4.1.11
+  assetPath: Assets/Plugins/CW/PaintIn3D/Extras/Shaders/Unlit Splat.shader
+  uploadId: 763290

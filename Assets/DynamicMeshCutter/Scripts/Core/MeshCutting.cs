@@ -385,8 +385,8 @@ namespace DynamicMeshCutter
             Vector3 left = Vector3.Cross(data.Plane.LocalNormal, upward);
 
             // Get subdivision parameter n for 1+2*n triangles
-            int n = 14; // Level 1 = n=0, Level 2 = n=1, Level 3 = n=2, etc.
-            Debug.Log($"[FillFace] *** SUBDIVISION TEST *** Level={info.CutSurfaceSubdivisionLevel}, n={n}, expected triangles per face: {1 + 2 * n}");
+            int n = 5; // Level 1 = n=0, Level 2 = n=1, Level 3 = n=2, etc.
+            // Debug.Log($"[FillFace] *** SUBDIVISION TEST *** Level={info.CutSurfaceSubdivisionLevel}, n={n}, expected triangles per face: {1 + 2 * n}");
 
             // Helper function to calculate UV
             System.Func<Vector3, Vector2> CalculateUV = (vertex) => {
@@ -420,10 +420,39 @@ namespace DynamicMeshCutter
                 
                 triangles.Add(tri);
             }
-
+            // Compute world-space Y range for gradient mapping using cached matrix (thread-safe)
+            Matrix4x4 l2w = info.LocalToWorldMatrix;
+            float maxy = (l2w.MultiplyPoint3x4(center)).y;
+            float miny = maxy;
+            foreach (SubdivideTriangles.Triangle tri in triangles)
+            {
+                foreach (Vector3 v in tri.vertices)
+                {
+                    float wy = (l2w.MultiplyPoint3x4(v)).y;
+                    maxy = Mathf.Max(maxy, wy);
+                    miny = Mathf.Min(miny, wy);
+                }
+            }
             // Apply 1+2*n subdivision to each triangle
             List<SubdivideTriangles.Triangle> finalTriangles = SubdivideTriangles.Subdivide(triangles, n, hasBoneWeights, CalculateUV);
 
+            List<float> lerpValues = new List<float>();
+            float denom = maxy - miny;
+            bool isFlat = Mathf.Approximately(denom, 0f);
+            foreach (SubdivideTriangles.Triangle tri in finalTriangles)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    float wy = (l2w.MultiplyPoint3x4(tri.vertices[i])).y;
+                    float t = isFlat ? 0f : (wy - miny) / denom;
+                    float r = lerpValueFromArray.assignValue(t, lerpValueFromArray.data);
+                    tri.colors[i] = new Color(r, 0, 0, 1);
+                    lerpValues.Add(r);
+                }
+            }
+            // ... populate the list ...
+            string result = string.Join(", ", lerpValues);
+            Debug.Log(result);
            
 
             // Add all triangles to both sides

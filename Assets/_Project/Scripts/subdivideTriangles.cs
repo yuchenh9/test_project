@@ -5,6 +5,7 @@ using System;
 
 public static class SubdivideTriangles
 {       
+   
     public class Triangle
     {
         public Vector3[] vertices = new Vector3[3];
@@ -44,6 +45,7 @@ public static class SubdivideTriangles
         Vector3 v1 = original.vertices[1]; // boundary vertex 1
         Vector3 v2 = original.vertices[2]; // boundary vertex 2
 
+        //List<float> lerpValues = lerpValueFromArray.assignValues(n+1,data);
         //Debug.Log($"[SubdivideTriangle1Plus2N] Original triangle: Center({center.x:F2},{center.y:F2},{center.z:F2}) V1({v1.x:F2},{v1.y:F2},{v1.z:F2}) V2({v2.x:F2},{v2.y:F2},{v2.z:F2})");
 
         // Create subdivision points along the radial edges (center to boundary vertices)
@@ -60,10 +62,11 @@ public static class SubdivideTriangles
         edge2Points.Add(center);
         edge1BoneWeights.Add(original.boneWeights[0]);
         edge2BoneWeights.Add(original.boneWeights[0]);
-        edge1Colors.Add(original.colors[0]);
-        edge2Colors.Add(original.colors[0]);
+        edge1Colors.Add(new Color(0,0,0,1));
+        edge2Colors.Add(new Color(0,0,0,1));
 
         // Add n intermediate points along each radial edge
+        
         for (int i = 1; i <= n; i++)
         {
             float t = (float)i / (n + 1); // t goes from 1/(n+1) to n/(n+1)
@@ -72,13 +75,15 @@ public static class SubdivideTriangles
             Vector3 p1 = Vector3.Lerp(center, v1, t);
             edge1Points.Add(p1);
             edge1BoneWeights.Add(hasBoneWeights ? InterpolateBoneWeight(original.boneWeights[0], original.boneWeights[1], t) : new BoneWeight());
-            edge1Colors.Add(Color.Lerp(original.colors[0], original.colors[1], t));
-            Debug.Log($"[SubdivideTriangle1Plus2N] Edge1Color: {edge1Colors[i]}");
+            //edge1Colors.Add(Color.Lerp(original.colors[0], original.colors[1], t));
+            edge1Colors.Add(new Color(0,0,0,1));
+            // Debug.Log($"[SubdivideTriangle1Plus2N] Edge1Color: {edge1Colors[i]}");
             // Points along center->v2
             Vector3 p2 = Vector3.Lerp(center, v2, t);
             edge2Points.Add(p2);
             edge2BoneWeights.Add(hasBoneWeights ? InterpolateBoneWeight(original.boneWeights[0], original.boneWeights[2], t) : new BoneWeight());
-            edge2Colors.Add(Color.Lerp(original.colors[0], original.colors[2], t));
+            //edge2Colors.Add(Color.Lerp(original.colors[0], original.colors[2], t));
+            edge2Colors.Add(new Color(0,0,0,1));
         }
 
         // Add boundary vertices
@@ -118,7 +123,7 @@ public static class SubdivideTriangles
                 triA.uvs = new Vector2[] { calculateUV(edge1Points[i]), calculateUV(edge2Points[i]), calculateUV(edge1Points[i + 1]) };
                 triA.colors = new Color[] { edge1Colors[i], edge2Colors[i], edge1Colors[i + 1] };
                 result.Add(triA);
-                Debug.Log($"Triangle A Colors: {triA.colors[0]}, {triA.colors[1]}, {triA.colors[2]}");
+                // Debug.Log($"Triangle A Colors: {triA.colors[0]}, {triA.colors[1]}, {triA.colors[2]}");
                 // Triangle B: edge2[i] -> edge2[i+1] -> edge1[i+1]
                 Triangle triB = new Triangle();
                 triB.vertices = new Vector3[] { edge2Points[i], edge2Points[i + 1], edge1Points[i + 1] };
