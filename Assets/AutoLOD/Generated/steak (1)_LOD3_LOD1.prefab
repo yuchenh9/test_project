@@ -1,0 +1,216 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1612011093326145452
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4390245384857688839}
+  - component: {fileID: 3391390630163709254}
+  - component: {fileID: 1946195073822233567}
+  - component: {fileID: 2084832453897263620}
+  - component: {fileID: 3421383700989450370}
+  - component: {fileID: 2543900374155067710}
+  m_Layer: 0
+  m_Name: steak (1)_LOD3_LOD1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4390245384857688839
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612011093326145452}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: -0.18}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!137 &3391390630163709254
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612011093326145452}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: f160cf21d982e443bbff655d9c54e77d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 0}
+  m_Bones: []
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 0}
+  m_AABB:
+    m_Center: {x: 0.0015162602, y: -0.0038627274, z: -0.0007009106}
+    m_Extent: {x: 0.10146681, y: 0.07324991, z: 0.009059633}
+  m_DirtyAABB: 0
+--- !u!114 &1946195073822233567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612011093326145452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40122d09c80984e3eb15d54addf6aa81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedPreset: obiSoftBody
+  applyPreset: 0
+  clearAllComponents: 0
+  presets:
+  - presetName: obiSoftBody
+    components:
+    - componentTypeName: Obi.ObiSoftbody
+      fieldAssignments: []
+    - componentTypeName: Obi.ObiSoftbodySkinner
+      fieldAssignments:
+      - fieldName: softbody
+        assignmentType: 1
+        targetComponentType: Obi.ObiSoftbody
+        componentIndex: 0
+        stringValue: 
+        floatValue: 0
+        boolValue: 0
+    - componentTypeName: DynamicMeshCutter.MeshTarget
+      fieldAssignments:
+      - fieldName: GameobjectRoot
+        assignmentType: 0
+        targetComponentType: 
+        componentIndex: 0
+        stringValue: 
+        floatValue: 0
+        boolValue: 0
+      - fieldName: OverrideFaceMaterial
+        assignmentType: 2
+        targetComponentType: 
+        componentIndex: 0
+        stringValue: 
+        floatValue: 0
+        boolValue: 0
+  replaceExisting: 0
+  showDebugInfo: 1
+  debugInfo: "PRESET APPLICATION SUMMARY:\nPreset: obiSoftBody\nTarget: steak (1)_LOD3_LOD1\nComponents
+    to add: 3\nSuccessfully added: 3\nFailed: 0\n\nADDED COMPONENTS:\n\u2713 Obi.ObiSoftbody\n\u2713
+    Obi.ObiSoftbodySkinner\n\u2713 DynamicMeshCutter.MeshTarget\n\n"
+--- !u!114 &2084832453897263620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612011093326145452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f34e5650326d42f48ed54336d58073d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  solverIndices:
+    serializedContents: 
+    m_AlignBytes: 16
+  groupID: 0
+  m_CollisionMaterial: {fileID: 0}
+  m_SurfaceCollisions: 0
+  m_SoftbodyBlueprint: {fileID: 0}
+  m_SelfCollisions: 0
+  centerBatch: -1
+  centerShape: -1
+  _shapeMatchingConstraintsEnabled: 1
+  _deformationResistance: 1
+  _maxDeformation: 0
+  _plasticYield: 0
+  _plasticCreep: 0
+  _plasticRecovery: 0
+--- !u!114 &3421383700989450370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612011093326145452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83bf94c6a4abf4495a5a12f7f2f234ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  softbody: {fileID: 2084832453897263620}
+  customSkinMap: {fileID: 0}
+  radius: 0.5
+  falloff: 1
+  maxInfluences: 4
+  softbodyInfluence: 1
+  m_softbodyInfluences: []
+  <sourceMesh>k__BackingField: {fileID: 0}
+--- !u!114 &2543900374155067710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1612011093326145452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74d075e443ddc624db302098f7826153, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameobjectRoot: {fileID: 1612011093326145452}
+  OverrideFaceMaterial: {fileID: 2100000, guid: f160cf21d982e443bbff655d9c54e77d, type: 2}
+  SeparateMeshes: 0
+  ApplyTranslation: 1
+  DefaultBehaviour: 0000000000000000
+  DynamicRagdoll: {fileID: 0}
+  Animator: {fileID: 0}
+  GroupBehaviours: []
+  CreateRigidbody: 0101
+  CreateMeshCollider: 0101
+  Physics: 0200000002000000
+  Inherit: 0000

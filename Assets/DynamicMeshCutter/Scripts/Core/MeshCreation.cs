@@ -329,18 +329,18 @@ namespace DynamicMeshCutter
 
             if (target.CreateRigidbody[bt])
             {
-                var rb = parent.gameObject.AddComponent<Rigidbody>();
-                rb.interpolation = RigidbodyInterpolation.Interpolate;
-                rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+                //var rb = parent.gameObject.AddComponent<Rigidbody>();
+                //rb.interpolation = RigidbodyInterpolation.Interpolate;
+                //rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
             }
             if (target.CreateMeshCollider[bt])
             {
                 //only create when more than or equal unique vertices. if we don't run floodfill algorithm, the uniquevertice amount will be unset and equals -1
                 if (vMesh.UniqueVerticesCount < 0 || vMesh.UniqueVerticesCount > 3 && vMesh.Vertices.Length > 20)
                 {
-                    MeshCollider collider = root.AddComponent<MeshCollider>();
+                    //MeshCollider collider = root.AddComponent<MeshCollider>();//comment out if using ObiSoftbody
                     //remark: BE CAREFUL ABOUT CONVEX MESH COLLIDER CREATION. THIS WILL THROW PHYSICS.PHYSX ERRORS IF MESH IS TOO SMALL.
-                    collider.convex = true;
+                    //collider.convex = true;
                 }
             }
         }

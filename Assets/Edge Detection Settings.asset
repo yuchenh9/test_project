@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: Edge Detection Settings
   m_EditorClassIdentifier: 
   injectionPoint: 600
-  showInSceneView: 1
+  showInSceneView: 0
   debugView: 0
   debugSectionsRaw: 0
-  discontinuityInput: 2
-  depthSensitivity: 1
-  depthDistanceModulation: 0.4
-  grazingAngleMaskPower: 0.2
+  discontinuityInput: 8
+  depthSensitivity: 0.141
+  depthDistanceModulation: 0
+  grazingAngleMaskPower: 0
   grazingAngleMaskHardness: 1
-  normalSensitivity: 0.4
-  luminanceSensitivity: 0.3
+  normalSensitivity: 0.108
+  luminanceSensitivity: 0.135
   SectionRenderingLayer:
     serializedVersion: 0
     m_Bits: 1
@@ -38,7 +38,7 @@ MonoBehaviour:
   sectionTextureChannel: 0
   vertexColorChannel: 0
   kernel: 0
-  outlineThickness: 6
+  outlineThickness: 12
   scaleWithResolution: 1
   referenceResolution: 2
   customResolution: 0

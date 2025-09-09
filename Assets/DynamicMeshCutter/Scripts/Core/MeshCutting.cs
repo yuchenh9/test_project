@@ -434,8 +434,9 @@ namespace DynamicMeshCutter
                 }
             }
             // Apply 1+2*n subdivision to each triangle
+            
             List<SubdivideTriangles.Triangle> finalTriangles = SubdivideTriangles.Subdivide(triangles, n, hasBoneWeights, CalculateUV);
-
+            void assignColorByY(){
             List<float> lerpValues = new List<float>();
             float denom = maxy - miny;
             bool isFlat = Mathf.Approximately(denom, 0f);
@@ -450,11 +451,10 @@ namespace DynamicMeshCutter
                     lerpValues.Add(r);
                 }
             }
-            // ... populate the list ...
             string result = string.Join(", ", lerpValues);
-            Debug.Log(result);
-           
-
+            //Debug.Log(result);
+            }
+            assignColorByY();
             // Add all triangles to both sides
             foreach (SubdivideTriangles.Triangle tri in finalTriangles)
             {

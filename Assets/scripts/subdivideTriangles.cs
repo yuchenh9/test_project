@@ -26,7 +26,7 @@ public static class SubdivideTriangles
         //Debug.Log($"[FillFace] Final triangle count: {finalTriangles.Count}");
         return finalTriangles;
     }
-    
+    //this code init two list edge1Points, edge2Points and then assign value to the tris from them
     public static List<Triangle> SubdivideTriangle1Plus2N(Triangle original, int n, bool hasBoneWeights, System.Func<Vector3, Vector2> calculateUV)
     {
         List<Triangle> result = new List<Triangle>();
@@ -69,21 +69,32 @@ public static class SubdivideTriangles
         
         for (int i = 1; i <= n; i++)
         {
-            float t = (float)i / (n + 1); // t goes from 1/(n+1) to n/(n+1)
-            
+            float t = (float)i / (n ); // t goes from 1/(n+1) to n/(n+1)
+            void assignColorByN(){
+            //edge1Colors.Add(Color.Lerp(original.colors[0], original.colors[1], t));
+            //edge2Colors.Add(Color.Lerp(original.colors[0], original.colors[2], t));
+    
+            edge1Colors.Add(new Color(lerpValueFromArray.assignValue(t*2,lerpValueFromArray.data),0,0,1));
+            edge2Colors.Add(new Color(lerpValueFromArray.assignValue(t*2,lerpValueFromArray.data),0,0,1));
+            }   
+            void assignColorByDefaulBlack(){
+                edge1Colors.Add(new Color(0,0,0,1));
+                edge2Colors.Add(new Color(0,0,0,1));
+            }
+            //assignColorByN();//comment out MeshCuttin.cs/assignColorByY() to use this
+            assignColorByDefaulBlack();//uncomment if assignColorByY()
             // Points along center->v1
             Vector3 p1 = Vector3.Lerp(center, v1, t);
             edge1Points.Add(p1);
             edge1BoneWeights.Add(hasBoneWeights ? InterpolateBoneWeight(original.boneWeights[0], original.boneWeights[1], t) : new BoneWeight());
-            //edge1Colors.Add(Color.Lerp(original.colors[0], original.colors[1], t));
-            edge1Colors.Add(new Color(0,0,0,1));
+            
+            
             // Debug.Log($"[SubdivideTriangle1Plus2N] Edge1Color: {edge1Colors[i]}");
             // Points along center->v2
             Vector3 p2 = Vector3.Lerp(center, v2, t);
             edge2Points.Add(p2);
             edge2BoneWeights.Add(hasBoneWeights ? InterpolateBoneWeight(original.boneWeights[0], original.boneWeights[2], t) : new BoneWeight());
-            //edge2Colors.Add(Color.Lerp(original.colors[0], original.colors[2], t));
-            edge2Colors.Add(new Color(0,0,0,1));
+            
         }
 
         // Add boundary vertices
